@@ -1,0 +1,65 @@
+@layer utilities {
+    .hover-underline {
+        @apply cursor-pointer inline w-fit hyphens-auto bg-linear-to-r from-current to-current bg-no-repeat bg-bottom-left duration-300 transition-all bg-size-[0_.05em];
+
+        &:hover,
+        &:focus-visible {
+            @apply bg-size-[100%_.05em];
+        }
+
+        &:focus-visible {
+            @apply outline-1 outline-green-light rounded-xs;
+        }
+    }
+
+    .hover-underline-white {
+        @apply relative inline-flex overflow-hidden w-fit;
+
+        &:before {
+            @apply content-[''] absolute bottom-0 left-0 w-full h-px bg-current;
+        }
+
+        &:after {
+            @apply content-[''] absolute z-2 bottom-0 left-0 w-full h-px bg-white -translate-x-full duration-600 transition-transform;
+        }
+
+        &:hover,
+        &:focus-visible {
+            &:after {
+                @apply translate-x-full;
+            }
+        }
+    }
+
+    .button {
+        @apply relative flex items-center justify-center gap-1 w-fit rounded-4xl cursor-pointer py-4 px-14 hover:bg-yellow hover:text-green-dark transition-colors duration-200;
+
+        & > [data-submit-text] {
+            @apply flex items-center justify-center gap-4;
+        }
+    }
+
+    .button--green-neon {
+        @apply bg-green-neon text-black;
+    }
+
+    .button--green-dark {
+        @apply bg-green-dark text-green-light;
+    }
+
+    .button--yellow {
+        @apply bg-yellow text-black;
+    }
+
+    .button--black {
+        @apply bg-black text-yellow;
+    }
+
+    .button--white {
+        @apply bg-white text-black;
+    }
+
+    .button--hollow-white {
+        @apply bg-transparent text-white border border-white hover:bg-white hover:text-black;
+    }
+}
