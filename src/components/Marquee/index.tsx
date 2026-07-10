@@ -39,20 +39,20 @@ export default function Marquee({
 
     return (
         <div
-            className={clsx('relative overflow-hidden flex items-center w-full opacity-70', className)}
+            className={clsx('relative overflow-hidden flex items-center w-full', className)}
             ref={logosContainer}
         >
             {logos.map((item, i) => (
                 <div
                     key={i}
-                    className='logo flex items-center justify-center px-5 md:px-10 xl:px-15 shrink-0'
+                    className='logo flex items-center justify-center px-4 md:px-10 xl:px-15 shrink-0'
                 >
                     <Image
                         src={item.src}
                         alt={item.alt}
                         width={100}
                         height={100}
-                        className='block w-[35vw] md:w-[20vw] xl:w-[12vw] max-h-[20vw] md:max-h-[10vw] xl:max-h-[6vw] h-auto object-contain brightness-0 aspect-video'
+                        className='block w-[35vw] md:w-[20vw] xl:w-[12vw] max-h-10 sm:max-h-10 md:max-h-12 xl:max-h-[3vw] h-auto object-contain brightness-0'
                     />
                 </div>
             ))}

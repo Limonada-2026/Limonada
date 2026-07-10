@@ -22,9 +22,9 @@ export default function TeamBanner({
     className
 }: TeamBannerProps) {
     return (
-        <section className={clsx('bg-white my-20 lg:my-[12vw]', className)}>
+        <section className={clsx('section-space', className)}>
             <div className='base-container'>
-                <div className='relative overflow-hidden rounded-xl lg:rounded-3xl bg-[#5B5555]'>
+                <div className='relative overflow-hidden rounded-xl md:rounded-2xl lg:rounded-3xl bg-[#5B5555]'>
 
                     <div className='relative md:absolute z-0 md:top-0 md:right-0 w-full md:w-[60%] xl:w-[70%] h-[150vw] sm:h-[100vw] md:h-full'>
 

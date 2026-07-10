@@ -15,7 +15,7 @@ export default function ContactFormSmall({
     className,
 }: ContactFormSmallProps) {
     return (
-        <section className={clsx('bg-white my-20 lg:my-[10vw]', className)}>
+        <section className={clsx('section-space', className)}>
             <div className='base-container'>
                 <div className='row'>
 

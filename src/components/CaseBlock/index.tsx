@@ -6,6 +6,9 @@ import clsx from 'clsx'
 // components
 import ScrollingImage from '@/components/Utils/Animations/ScrollingImage'
 
+// icons
+import { Clock } from '@/components/Svg/Icons'
+
 // types
 interface CaseBlockProps {
     className?: string
@@ -14,6 +17,7 @@ interface CaseBlockProps {
     image: string
     imageSize: 'fixed' | 'horizontal' | 'vertical' | 'square'
     logo?: string
+    readingTime?: string
     link?: {
         href: string
         isExternal?: boolean
@@ -27,6 +31,7 @@ export default function CaseBlock({
     image,
     imageSize,
     logo,
+    readingTime,
     link
 }: CaseBlockProps) {
 
@@ -75,7 +80,7 @@ export default function CaseBlock({
             </span>
 
             {title && (
-                <h3 className='font-bold text-lg md:text-xl mt-4'>
+                <h3 className='font-bold text-lg md:text-xl mt-2 sm:mt-4'>
                     {title}
                 </h3>
             )}
@@ -84,6 +89,13 @@ export default function CaseBlock({
                 <p>
                     {description}
                 </p>
+            )}
+
+            {readingTime && (
+                <span className='text-sm flex gap-2 items-center my-1'>
+                    <Clock className='w-4 h-4' />
+                    {readingTime} min de leitura
+                </span>
             )}
         </>
     )
@@ -94,7 +106,7 @@ export default function CaseBlock({
                 href={link.href}
                 target={link.isExternal ? '_blank' : undefined}
                 rel={link.isExternal ? 'noopener noreferrer' : ''}
-                className={clsx('relative h-fit group', className)}           
+                className={clsx('relative h-fit flex group hover:-translate-y-3 transition-transform duration-300', className)}
             >
                 <span className='flex flex-col gap-2'>
 

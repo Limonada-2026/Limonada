@@ -24,7 +24,7 @@ export default function TextReveal({
     children,
     animateOnScroll = true,
     delay = 0,
-    blockColor = 'var(--color-yellow)',
+    blockColor = 'var(--color-green-vivid)',
     stagger = 0.15,
     duration = 0.75,
     className

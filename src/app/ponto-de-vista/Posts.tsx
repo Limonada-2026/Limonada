@@ -20,7 +20,7 @@ type Post = {
     title: string
     description: string
     image: string
-    logo: string
+    readingTime: string
 }
 
 interface PostsProps {
@@ -116,11 +116,11 @@ export default function Posts({ posts }: PostsProps) {
                         link={{
                             href: `/ponto-de-vista/${post.slug}`
                         }}
-                        logo={post.logo}
                         image={post.image}
                         imageSize={imageSizeByPost[post.id] ?? 'square'}
                         title={post.title}
                         description={post.description}
+                        readingTime={post.readingTime}
                     />
                 ))}
 

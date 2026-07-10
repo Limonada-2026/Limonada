@@ -5,7 +5,7 @@ export const posts = [
         title: 'Título da Postagem',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.',
         image: '/img/lemons.jpg',
-        logo: '/img/clients/_old/bosch.svg',
+        readingTime: '5',
     },
     {
         id: 2,
@@ -13,7 +13,7 @@ export const posts = [
         title: 'Título da Postagem ',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.',
         image: '/img/talk.jpg',
-        logo: '/img/clients/_old/getap.svg',
+        readingTime: '10',
     },
     {
         id: 3,
@@ -21,7 +21,7 @@ export const posts = [
         title: 'Título da Postagem ',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.',
         image: '/img/chairs.jpg',
-        logo: '/img/clients/_old/john-deere.svg',
+        readingTime: '5',
     },
     {
         id: 4,
@@ -29,7 +29,7 @@ export const posts = [
         title: 'Título da Postagem ',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.',
         image: '/img/lighthouse.jpg',
-        logo: '/img/clients/_old/sebrae.svg',
+        readingTime: '30',
     },
     {
         id: 5,
@@ -37,7 +37,7 @@ export const posts = [
         title: 'Título da Postagem',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.',
         image: '/img/lemons.jpg',
-        logo: '/img/clients/_old/bosch.svg',
+        readingTime: '2',
     },
     {
         id: 6,
@@ -45,7 +45,7 @@ export const posts = [
         title: 'Título da Postagem ',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.',
         image: '/img/talk.jpg',
-        logo: '/img/clients/_old/getap.svg',
+        readingTime: '1',
     },
     {
         id: 7,
@@ -53,7 +53,7 @@ export const posts = [
         title: 'Título da Postagem ',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.',
         image: '/img/chairs.jpg',
-        logo: '/img/clients/_old/john-deere.svg',
+        readingTime: '10',
     },
     {
         id: 8,
@@ -61,6 +61,6 @@ export const posts = [
         title: 'Título da Postagem ',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.',
         image: '/img/lighthouse.jpg',
-        logo: '/img/clients/_old/sebrae.svg',
+        readingTime: '7',
     }
 ]
