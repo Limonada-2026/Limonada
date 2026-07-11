@@ -5,14 +5,19 @@ import clsx from 'clsx'
 import { Link } from 'next-transition-router'
 import { usePathname } from 'next/navigation'
 
-// components
-import MagneticButton from '@/components/Utils/Animations/MagneticButton'
-
 // utils
 import { pages } from '@/utils/routes'
 import { scrollViewportToTop } from '@/utils/scroll'
 
-export default function AnimatedLogo() {
+interface Props {
+	onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void
+	className?: string
+}
+
+export default function AnimatedLogo({
+	onClick,
+	className
+}: Props) {
 
 	const pathname = usePathname()
 
@@ -55,6 +60,8 @@ export default function AnimatedLogo() {
 	const classes = 'w-32 md:w-40 2xl:w-50 h-auto text-current [&_path]:transition-transform [&_path]:duration-200'
 
 	const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+		onClick?.(e)
+
 		const currentPath = pathname.split('#')[0]
 		if (currentPath === pages.home) {
 			e.preventDefault()
@@ -63,22 +70,20 @@ export default function AnimatedLogo() {
 	}
 
 	return (
-		<MagneticButton className='xl:mx-auto' strength={10}>
-			<Link
-				href={pages.home}
-				onClick={handleClick}
-				className='relative overflow-hidden text-green-neon transition-colors duration-1000 hover:text-yellow group flex'
-			>
+		<Link
+			href={pages.home}
+			onClick={handleClick}
+			className='relative overflow-hidden text-green-neon transition-colors duration-1000 hover:text-yellow group flex'
+		>
 
-				<svg width='168' height='38' viewBox='0 0 168 38' fill='currentColor' xmlns='http://www.w3.org/2000/svg' className={clsx(classes, 'group-hover:[&_path]:-translate-y-full')}>
-					{paths}
-				</svg>
+			<svg width='168' height='38' viewBox='0 0 168 38' fill='currentColor' xmlns='http://www.w3.org/2000/svg' className={clsx(classes, 'group-hover:[&_path]:-translate-y-full', className)}>
+				{paths}
+			</svg>
 
-				<svg width='168' height='38' viewBox='0 0 168 38' fill='currentColor' xmlns='http://www.w3.org/2000/svg' className={clsx(classes, 'absolute top-0 left-0 [&_path]:translate-y-[200%] group-hover:[&_path]:translate-y-0')}>
-					{paths}
-				</svg>
+			<svg width='168' height='38' viewBox='0 0 168 38' fill='currentColor' xmlns='http://www.w3.org/2000/svg' className={clsx(classes, 'absolute top-0 left-0 [&_path]:translate-y-[200%] group-hover:[&_path]:translate-y-0', className)}>
+				{paths}
+			</svg>
 
-			</Link>
-		</MagneticButton>
+		</Link>
 	)
 }

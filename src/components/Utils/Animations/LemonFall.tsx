@@ -31,11 +31,14 @@ function getLemonSizePx() {
 	return (vw / 100) * window.innerWidth
 }
 
-function makeWalls(w: number, h: number) {
+function makeWalls(w: number, h: number, topExtra = 0) {
+	const wallH = h + topExtra + wall_size * 2
+	const wallCenterY = (h - topExtra) / 2
+
 	return [
 		Matter.Bodies.rectangle(w / 2, h + wall_size / 2, w + wall_size * 2, wall_size, wall_physics),    // floor
-		Matter.Bodies.rectangle(-wall_size / 2, h / 2, wall_size, h + wall_size * 2, wall_physics),       // left
-		Matter.Bodies.rectangle(w + wall_size / 2, h / 2, wall_size, h + wall_size * 2, wall_physics),    // right
+		Matter.Bodies.rectangle(-wall_size / 2, wallCenterY, wall_size, wallH, wall_physics),             // left
+		Matter.Bodies.rectangle(w + wall_size / 2, wallCenterY, wall_size, wallH, wall_physics),          // right
 	]
 }
 
@@ -49,7 +52,7 @@ interface LemonEntry {
 	size: number
 }
 
-function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: number) {
+function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: number, ceilingEnabled: boolean) {
 	const engine = Matter.Engine.create({ gravity: { x: 0, y: 1, scale: 0.0025 } })
 	const { world } = engine
 	let w = container.clientWidth
@@ -57,8 +60,18 @@ function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: nu
 
 	if (w < 1 || h < 1) return () => undefined
 
-	let walls = makeWalls(w, h)
+	// spawn above the visible viewport so lemons fall in from offscreen
+	const viewportTopInContainer = -container.getBoundingClientRect().top
+	const sizeHint = getLemonSizePx()
+	const spawnPadding = Math.max(window.innerHeight * 0.2, sizeHint)
+	const topExtra = Math.max(
+		0,
+		-viewportTopInContainer + spawnPadding * 2 + count * sizeHint,
+	)
+
+	let walls = makeWalls(w, h, topExtra)
 	let ceiling: Matter.Body | null = null
+	let topExtraCurrent = topExtra
 
 	Matter.Composite.add(world, walls)
 	container.style.overflow = 'visible'
@@ -69,7 +82,7 @@ function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: nu
 		const size = getLemonSizePx()
 		const r = size / 2
 		const x = r + Math.random() * (w - r * 2)
-		const y = -(r + Math.random() * h * 0.4 + i * 80)
+		const y = viewportTopInContainer - r - spawnPadding - Math.random() * spawnPadding - i * (size * 0.9)
 
 		const body = Matter.Bodies.circle(x, y, r, { ...LEMON_PHYSICS, angle: (Math.random() - 0.5) * Math.PI })
 		const el = document.createElement('img')
@@ -98,14 +111,16 @@ function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: nu
 	Matter.Runner.run(runner, engine)
 
 	const enableCeiling = () => {
-		if (ceiling) return
+		if (!ceilingEnabled || ceiling) return
 		ceiling = makeCeiling(w)
 		Matter.Composite.add(world, ceiling)
 		container.style.overflow = 'hidden'
 		layer.style.overflow = 'hidden'
 	}
 
-	const ceilingFallback = window.setTimeout(enableCeiling, 5000)
+	const ceilingFallback = ceilingEnabled
+		? window.setTimeout(enableCeiling, 5000)
+		: undefined
 
 	const syncDom = () => {
 		for (const { body, el, size } of entries) {
@@ -116,7 +131,7 @@ function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: nu
 				x + size < 0 || x > w || (ceiling && (y + size < 0 || y > h)) ? 'hidden' : 'visible'
 		}
 
-		if (!ceiling && entries.every(({ body, size }) => body.position.y >= size / 2)) {
+		if (ceilingEnabled && !ceiling && entries.every(({ body, size }) => body.position.y >= size / 2)) {
 			enableCeiling()
 		}
 	}
@@ -131,7 +146,7 @@ function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: nu
 
 		if (nextW !== w || nextH !== h) {
 			Matter.Composite.remove(world, ceiling ? [...walls, ceiling] : walls)
-			walls = makeWalls(nextW, nextH)
+			walls = makeWalls(nextW, nextH, topExtraCurrent)
 			if (ceiling) ceiling = makeCeiling(nextW)
 			Matter.Composite.add(world, ceiling ? [...walls, ceiling] : walls)
 			w = nextW
@@ -153,7 +168,7 @@ function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: nu
 	window.addEventListener('resize', handleResize)
 
 	return () => {
-		window.clearTimeout(ceilingFallback)
+		if (ceilingFallback !== undefined) window.clearTimeout(ceilingFallback)
 		resizeObserver.disconnect()
 		window.removeEventListener('resize', handleResize)
 		container.style.overflow = ''
@@ -170,6 +185,7 @@ function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: nu
 interface LemonFallProps extends React.HTMLAttributes<HTMLDivElement> {
 	count?: number
 	scrollThreshold?: number
+	ceiling?: boolean
 }
 
 function useLemonFall(
@@ -177,6 +193,7 @@ function useLemonFall(
 	layerRef: React.RefObject<HTMLDivElement | null>,
 	count: number,
 	scrollThreshold: number,
+	ceilingEnabled: boolean,
 ) {
 	const pathname = usePathname()
 
@@ -198,7 +215,7 @@ function useLemonFall(
 			spawned = true
 			viewport.removeEventListener('scroll', trySpawn)
 			requestAnimationFrame(() => requestAnimationFrame(() => {
-				teardown = initPhysics(container, layer, count)
+				teardown = initPhysics(container, layer, count, ceilingEnabled)
 			}))
 		}
 
@@ -209,12 +226,13 @@ function useLemonFall(
 			viewport.removeEventListener('scroll', trySpawn)
 			teardown?.()
 		}
-	}, [containerRef, layerRef, count, scrollThreshold, pathname])
+	}, [containerRef, layerRef, count, scrollThreshold, ceilingEnabled, pathname])
 }
 
 export default function LemonFall({
 	count = 10,
 	scrollThreshold = 0.9,
+	ceiling = true,
 	className,
 	children,
 	...props
@@ -222,7 +240,7 @@ export default function LemonFall({
 	const containerRef = useRef<HTMLDivElement>(null)
 	const layerRef = useRef<HTMLDivElement>(null)
 
-	useLemonFall(containerRef, layerRef, count, scrollThreshold)
+	useLemonFall(containerRef, layerRef, count, scrollThreshold, ceiling)
 
 	return (
 		<div

@@ -10,6 +10,7 @@ import MagneticButton from '@/components/Utils/Animations/MagneticButton'
 import LemonFall from '@/components/Utils/Animations/LemonFall'
 import Logo from '@/components/Svg/Logo'
 import { Form, Input, InputHidden, Submit } from '@/components/Form'
+import AnimatedLogo from '@/components/AnimatedLogo'
 
 // utils
 import { pages, social } from '@/utils/routes'
@@ -40,13 +41,14 @@ export default function Footer() {
 
 	return (
 		<div
-			className='bg-green-dark rounded-tl-2xl rounded-tr-2xl sm:rounded-tl-4xl sm:rounded-tr-4xl md:rounded-tl-[3rem] md:rounded-tr-[3rem] -mt-4 sm:-mt-8 md:mt-0 relative overflow-hidden z-10 text-green-light'
+			className='bg-green-dark rounded-tl-2xl rounded-tr-2xl sm:rounded-tl-4xl sm:rounded-tr-4xl md:rounded-tl-[3rem] md:rounded-tr-[3rem] -mt-4 sm:-mt-8 md:mt-0 relative z-10 text-green-light'
 			data-main-footer
 			ref={sectionRef}
 		>
 			<LemonFall
 				count={6}
 				className='relative w-full pointer-events-auto'
+				ceiling={false}
 			>
 				<div className='base-container'>
 					<div className='flex flex-col justify-between sm:gap-20 pb-10 sm:pb-4 md:pb-10 pt-10 xs:pt-14 sm:pt-20'>
@@ -58,7 +60,7 @@ export default function Footer() {
 								<ul className='flex flex-col gap-2 xs:gap-x-8 xs:flex-row md:flex-col flex-wrap'>
 									{[
 										{
-											label: 'A Limonada',
+											label: 'Início',
 											href: pages.home
 										},
 										{
@@ -172,7 +174,9 @@ export default function Footer() {
 
 						<div className='flex flex-col-reverse sm:flex-col gap-20 sm:gap-4'>
 
-							<Logo className='w-full sm:w-60 h-auto text-green-neon overflow-visible' />
+							<MagneticButton className='max-sm:w-full!' strength={10}>
+								<AnimatedLogo className='w-full! sm:w-60!' />
+							</MagneticButton>
 
 							<div className='flex items-center max-sm:justify-between gap-4 text-green-neon text-xs sm:text-sm'>
 

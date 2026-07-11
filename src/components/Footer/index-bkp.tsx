@@ -89,7 +89,7 @@ export default function Footer() {
 								<ul className='flex flex-col gap-2 xs:gap-x-8 md:gap-5.5 xs:flex-row md:flex-col flex-wrap'>
 									{[
 										{
-											label: 'A Limonada',
+											label: 'Início',
 											href: pages.home
 										},
 										{
