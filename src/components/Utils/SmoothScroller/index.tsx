@@ -115,9 +115,19 @@ export default function SmoothScroller({
             }
         }
 
-        // handle programmatic scrolling (like anchor links)
+        // yield to programmatic scrolling (gsap scrollToTop, anchors, etc.)
         const handleScroll = () => {
-            // if scroll happened without wheel (programmatic), sync immediately
+            const externalDelta = Math.abs(viewport.scrollTop - state.currentScroll)
+
+            // something else moved scrollTop — cancel our lerp and sync
+            if (state.isScrolling && externalDelta > 1) {
+                if (state.rafId !== null) {
+                    cancelAnimationFrame(state.rafId)
+                    state.rafId = null
+                }
+                state.isScrolling = false
+            }
+
             if (!state.isScrolling) {
                 state.currentScroll = viewport.scrollTop
                 state.targetScroll = viewport.scrollTop

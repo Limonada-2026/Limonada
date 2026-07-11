@@ -1,69 +1,84 @@
+'use client'
+
 // libraries
 import clsx from 'clsx'
 import { Link } from 'next-transition-router'
+import { usePathname } from 'next/navigation'
 
 // components
 import MagneticButton from '@/components/Utils/Animations/MagneticButton'
 
 // utils
 import { pages } from '@/utils/routes'
+import { scrollViewportToTop } from '@/utils/scroll'
 
 export default function AnimatedLogo() {
 
-    const paths = [
-        <path key='1' d='M0 0H5.92929V32.5718H15.6857V38H0V0Z' />,
-        <path
-            key='2' d='M18.2034 0H24.1327V38H18.2034V0Z'
-            className='delay-20'
-        />,
-        <path
-            key='3' d='M39.265 26.9803L43.307 0H51.5534V38H45.9472V10.7488L41.851 38H36.2448L31.8256 11.1287V38H26.6506V0H34.897L39.2635 26.9803H39.265Z' 
-            className='delay-40'
-        />,
-        <path
-            key='4' d='M62.4811 23.8312L62.7501 29.2594C62.9109 32.2451 63.7207 33.1137 65.6066 33.1137H66.469V38H63.4503C60.1085 38 57.7359 36.0994 57.4669 31.9742L57.0357 24.6998C56.8734 22.2029 56.3354 21.4432 54.071 21.4432V16.5583C56.3354 16.5583 56.8734 15.7986 57.0357 13.3017L57.4669 6.02734C57.7359 1.90211 60.1071 0.00146484 63.4503 0.00146484H66.469V4.88781H65.6066C63.7193 4.88781 62.9109 5.75644 62.7501 8.74214L62.4811 14.1703C62.3729 16.1784 61.7268 18.2955 58.977 19.0022C61.7268 19.7074 62.3729 21.8245 62.4811 23.8341V23.8312Z'
-            className='delay-60'
-        />,
-        <path
-            key='5' d='M72.9775 14.1688L72.7085 8.74067C72.5462 5.75497 71.7378 4.88635 69.852 4.88635H68.9895V0H72.0082C75.35 0 77.7226 1.90064 77.9916 6.02588L78.4229 13.3002C78.5851 15.7971 79.1245 16.5568 81.3875 16.5568V21.4417C79.1245 21.4417 78.5851 22.2014 78.4229 24.6984L77.9916 31.9727C77.7226 36.0979 75.35 37.9986 72.0082 37.9986H68.9895V33.1122H69.852C71.7392 33.1122 72.5476 32.2436 72.7085 29.2579L72.9775 23.8297C73.0856 21.8216 73.7318 19.7045 76.4801 18.9978C73.7304 18.2926 73.0842 16.1755 72.9775 14.166V14.1688Z'
-            className='delay-80'
-        />,
-        <path
-            key='6' d='M89.2415 10.4779V38H83.9043V0H91.3437L97.4338 22.7461V0H102.715V38H96.6254L89.2415 10.4779Z'
-            className='delay-100'
-        />,
-        <path
-            key='7' d='M119.595 38L118.572 31.1055H111.295L110.27 38H104.826L110.863 0H119.542L125.58 38H119.595ZM112.05 25.9482H117.763L114.907 6.73109L112.05 25.9482Z'
-            className='delay-120'
-        />,
-        <path
-            key='8' d='M127.71 0H137.09C143.019 0 145.93 3.31251 145.93 9.39142V28.6086C145.93 34.6889 143.019 38 137.09 38H127.71V0ZM133.64 5.42816V32.5718H136.982C138.869 32.5718 140 31.5943 140 28.8809V9.12052C140 6.40572 138.869 5.42816 136.982 5.42816H133.64Z'
-            className='delay-140'
-        />,
-        <path
-            key='9' d='M162.017 38L160.993 31.1055H153.716L152.692 38H147.248L153.285 0H161.964L168.002 38H162.017ZM154.471 25.9482H160.184L157.327 6.73109L154.471 25.9482Z'
-            className='delay-160'
-        />
-    ]
+	const pathname = usePathname()
 
-    const classes = 'w-32 md:w-40 2xl:w-50 h-auto text-current [&_path]:transition-transform [&_path]:duration-200'
+	const paths = [
+		<path key='1' d='M0 0H5.92929V32.5718H15.6857V38H0V0Z' />,
+		<path
+			key='2' d='M18.2034 0H24.1327V38H18.2034V0Z'
+			className='delay-20'
+		/>,
+		<path
+			key='3' d='M39.265 26.9803L43.307 0H51.5534V38H45.9472V10.7488L41.851 38H36.2448L31.8256 11.1287V38H26.6506V0H34.897L39.2635 26.9803H39.265Z'
+			className='delay-40'
+		/>,
+		<path
+			key='4' d='M62.4811 23.8312L62.7501 29.2594C62.9109 32.2451 63.7207 33.1137 65.6066 33.1137H66.469V38H63.4503C60.1085 38 57.7359 36.0994 57.4669 31.9742L57.0357 24.6998C56.8734 22.2029 56.3354 21.4432 54.071 21.4432V16.5583C56.3354 16.5583 56.8734 15.7986 57.0357 13.3017L57.4669 6.02734C57.7359 1.90211 60.1071 0.00146484 63.4503 0.00146484H66.469V4.88781H65.6066C63.7193 4.88781 62.9109 5.75644 62.7501 8.74214L62.4811 14.1703C62.3729 16.1784 61.7268 18.2955 58.977 19.0022C61.7268 19.7074 62.3729 21.8245 62.4811 23.8341V23.8312Z'
+			className='delay-60'
+		/>,
+		<path
+			key='5' d='M72.9775 14.1688L72.7085 8.74067C72.5462 5.75497 71.7378 4.88635 69.852 4.88635H68.9895V0H72.0082C75.35 0 77.7226 1.90064 77.9916 6.02588L78.4229 13.3002C78.5851 15.7971 79.1245 16.5568 81.3875 16.5568V21.4417C79.1245 21.4417 78.5851 22.2014 78.4229 24.6984L77.9916 31.9727C77.7226 36.0979 75.35 37.9986 72.0082 37.9986H68.9895V33.1122H69.852C71.7392 33.1122 72.5476 32.2436 72.7085 29.2579L72.9775 23.8297C73.0856 21.8216 73.7318 19.7045 76.4801 18.9978C73.7304 18.2926 73.0842 16.1755 72.9775 14.166V14.1688Z'
+			className='delay-80'
+		/>,
+		<path
+			key='6' d='M89.2415 10.4779V38H83.9043V0H91.3437L97.4338 22.7461V0H102.715V38H96.6254L89.2415 10.4779Z'
+			className='delay-100'
+		/>,
+		<path
+			key='7' d='M119.595 38L118.572 31.1055H111.295L110.27 38H104.826L110.863 0H119.542L125.58 38H119.595ZM112.05 25.9482H117.763L114.907 6.73109L112.05 25.9482Z'
+			className='delay-120'
+		/>,
+		<path
+			key='8' d='M127.71 0H137.09C143.019 0 145.93 3.31251 145.93 9.39142V28.6086C145.93 34.6889 143.019 38 137.09 38H127.71V0ZM133.64 5.42816V32.5718H136.982C138.869 32.5718 140 31.5943 140 28.8809V9.12052C140 6.40572 138.869 5.42816 136.982 5.42816H133.64Z'
+			className='delay-140'
+		/>,
+		<path
+			key='9' d='M162.017 38L160.993 31.1055H153.716L152.692 38H147.248L153.285 0H161.964L168.002 38H162.017ZM154.471 25.9482H160.184L157.327 6.73109L154.471 25.9482Z'
+			className='delay-160'
+		/>
+	]
 
-    return (
-        <MagneticButton className='xl:mx-auto' strength={10}>
-            <Link
-                href={pages.home}
-                className='relative overflow-hidden text-green-neon transition-colors duration-1000 hover:text-yellow group flex'
-            >
+	const classes = 'w-32 md:w-40 2xl:w-50 h-auto text-current [&_path]:transition-transform [&_path]:duration-200'
 
-                <svg width='168' height='38' viewBox='0 0 168 38' fill='currentColor' xmlns='http://www.w3.org/2000/svg' className={clsx(classes, 'group-hover:[&_path]:-translate-y-full')}>
-                    {paths}
-                </svg>
+	const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+		const currentPath = pathname.split('#')[0]
+		if (currentPath === pages.home) {
+			e.preventDefault()
+			scrollViewportToTop()
+		}
+	}
 
-                <svg width='168' height='38' viewBox='0 0 168 38' fill='currentColor' xmlns='http://www.w3.org/2000/svg' className={clsx(classes, 'absolute top-0 left-0 [&_path]:translate-y-[200%] group-hover:[&_path]:translate-y-0')}>
-                    {paths}
-                </svg>
+	return (
+		<MagneticButton className='xl:mx-auto' strength={10}>
+			<Link
+				href={pages.home}
+				onClick={handleClick}
+				className='relative overflow-hidden text-green-neon transition-colors duration-1000 hover:text-yellow group flex'
+			>
 
-            </Link>
-        </MagneticButton>
-    )
+				<svg width='168' height='38' viewBox='0 0 168 38' fill='currentColor' xmlns='http://www.w3.org/2000/svg' className={clsx(classes, 'group-hover:[&_path]:-translate-y-full')}>
+					{paths}
+				</svg>
+
+				<svg width='168' height='38' viewBox='0 0 168 38' fill='currentColor' xmlns='http://www.w3.org/2000/svg' className={clsx(classes, 'absolute top-0 left-0 [&_path]:translate-y-[200%] group-hover:[&_path]:translate-y-0')}>
+					{paths}
+				</svg>
+
+			</Link>
+		</MagneticButton>
+	)
 }

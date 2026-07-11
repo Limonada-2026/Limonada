@@ -17,10 +17,8 @@ export default function PontoDeVista() {
 	return (
 		<main>
 
-            <div className='bg-green-dark w-full block h-40 -mt-40' />
-
-            <section className='py-12 md:py-[10vw] bg-green-dark rounded-bottom-corners'>
-				<div className='base-container'>
+            <section className='menu-space bg-green-dark rounded-bottom-corners'>
+				<div className='base-container py-12 md:py-[10vw]'>
 
 					<h1 className='title-96 text-white md:text-center'>
 						Ponto de Vista

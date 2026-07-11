@@ -200,15 +200,17 @@ export default function RootLayout({
 				*/}
 
 				<PageTransition>
-					<SmoothScroller>
 
-						<Menu />
+					<Menu />
+
+					<SmoothScroller>
 						
 						{children}
 
 						<Footer />
 
 					</SmoothScroller>
+
 				</PageTransition>
 
 				{ process.env.NODE_ENV === 'development' && <Guidelines /> }

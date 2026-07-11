@@ -16,6 +16,7 @@ export const pages = {
 	ponto_de_vista: '/ponto-de-vista',
 	conteudo: '/conteudo',
 	contato: '/contato',
+	politica_de_privacidade: '/politica-de-privacidade',
 }
 
 // social

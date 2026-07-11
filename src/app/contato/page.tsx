@@ -10,9 +10,9 @@ export const metadata = {
 
 export default function Contact() {
 	return (
-		<main>
+		<main className='menu-space'>
 			
-			<section className='pt-12 md:pt-[10vw] mb-10 md:mb-[10vw]'>
+			<section className='my-10 md:my-[10vw]'>
 				<div className='base-container'>
 
 					<h1 className='title-96 text-green-medium md:text-center'>

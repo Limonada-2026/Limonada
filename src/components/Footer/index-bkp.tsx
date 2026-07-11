@@ -4,17 +4,18 @@
 import { useRef } from 'react'
 import { Link } from 'next-transition-router'
 import { usePathname } from 'next/navigation'
+import { gsap } from 'gsap'
+import { useGSAP } from '@gsap/react'
 
 // components
 import MagneticButton from '@/components/Utils/Animations/MagneticButton'
-import LemonFall from '@/components/Utils/Animations/LemonFall'
+import LemonTrail from '@/components/Utils/Animations/LemonTrail'
 import Logo from '@/components/Svg/Logo'
 import { Form, Input, InputHidden, Submit } from '@/components/Form'
 
 // utils
 import { pages, social } from '@/utils/routes'
 import { getYear } from '@/utils/functions'
-import { scrollViewportToTop } from '@/utils/scroll'
 
 
 export default function Footer() {
@@ -22,10 +23,44 @@ export default function Footer() {
 	const sectionRef = useRef<HTMLDivElement>(null)
 	const pathname = usePathname()
 
+    useGSAP(() => {
+        if (sectionRef.current) {
+            gsap.from('[data-logo] path', {
+				scale: 3,
+				filter: 'blur(.5rem)',
+				opacity: 0,
+				rotation: -50,
+				stagger: .1,
+                scrollTrigger: {
+                    scroller: document.getElementById('viewport') as HTMLElement,
+                    trigger: sectionRef.current,
+                    start: '40% 100%',
+                    end: '80% 100%',
+                    scrub: 2
+                }
+            })
+        }
+    }, {
+        scope: sectionRef,
+        dependencies: [pathname],
+        revertOnUpdate: true
+    })
 	const year = getYear(new Date().getFullYear().toString())
 
+	const scrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
+		e.preventDefault()
+		const viewport = document.getElementById('viewport')
+		if (viewport) {
+			gsap.to(viewport, {
+				scrollTop: 0,
+				duration: 1.5,
+				ease: 'power1.inOut'
+			})
+		}
+	}
+
 	const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-		if (href.startsWith('http')) {
+		if (href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('http')) {
 			return
 		}
 
@@ -33,8 +68,7 @@ export default function Footer() {
 		const currentPath = pathname.split('#')[0]
 
 		if (hrefPath === currentPath) {
-			e.preventDefault()
-			scrollViewportToTop()
+			scrollToTop(e)
 		}
 	}
 
@@ -44,18 +78,15 @@ export default function Footer() {
 			data-main-footer
 			ref={sectionRef}
 		>
-			<LemonFall
-				count={6}
-				className='relative w-full pointer-events-auto'
-			>
+			<LemonTrail className='relative w-full pointer-events-auto'>
 				<div className='base-container'>
-					<div className='flex flex-col justify-between sm:gap-20 pb-10 sm:pb-4 md:pb-10 pt-10 xs:pt-14 sm:pt-20'>
+					<div className='flex flex-col justify-between gap-30 sm:gap-10 pb-4 md:pb-10 pt-10 xs:pt-14 sm:pt-20 min-h-svh'>
 
 						<div className='row'>
 							
 							<div className='col-md-4'>
 
-								<ul className='flex flex-col gap-2 xs:gap-x-8 xs:flex-row md:flex-col flex-wrap'>
+								<ul className='flex flex-col gap-2 xs:gap-x-8 md:gap-5.5 xs:flex-row md:flex-col flex-wrap'>
 									{[
 										{
 											label: 'A Limonada',
@@ -92,7 +123,7 @@ export default function Footer() {
 							</div>
 
 							<div className='col-md-4 my-6 sm:my-10 md:my-0'>
-								<ul className='flex flex-col gap-2 xs:gap-x-8 xs:flex-row md:flex-col flex-wrap'>
+								<ul className='flex flex-col gap-2 xs:gap-x-8 md:gap-5.5 xs:flex-row md:flex-col flex-wrap'>
 									{[
 										{
 											label: 'Instagram',
@@ -170,22 +201,19 @@ export default function Footer() {
 
 						</div>
 
-						<div className='flex flex-col-reverse sm:flex-col gap-20 sm:gap-4'>
+						<div className='flex flex-col gap-4 md:gap-6'>
 
-							<Logo className='w-full sm:w-60 h-auto text-green-neon overflow-visible' />
+							<Logo className='w-full h-auto text-green-light overflow-visible' />
 
-							<div className='flex items-center max-sm:justify-between gap-4 text-green-neon text-xs sm:text-sm'>
+							<div className='flex items-center justify-between gap-4 text-green-light text-xs sm:text-sm md:text-base'>
+
+								<p>
+									Todos os direitos reservados
+								</p>
 
 								<p>
 									© {year} Limonada®
 								</p>
-
-								<Link
-									href={pages.politica_de_privacidade}
-									className='hover-underline'
-								>
-									Política de Privacidade
-								</Link>
 
 							</div>
 
@@ -193,7 +221,7 @@ export default function Footer() {
 
 					</div>
 				</div>
-			</LemonFall>
+			</LemonTrail>
 		</div>
 	)
 }

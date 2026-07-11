@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 import Matter from 'matter-js'
 import clsx from 'clsx'
 
@@ -33,8 +34,8 @@ function getLemonSizePx() {
 function makeWalls(w: number, h: number) {
 	return [
 		Matter.Bodies.rectangle(w / 2, h + wall_size / 2, w + wall_size * 2, wall_size, wall_physics),    // floor
-		Matter.Bodies.rectangle(-wall_size / 2, h / 2, wall_size, h + wall_size * 2, wall_physics),        // left
-		Matter.Bodies.rectangle(w + wall_size / 2, h / 2, wall_size, h + wall_size * 2, wall_physics),     // right
+		Matter.Bodies.rectangle(-wall_size / 2, h / 2, wall_size, h + wall_size * 2, wall_physics),       // left
+		Matter.Bodies.rectangle(w + wall_size / 2, h / 2, wall_size, h + wall_size * 2, wall_physics),    // right
 	]
 }
 
@@ -177,6 +178,8 @@ function useLemonFall(
 	count: number,
 	scrollThreshold: number,
 ) {
+	const pathname = usePathname()
+
 	useEffect(() => {
 		const container = containerRef.current
 		const layer = layerRef.current
@@ -184,11 +187,15 @@ function useLemonFall(
 		if (!container || !layer || !viewport) return
 
 		let teardown: (() => void) | undefined
+		let spawned = false
 
 		const trySpawn = () => {
+			if (spawned) return
+
 			const maxScroll = viewport.scrollHeight - viewport.clientHeight
 			if (maxScroll <= 0 || viewport.scrollTop / maxScroll < scrollThreshold) return
 
+			spawned = true
 			viewport.removeEventListener('scroll', trySpawn)
 			requestAnimationFrame(() => requestAnimationFrame(() => {
 				teardown = initPhysics(container, layer, count)
@@ -202,7 +209,7 @@ function useLemonFall(
 			viewport.removeEventListener('scroll', trySpawn)
 			teardown?.()
 		}
-	}, [containerRef, layerRef, count, scrollThreshold])
+	}, [containerRef, layerRef, count, scrollThreshold, pathname])
 }
 
 export default function LemonFall({
