@@ -57,6 +57,9 @@ export interface LemonFallHandle {
 	// (px) they were ridden up from their resting spot, so the bodies can be moved
 	// there first and the release stays seamless.
 	release: (offset: number) => void
+	// tear the whole simulation down: stop the runner and remove the lemon nodes
+	// from the DOM (so nothing keeps ticking / painting once they're not needed)
+	destroy: () => void
 }
 
 interface PhysicsResult {
@@ -71,7 +74,7 @@ function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: nu
 	let w = container.clientWidth
 	let h = container.clientHeight
 
-	if (w < 1 || h < 1) return { teardown: noop, controls: { release: noop } }
+	if (w < 1 || h < 1) return { teardown: noop, controls: { release: noop, destroy: noop } }
 
 	// spawn above the visible viewport so lemons fall in from offscreen
 	const viewportTopInContainer = -container.getBoundingClientRect().top
@@ -162,6 +165,7 @@ function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: nu
 			}
 			syncDom()
 		},
+		destroy: noop,
 	}
 
 	Matter.Events.on(engine, 'afterUpdate', syncDom)
@@ -195,7 +199,10 @@ function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: nu
 	resizeObserver.observe(container)
 	window.addEventListener('resize', handleResize)
 
+	let torn = false
 	const teardown = () => {
+		if (torn) return
+		torn = true
 		if (ceilingFallback !== undefined) window.clearTimeout(ceilingFallback)
 		resizeObserver.disconnect()
 		window.removeEventListener('resize', handleResize)
@@ -208,6 +215,9 @@ function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: nu
 		Matter.Mouse.clearSourceEvents(m)
 		for (const { el } of entries) el.remove()
 	}
+
+	// destroying the simulation is exactly the same as tearing it down
+	controls.destroy = teardown
 
 	return { teardown, controls }
 }
@@ -297,6 +307,10 @@ const LemonFall = forwardRef<LemonFallHandle, LemonFallProps>(function LemonFall
 
 	useImperativeHandle(ref, () => ({
 		release: (offset: number) => controlsRef.current?.release(offset),
+		destroy: () => {
+			controlsRef.current?.destroy()
+			controlsRef.current = null
+		},
 	}), [])
 
 	return (

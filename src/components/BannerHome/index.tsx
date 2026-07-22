@@ -2,6 +2,7 @@
 
 // libraries
 import { useRef, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { Link } from 'next-transition-router'
 import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
@@ -35,8 +36,19 @@ export default function BannerHome() {
 
     const [landed, setLanded] = useState(false)
 
+    const pathname = usePathname()
+
     useGSAP(() => {
         if (!container.current || !firstSection.current) return
+
+        // full reset so a fresh route starts from the top of the animation
+        released.current = false
+        ride.current = 0
+        setLanded(false)
+        if (clip.current) {
+            clip.current.style.transform = ''
+            gsap.set(clip.current, { autoAlpha: 1 })
+        }
 
         const scroller = document.getElementById('viewport')
 
@@ -80,8 +92,38 @@ export default function BannerHome() {
                 duration: 1,
             })
             .to({}, { duration: FALL_HOLD })
+
+        // once the footer (which has its own lemons) comes into view, fade the
+        // top lemons out so the two effects don't overlap; restore on the way back
+        const footer = document.querySelector<HTMLElement>('[data-main-footer]')
+        if (footer && clip.current) {
+            ScrollTrigger.create({
+                trigger: footer,
+                scroller: scroller ?? undefined,
+                // start fading well before the footer actually reaches the screen so
+                // the top lemons are already gone by the time its own lemons appear
+                start: 'top bottom+=80%',
+                invalidateOnRefresh: true,
+                // one-way: once the user has reached the footer the top lemons stay
+                // gone (even scrolling back up); a route change / reload resets them
+                once: true,
+                onEnter: () => gsap.to(clip.current, {
+                    autoAlpha: 0,
+                    duration: 0.3,
+                    overwrite: 'auto',
+                    pointerEvents: 'none',
+                    // fully remove the physics sim + lemon nodes from the DOM once
+                    // hidden so nothing keeps ticking/painting for the rest of the page
+                    onComplete: () => lemons.current?.destroy(),
+                })
+            })
+        }
+
+        // recalc pin/measurements once the new route has settled
+        ScrollTrigger.refresh()
     }, {
-        scope: container
+        scope: container,
+        dependencies: [pathname]
     })
 
 	return (
@@ -97,7 +139,7 @@ export default function BannerHome() {
                 <LemonFall
                     ref={lemons}
                     spawn
-                    count={8}
+                    count={6}
                     ceiling={false}
                     className='h-full w-full'
                 />
