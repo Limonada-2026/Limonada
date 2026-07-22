@@ -1,14 +1,15 @@
 // components
+import BannerHome from '@/components/BannerHome'
+import TeamBanner from '@/components/TeamBanner'
 import ClientsSlider from '@/components/ClientsSlider'
 import CaseBlock from '@/components/CaseBlock'
+import ContactFormSmall from '@/components/ContactFormSmall'
+
 import AnimatedText from '@/components/Utils/Animations/AnimatedText'
+import StaggerUp from '@/components/Utils/Animations/StaggerUp'
 
 // temp db
 import { cases } from '@/temp-db/home'
-
-import TeamBanner from '@/components/TeamBanner'
-import ContactFormSmall from '@/components/ContactFormSmall'
-import StaggerUp from '@/components/Utils/Animations/StaggerUp'
 
 // ISR
 export const revalidate = 3600
@@ -17,7 +18,7 @@ export default function Home() {
 	return (
 		<main>
 
-			<div className='min-h-[50svh] bg-red-400 block w-full' />
+			<BannerHome />
 			
 			<ClientsSlider />
 

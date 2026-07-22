@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import Matter from 'matter-js'
 import clsx from 'clsx'
@@ -52,13 +52,26 @@ interface LemonEntry {
 	size: number
 }
 
-function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: number, ceilingEnabled: boolean) {
+export interface LemonFallHandle {
+	// hand the lemons back to the physics engine so they drop. `offset` is how far
+	// (px) they were ridden up from their resting spot, so the bodies can be moved
+	// there first and the release stays seamless.
+	release: (offset: number) => void
+}
+
+interface PhysicsResult {
+	teardown: () => void
+	controls: LemonFallHandle
+}
+
+function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: number, ceilingEnabled: boolean): PhysicsResult {
+	const noop = () => undefined
 	const engine = Matter.Engine.create({ gravity: { x: 0, y: 1, scale: 0.0025 } })
 	const { world } = engine
 	let w = container.clientWidth
 	let h = container.clientHeight
 
-	if (w < 1 || h < 1) return () => undefined
+	if (w < 1 || h < 1) return { teardown: noop, controls: { release: noop } }
 
 	// spawn above the visible viewport so lemons fall in from offscreen
 	const viewportTopInContainer = -container.getBoundingClientRect().top
@@ -71,7 +84,7 @@ function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: nu
 
 	let walls = makeWalls(w, h, topExtra)
 	let ceiling: Matter.Body | null = null
-	let topExtraCurrent = topExtra
+	const topExtraCurrent = topExtra
 
 	Matter.Composite.add(world, walls)
 	container.style.overflow = 'visible'
@@ -136,6 +149,21 @@ function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: nu
 		}
 	}
 
+	const controls: LemonFallHandle = {
+		release: (offset) => {
+			// move the bodies up to exactly where the ride was showing them and
+			// redraw on this same frame so nothing jumps when the wrapper's ride
+			// transform is cleared — then gravity (plus a kick) drops them
+			const drop = h * 0.02
+			for (const { body } of entries) {
+				Matter.Body.translate(body, { x: 0, y: -offset })
+				Matter.Body.setVelocity(body, { x: 0, y: drop })
+				Matter.Body.setAngularVelocity(body, 0)
+			}
+			syncDom()
+		},
+	}
+
 	Matter.Events.on(engine, 'afterUpdate', syncDom)
 	syncDom()
 
@@ -167,7 +195,7 @@ function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: nu
 	resizeObserver.observe(container)
 	window.addEventListener('resize', handleResize)
 
-	return () => {
+	const teardown = () => {
 		if (ceilingFallback !== undefined) window.clearTimeout(ceilingFallback)
 		resizeObserver.disconnect()
 		window.removeEventListener('resize', handleResize)
@@ -180,20 +208,25 @@ function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: nu
 		Matter.Mouse.clearSourceEvents(m)
 		for (const { el } of entries) el.remove()
 	}
+
+	return { teardown, controls }
 }
 
 interface LemonFallProps extends React.HTMLAttributes<HTMLDivElement> {
 	count?: number
 	scrollThreshold?: number
 	ceiling?: boolean
+	spawn?: boolean
 }
 
 function useLemonFall(
 	containerRef: React.RefObject<HTMLDivElement | null>,
 	layerRef: React.RefObject<HTMLDivElement | null>,
+	controlsRef: React.MutableRefObject<LemonFallHandle | null>,
 	count: number,
 	scrollThreshold: number,
 	ceilingEnabled: boolean,
+	spawn: boolean | undefined,
 ) {
 	const pathname = usePathname()
 
@@ -206,17 +239,34 @@ function useLemonFall(
 		let teardown: (() => void) | undefined
 		let spawned = false
 
+		const runSpawn = () => {
+			if (spawned) return
+			spawned = true
+			requestAnimationFrame(() => requestAnimationFrame(() => {
+				const result = initPhysics(container, layer, count, ceilingEnabled)
+				teardown = result.teardown
+				controlsRef.current = result.controls
+			}))
+		}
+
+		// controlled mode: the parent decides when the lemons drop
+		if (spawn !== undefined) {
+			if (spawn) runSpawn()
+			return () => {
+				teardown?.()
+				controlsRef.current = null
+			}
+		}
+
+		// uncontrolled mode: drop once the page is scrolled past the threshold
 		const trySpawn = () => {
 			if (spawned) return
 
 			const maxScroll = viewport.scrollHeight - viewport.clientHeight
 			if (maxScroll <= 0 || viewport.scrollTop / maxScroll < scrollThreshold) return
 
-			spawned = true
 			viewport.removeEventListener('scroll', trySpawn)
-			requestAnimationFrame(() => requestAnimationFrame(() => {
-				teardown = initPhysics(container, layer, count, ceilingEnabled)
-			}))
+			runSpawn()
 		}
 
 		viewport.addEventListener('scroll', trySpawn, { passive: true })
@@ -225,22 +275,29 @@ function useLemonFall(
 		return () => {
 			viewport.removeEventListener('scroll', trySpawn)
 			teardown?.()
+			controlsRef.current = null
 		}
-	}, [containerRef, layerRef, count, scrollThreshold, ceilingEnabled, pathname])
+	}, [containerRef, layerRef, controlsRef, count, scrollThreshold, ceilingEnabled, spawn, pathname])
 }
 
-export default function LemonFall({
+const LemonFall = forwardRef<LemonFallHandle, LemonFallProps>(function LemonFall({
 	count = 10,
 	scrollThreshold = 0.9,
 	ceiling = true,
+	spawn,
 	className,
 	children,
 	...props
-}: LemonFallProps) {
+}, ref) {
 	const containerRef = useRef<HTMLDivElement>(null)
 	const layerRef = useRef<HTMLDivElement>(null)
+	const controlsRef = useRef<LemonFallHandle | null>(null)
 
-	useLemonFall(containerRef, layerRef, count, scrollThreshold, ceiling)
+	useLemonFall(containerRef, layerRef, controlsRef, count, scrollThreshold, ceiling, spawn)
+
+	useImperativeHandle(ref, () => ({
+		release: (offset: number) => controlsRef.current?.release(offset),
+	}), [])
 
 	return (
 		<div
@@ -258,4 +315,6 @@ export default function LemonFall({
 			/>
 		</div>
 	)
-}
+})
+
+export default LemonFall
