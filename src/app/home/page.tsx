@@ -1,8 +1,9 @@
 // components
 import BannerHome from '@/components/BannerHome'
-import TeamBanner from '@/components/TeamBanner'
+import BlocksHome from '@/components/BlocksHome'
 import ClientsSlider from '@/components/ClientsSlider'
 import CaseBlock from '@/components/CaseBlock'
+import TeamBanner from '@/components/TeamBanner'
 import ContactFormSmall from '@/components/ContactFormSmall'
 
 import AnimatedText from '@/components/Utils/Animations/AnimatedText'
@@ -19,13 +20,15 @@ export default function Home() {
 		<main>
 
 			<BannerHome />
+
+			<BlocksHome />
 			
 			<ClientsSlider />
 
 			<section className='section-space'>
 				<div className='base-container'>
 
-					<h2 className='text-2xl md:text-3xl xl:text-4xl font-bold'>
+					<h2 className='text-2xl md:text-3xl xl:text-4xl font-semibold'>
 						<AnimatedText text='Transformando limões em limonada' />
 					</h2>
 

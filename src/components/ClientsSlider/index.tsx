@@ -59,9 +59,17 @@ export default function ClientsSlider() {
         <section className='section-space'>
 
             <div className='base-container'>
+                
                 <p>
                     <AnimatedText text='Método testado e aprovado por grandes empresas:' />
                 </p>
+
+                {/*
+                <h2 className='text-2xl md:text-3xl xl:text-4xl font-bold'>
+                    <AnimatedText text='Método testado e aprovado por grandes empresas:' />
+                </h2>
+                */}
+
             </div>
 
             <div className='relative overflow-hidden flex flex-col gap-10 sm:gap-15 md:gap-20 xl:gap-30 mt-14 md:mt-20 lg:mt-25 xl:mt-30'>

@@ -1,6 +1,7 @@
 'use client'
 
 // libraries
+import clsx from 'clsx'
 import { useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import { gsap } from 'gsap'
@@ -12,10 +13,12 @@ gsap.registerPlugin(ScrollTrigger)
 // interface
 interface Props {
     children: React.ReactNode
+    className?: string
 }
 
 export default function ScrollingImage({
-    children
+    children,
+    className
 }: Props) {
 
     const item = useRef<HTMLDivElement>(null)
@@ -55,7 +58,7 @@ export default function ScrollingImage({
     return (
         <div
             ref={item}
-            className='absolute overflow-hidden top-0 left-0 w-full h-full'
+            className={clsx('absolute overflow-hidden top-0 left-0 w-full h-full', className)}
         >
             {children}
         </div>

@@ -100,26 +100,18 @@ export default function BannerHome() {
             ScrollTrigger.create({
                 trigger: footer,
                 scroller: scroller ?? undefined,
-                // start fading well before the footer actually reaches the screen so
-                // the top lemons are already gone by the time its own lemons appear
                 start: 'top bottom+=80%',
                 invalidateOnRefresh: true,
-                // one-way: once the user has reached the footer the top lemons stay
-                // gone (even scrolling back up); a route change / reload resets them
                 once: true,
                 onEnter: () => gsap.to(clip.current, {
                     autoAlpha: 0,
                     duration: 0.3,
                     overwrite: 'auto',
                     pointerEvents: 'none',
-                    // fully remove the physics sim + lemon nodes from the DOM once
-                    // hidden so nothing keeps ticking/painting for the rest of the page
                     onComplete: () => lemons.current?.destroy(),
                 })
             })
         }
-
-        // recalc pin/measurements once the new route has settled
         ScrollTrigger.refresh()
     }, {
         scope: container,
@@ -180,12 +172,7 @@ export default function BannerHome() {
                         </h2>
 
                         <p className='text-white mx-auto max-w-3xl md:text-lg'>
-                            Como uma boutique, partimos do contexto de cada desafio para construir jornadas de desenvolvimento que apoiam decisões e desdobram em ação, preparando times e lideranças para fazer o negócio avançar e sustentar o resultado.
-
-                            <span className='sm:hidden'>
-                                <br /><br />
-                                Toda transformação começa por um desafio.
-                            </span>
+                            Como uma boutique, partimos do contexto de cada desafio para construir jornadas de desenvolvimento que apoiam decisões e desdobram em ação, preparando times e lideranças para fazer o negócio avançar e sustentar o resultado. <span className='sm:hidden'>Toda transformação começa por um desafio.</span>
                         </p>
 
                         <MagneticButton>

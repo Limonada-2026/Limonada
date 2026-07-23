@@ -80,7 +80,7 @@ export default function CaseBlock({
             </span>
 
             {title && (
-                <h3 className='font-bold text-lg md:text-xl mt-2 sm:mt-4'>
+                <h3 className='font-semibold text-lg md:text-xl mt-2 sm:mt-4'>
                     {title}
                 </h3>
             )}
