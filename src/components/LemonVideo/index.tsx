@@ -195,7 +195,7 @@ export default function LemonVideo() {
 
                         <Video
                             video='/videos/lemon-loop.mp4'
-                            className='absolute -z-1 top-0 -right-6 w-auto h-[95%] sm:h-full object-contain lg:hidden'
+                            className='absolute -z-1 top-0 -right-2 w-auto h-[95%] sm:h-full object-contain lg:hidden aspect-2/4'
                             loopRewind
                         />
                         
