@@ -1,6 +1,7 @@
 // components
 import BannerHome from '@/components/BannerHome'
 import BlocksHome from '@/components/BlocksHome'
+import LemonVideo from '@/components/LemonVideo'
 import ClientsSlider from '@/components/ClientsSlider'
 import CaseBlock from '@/components/CaseBlock'
 import TeamBanner from '@/components/TeamBanner'
@@ -22,6 +23,8 @@ export default function Home() {
 			<BannerHome />
 
 			<BlocksHome />
+
+			<LemonVideo />
 			
 			<ClientsSlider />
 

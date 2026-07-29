@@ -1,7 +1,7 @@
 'use client'
 
 // libraries
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { Link } from 'next-transition-router'
 import { gsap } from 'gsap'
@@ -16,6 +16,7 @@ import LemonFall, { type LemonFallHandle } from '@/components/Utils/Animations/L
 
 // utils
 import { pages } from '@/utils/routes'
+import { hasPreloaderHomeDropped, isPreloaderActive, PRELOADER_HOME_DROP } from '@/utils/preloader'
 
 // the 1st section takes `1` of the pin to scroll out; the extra `FALL_HOLD` keeps
 // the banner pinned just long enough for the lemons to drop onto the 2nd section
@@ -35,11 +36,34 @@ export default function BannerHome() {
     const ride = useRef(0)
 
     const [landed, setLanded] = useState(false)
+    // wait for the preloader home beat on first paint; spawn immediately otherwise
+    // (client navigations, or when the preloader is skipped / already done)
+    const [spawnLemons, setSpawnLemons] = useState(false)
 
     const pathname = usePathname()
 
+    useEffect(() => {
+        // preloader already finished / skipped, or drop already fired before we listened
+        if (!isPreloaderActive() || hasPreloaderHomeDropped()) {
+            setSpawnLemons(true)
+            return
+        }
+
+        const onHomeDrop = () => setSpawnLemons(true)
+        window.addEventListener(PRELOADER_HOME_DROP, onHomeDrop)
+        return () => window.removeEventListener(PRELOADER_HOME_DROP, onHomeDrop)
+    }, [pathname])
+
     useGSAP(() => {
         if (!container.current || !firstSection.current) return
+
+        const scroller = document.getElementById('viewport')
+
+        // navigating from a scrolled page (e.g. contact → home via footer) leaves
+        // the viewport mid-page during this layout effect — SmoothScroller only
+        // resets scroll in a later useEffect. force top first so ScrollTriggers
+        // don't initialize already past their start and kill the lemons.
+        if (scroller) scroller.scrollTop = 0
 
         // full reset so a fresh route starts from the top of the animation
         released.current = false
@@ -50,7 +74,29 @@ export default function BannerHome() {
             gsap.set(clip.current, { autoAlpha: 1 })
         }
 
-        const scroller = document.getElementById('viewport')
+        const footer = document.querySelector<HTMLElement>('[data-main-footer]')
+        let footerTrigger: ScrollTrigger | null = null
+
+        // arm only after leaving the banner pin — creating this on mount while
+        // scroll is still near the previous page's bottom fires onEnter immediately
+        const armFooterFade = () => {
+            if (footerTrigger || !footer || !clip.current) return
+
+            footerTrigger = ScrollTrigger.create({
+                trigger: footer,
+                scroller: scroller ?? undefined,
+                start: 'top bottom+=80%',
+                invalidateOnRefresh: true,
+                once: true,
+                onEnter: () => gsap.to(clip.current, {
+                    autoAlpha: 0,
+                    duration: 0.3,
+                    overwrite: 'auto',
+                    pointerEvents: 'none',
+                    onComplete: () => lemons.current?.destroy(),
+                })
+            })
+        }
 
         gsap.timeline({
             scrollTrigger: {
@@ -78,6 +124,7 @@ export default function BannerHome() {
                         if (clip.current) clip.current.style.transform = `translate3d(0, ${-ride.current}px, 0)`
                     }
                 },
+                onLeave: armFooterFade,
                 onLeaveBack: () => {
                     released.current = false
                     ride.current = 0
@@ -93,25 +140,6 @@ export default function BannerHome() {
             })
             .to({}, { duration: FALL_HOLD })
 
-        // once the footer (which has its own lemons) comes into view, fade the
-        // top lemons out so the two effects don't overlap; restore on the way back
-        const footer = document.querySelector<HTMLElement>('[data-main-footer]')
-        if (footer && clip.current) {
-            ScrollTrigger.create({
-                trigger: footer,
-                scroller: scroller ?? undefined,
-                start: 'top bottom+=80%',
-                invalidateOnRefresh: true,
-                once: true,
-                onEnter: () => gsap.to(clip.current, {
-                    autoAlpha: 0,
-                    duration: 0.3,
-                    overwrite: 'auto',
-                    pointerEvents: 'none',
-                    onComplete: () => lemons.current?.destroy(),
-                })
-            })
-        }
         ScrollTrigger.refresh()
     }, {
         scope: container,
@@ -130,7 +158,7 @@ export default function BannerHome() {
             >
                 <LemonFall
                     ref={lemons}
-                    spawn
+                    spawn={spawnLemons}
                     count={6}
                     ceiling={false}
                     className='h-full w-full'
