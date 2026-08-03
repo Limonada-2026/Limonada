@@ -6,12 +6,12 @@ export const pages = {
 	quem_somos: '/quem-somos',
 	metodo_limao: '/metodo-limao',
 	clientes: '/clientes',
-	oque_resolvemos: {
-		home: '/oque-resolvemos',
-		lideranca: '/oque-resolvemos/lideranca',
-		soft_skills: '/oque-resolvemos/soft-skills',
-		inovacao: '/oque-resolvemos/inovacao',
-		estrategia: '/oque-resolvemos/estrategia'
+	o_que_resolvemos: {
+		home: '/o-que-resolvemos',
+		lideranca: '/o-que-resolvemos/lideranca',
+		soft_skills: '/o-que-resolvemos/soft-skills',
+		inovacao: '/o-que-resolvemos/inovacao',
+		estrategia: '/o-que-resolvemos/estrategia'
 	},
 	ponto_de_vista: '/ponto-de-vista',
 	conteudo: '/conteudo',

@@ -251,19 +251,19 @@ export default function Menu() {
 										subItems: [
 											{
 												label: 'Liderança',
-												href: pages.oque_resolvemos.lideranca
+												href: pages.o_que_resolvemos.lideranca
 											},
 											{
 												label: 'Soft skills',
-												href: pages.oque_resolvemos.soft_skills
+												href: pages.o_que_resolvemos.soft_skills
 											},
 											{
 												label: 'Inovação',
-												href: pages.oque_resolvemos.inovacao
+												href: pages.o_que_resolvemos.inovacao
 											},
 											{
 												label: 'Estratégia',
-												href: pages.oque_resolvemos.estrategia
+												href: pages.o_que_resolvemos.estrategia
 											}
 										]
 									},
@@ -348,19 +348,19 @@ export default function Menu() {
 								subItems: [
 									{
 										label: 'Liderança',
-										href: pages.oque_resolvemos.lideranca
+										href: pages.o_que_resolvemos.lideranca
 									},
 									{
 										label: 'Soft skills',
-										href: pages.oque_resolvemos.soft_skills
+										href: pages.o_que_resolvemos.soft_skills
 									},
 									{
 										label: 'Inovação',
-										href: pages.oque_resolvemos.inovacao
+										href: pages.o_que_resolvemos.inovacao
 									},
 									{
 										label: 'Estratégia',
-										href: pages.oque_resolvemos.estrategia
+										href: pages.o_que_resolvemos.estrategia
 									}
 								]
 							},

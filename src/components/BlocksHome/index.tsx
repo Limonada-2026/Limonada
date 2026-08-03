@@ -37,25 +37,25 @@ export default function BlocksHome() {
                                 image: service_01,
                                 title: 'Liderança',
                                 description: 'Desenvolva líderes capazes de sustentar direção, tomar decisões com clareza e garantir que a execução avance.',
-                                href: pages.oque_resolvemos.lideranca
+                                href: pages.o_que_resolvemos.lideranca
                             },
                             {
                                 image: service_02,
                                 title: 'Soft Skills',
                                 description: 'Desenvolva habilidades que fortalecem como as pessoas se comunicam, decidem e colaboram.',
-                                href: pages.oque_resolvemos.soft_skills
+                                href: pages.o_que_resolvemos.soft_skills
                             },
                             {
                                 image: service_03,
                                 title: 'Inovação',
                                 description: 'Prepare equipe e liderança para priorizar, testar e sustentar iniciativas que impactam o negócio.',
-                                href: pages.oque_resolvemos.inovacao
+                                href: pages.o_que_resolvemos.inovacao
                             },
                             {
                                 image: service_04,
                                 title: 'Estratégia',
                                 description: 'Estruture escolhas estratégicas a partir do contexto do negócio e sustente sua execução com clareza, foco e consistência.',
-                                href: pages.oque_resolvemos.estrategia
+                                href: pages.o_que_resolvemos.estrategia
                             }
                         ].map((item, i) => (
                             <Scale key={i}>
