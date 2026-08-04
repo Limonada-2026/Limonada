@@ -6,7 +6,7 @@ import Image from 'next/image'
 import lemonTree from '@/assets/img/lemon-tree.png'
 
 // temp db
-import { posts } from '@/temp-db/ponto-de-vista'
+import { posts } from '@/db/ponto-de-vista'
 
 // components
 import Posts from './Posts'
@@ -14,7 +14,10 @@ import Posts from './Posts'
 // metadata
 export const metadata: Metadata = {
 	title: 'Ponto de Vista',
-	description: 'Ponto de Vista',
+	description: 'Nossa perspectiva sobre desenvolvimento de times e lideranças, as transformações no mundo dos negócios e o futuro do trabalho.',
+	alternates: {
+		canonical: '/ponto-de-vista'
+	},
 }
 
 export default function PontoDeVista() {

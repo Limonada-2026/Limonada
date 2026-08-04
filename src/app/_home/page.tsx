@@ -11,7 +11,7 @@ import AnimatedText from '@/components/Utils/Animations/AnimatedText'
 import StaggerUp from '@/components/Utils/Animations/StaggerUp'
 
 // temp db
-import { cases } from '@/temp-db/home'
+import { cases } from '@/db/home'
 
 // ISR
 export const revalidate = 3600

@@ -1,6 +1,6 @@
 @layer utilities {
     .rich-text {
-        @apply flex flex-col gap-6 md:gap-8 leading-loose;
+        @apply flex flex-col gap-6 md:gap-8 leading-relaxed;
 
         b,
         strong {
@@ -38,27 +38,37 @@
             }
         }
 
+        ol {
+            @apply relative pl-1 list-decimal;
+            counter-reset: section;
+
+            li {
+                @apply block relative pl-4 mb-1;
+
+                &:before {
+                    @apply content-[counter(section)] absolute left-0 top-1 font-heading text-[.75em];
+                    counter-increment: section;
+                }
+            }
+        }
+
         p {
             @apply leading-relaxed;
         }
     
-        /*
-        h1,
+        h1 {
+            @apply text-2xl md:text-3xl xl:text-4xl font-semibold;
+        }
+
         h2 {
-            @include text-40;
-            font-weight: $medium;
+            @apply text-xl md:text-2xl xl:text-3xl font-semibold;
         }
-    
-        h3 {
-            @include text-30;
-            font-weight: $medium;
-        }
-    
+
+        h3,
         h4,
         h5,
         h6 {
-            @include text-25;
-            font-weight: $medium;
+            @apply text-lg md:text-xl xl:text-2xl font-semibold;
         }
     
         h1,
@@ -67,10 +77,11 @@
         h4,
         h5,
         h6 {
+            @apply text-green-medium;
+
             &:not(:first-child) {
-                margin-top: 1rem;
+                @apply mt-10;
             }
         }
-        */
     }
 }

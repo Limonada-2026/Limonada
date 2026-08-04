@@ -14,14 +14,7 @@ import CaseBlock from '@/components/CaseBlock'
 gsap.registerPlugin(ScrollTrigger)
 
 // types
-type Post = {
-    id: number
-    slug: string
-    title: string
-    description: string
-    image: string
-    readingTime: string
-}
+import type { Post } from '@/db/ponto-de-vista'
 
 interface PostsProps {
     posts: Post[]
@@ -123,7 +116,6 @@ export default function Posts({ posts }: PostsProps) {
                         readingTime={post.readingTime}
                     />
                 ))}
-
             </Masonry>
         </div>
     )

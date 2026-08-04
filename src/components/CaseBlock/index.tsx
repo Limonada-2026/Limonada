@@ -1,6 +1,6 @@
 // libraries
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from 'next-transition-router'
 import clsx from 'clsx'
 
 // components
@@ -69,6 +69,7 @@ export default function CaseBlock({
                         alt={title || description || ''}
                         width={600}
                         height={500}
+                        sizes='(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw'
                         loading='lazy'
                         className={clsx(
                             'object-cover object-center w-full h-full absolute z-0 inset-0',
@@ -106,9 +107,9 @@ export default function CaseBlock({
                 href={link.href}
                 target={link.isExternal ? '_blank' : undefined}
                 rel={link.isExternal ? 'noopener noreferrer' : ''}
-                className={clsx('relative h-fit flex group hover:-translate-y-3 transition-transform duration-300', className)}
+                className={clsx('relative w-full h-fit flex group hover:-translate-y-3 transition-transform duration-300', className)}
             >
-                <span className='flex flex-col gap-2'>
+                <span className='flex flex-col gap-2 w-full'>
 
                     {content}
 
@@ -119,8 +120,8 @@ export default function CaseBlock({
                 </span>
             </Link>
         ) : (
-            <div className={clsx('relative h-fit', className)}>
-                <span className='flex flex-col gap-2'>
+            <div className={clsx('relative h-fit w-full', className)}>
+                <span className='flex flex-col gap-2 w-full'>
                     {content}
                 </span>
             </div>
