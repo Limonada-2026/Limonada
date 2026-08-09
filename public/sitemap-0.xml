@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://alimonada.com.br/manifest.json</loc><lastmod>2026-08-04T06:16:31.142Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://alimonada.com.br/icon.svg</loc><lastmod>2026-08-04T06:16:31.142Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://alimonada.com.br/icon.png</loc><lastmod>2026-08-04T06:16:31.142Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://alimonada.com.br/apple-icon.png</loc><lastmod>2026-08-04T06:16:31.142Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://alimonada.com.br/contato</loc><lastmod>2026-08-04T06:16:31.142Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://alimonada.com.br/o-que-resolvemos</loc><lastmod>2026-08-04T06:16:31.142Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://alimonada.com.br</loc><lastmod>2026-08-04T06:16:31.142Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://alimonada.com.br/politica-de-privacidade</loc><lastmod>2026-08-04T06:16:31.142Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://alimonada.com.br/ponto-de-vista/ambidestria</loc><lastmod>2026-08-04T06:16:31.142Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://alimonada.com.br/ponto-de-vista/lideres-orientados-ao-proposito</loc><lastmod>2026-08-04T06:16:31.142Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://alimonada.com.br/ponto-de-vista/seguranca-psicologica</loc><lastmod>2026-08-04T06:16:31.142Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://alimonada.com.br/ponto-de-vista/sistema-imunologico-dos-lideres-sem-proposito</loc><lastmod>2026-08-04T06:16:31.142Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://alimonada.com.br/ponto-de-vista/turn-over-e-cultura-de-inovacao</loc><lastmod>2026-08-04T06:16:31.142Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://alimonada.com.br/ponto-de-vista</loc><lastmod>2026-08-04T06:16:31.142Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://alimonada.com.br/icon.png</loc><lastmod>2026-08-09T08:59:43.817Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://alimonada.com.br/o-que-resolvemos</loc><lastmod>2026-08-09T08:59:43.817Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://alimonada.com.br/manifest.json</loc><lastmod>2026-08-09T08:59:43.817Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://alimonada.com.br/apple-icon.png</loc><lastmod>2026-08-09T08:59:43.817Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://alimonada.com.br/icon.svg</loc><lastmod>2026-08-09T08:59:43.817Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://alimonada.com.br</loc><lastmod>2026-08-09T08:59:43.817Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://alimonada.com.br/contato</loc><lastmod>2026-08-09T08:59:43.817Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://alimonada.com.br/ponto-de-vista/ambidestria</loc><lastmod>2026-08-09T08:59:43.817Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://alimonada.com.br/ponto-de-vista/lideres-orientados-ao-proposito</loc><lastmod>2026-08-09T08:59:43.817Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://alimonada.com.br/ponto-de-vista/seguranca-psicologica</loc><lastmod>2026-08-09T08:59:43.817Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://alimonada.com.br/ponto-de-vista/sistema-imunologico-dos-lideres-sem-proposito</loc><lastmod>2026-08-09T08:59:43.817Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://alimonada.com.br/ponto-de-vista/turn-over-e-cultura-de-inovacao</loc><lastmod>2026-08-09T08:59:43.817Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://alimonada.com.br/politica-de-privacidade</loc><lastmod>2026-08-09T08:59:43.817Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>

@@ -1,23 +1,22 @@
 'use client'
 
 // libraries
-import { useEffect, useRef, useState } from 'react'
-import { Masonry }  from 'grid-rows-masonry/react'
-import { useTransitionState } from 'next-transition-router'
-import { gsap } from 'gsap'
-import { useGSAP } from '@gsap/react'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useEffect, useState } from 'react'
 
 // components
 import CaseBlock from '@/components/CaseBlock'
+import PaginatedGrid from '@/components/PaginatedGrid'
 
-gsap.registerPlugin(ScrollTrigger)
+// utils
+import { pages } from '@/utils/routes'
 
 // types
 import type { Post } from '@/db/ponto-de-vista'
 
 interface PostsProps {
     posts: Post[]
+    perPage: number
+    initialPage?: number
 }
 
 const imageSizes = ['square', 'vertical', 'horizontal'] as const
@@ -32,91 +31,37 @@ function randomImageSizes(posts: Post[]) {
 	) as Record<number, ImageSize>
 }
 
-export default function Posts({ posts }: PostsProps) {
+export default function Posts({ posts, perPage, initialPage }: PostsProps) {
 
-    const container = useRef<HTMLDivElement>(null)
-    const { stage } = useTransitionState()
     const [imageSizeByPost, setImageSizeByPost] = useState<Record<number, ImageSize>>({})
 
     useEffect(() => {
         setImageSizeByPost(randomImageSizes(posts))
     }, [posts])
 
-    useEffect(() => {
-        if (Object.keys(imageSizeByPost).length === 0) return
-
-        const timer = setTimeout(() => {
-            ScrollTrigger.refresh(true)
-        }, 100)
-
-        return () => clearTimeout(timer)
-    }, [imageSizeByPost])
-
-    useGSAP(() => {
-        if (!container.current) return
-
-        const viewport = document.getElementById('viewport')
-        if (!viewport) return
-
-        const blocks = gsap.utils.toArray<HTMLElement>('.js-fade-up', container.current)
-
-        if (blocks.length === 0) return
-        if (stage === 'leaving') return
-
-        blocks.forEach(block => {
-            gsap.set(block.children, {
-                opacity: 0,
-                y: '3rem'
-            })
-        })
-
-        if (stage !== 'none') return
-
-        const triggers = ScrollTrigger.batch(blocks, {
-            start: '0% 80%',
-            scroller: viewport,
-            onEnter: batch => {
-                batch.forEach((block, i) => {
-                    gsap.to(block.children, {
-                        opacity: 1,
-                        y: 0,
-                        duration: .6,
-                        ease: 'power2.out',
-                        delay: i * 0.125
-                    })
-                })
-            }
-        })
-
-        return () => {
-            triggers.forEach(trigger => trigger.kill())
-        }
-    }, {
-        scope: container,
-        dependencies: [stage]
-    })
-
     return (
-        <div ref={container}>
-            <Masonry
-                className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 md:gap-x-6 gap-y-10 md:gap-y-20 xl:gap-y-32 xl:[&>*:nth-child(2)]:mt-80 xl:[&>*:nth-child(3)]:mt-40'
-                style={{ gridTemplateRows: 'masonry' }}
-            >
-                {posts.map((post) => (
-                    <CaseBlock
-                        key={post.id}
-                        className='js-fade-up'
-                        link={{
-                            href: `/ponto-de-vista/${post.slug}`
-                        }}
-                        image={post.image}
-                        imageSize={imageSizeByPost[post.id] ?? 'square'}
-                        title={post.title}
-                        description={post.description}
-                        readingTime={post.readingTime}
-                    />
-                ))}
-            </Masonry>
-        </div>
+        <PaginatedGrid
+            items={posts}
+            perPage={perPage}
+            initialPage={initialPage}
+            basePath={pages.ponto_de_vista}
+            paginationLabel='Paginação dos posts'
+            paginationClassName='mt-14 md:mt-20'
+            className='grid-cols-1 md:grid-cols-2 xl:grid-cols-3 md:gap-x-6 gap-y-10 md:gap-y-20 xl:gap-y-32 xl:[&>*:nth-child(2)]:mt-80 xl:[&>*:nth-child(3)]:mt-40'
+            getKey={(post) => post.id}
+            renderItem={(post) => (
+                <CaseBlock
+                    className='js-fade-up'
+                    link={{
+                        href: `${pages.ponto_de_vista}/${post.slug}`
+                    }}
+                    image={post.image}
+                    imageSize={imageSizeByPost[post.id] ?? 'square'}
+                    title={post.title}
+                    description={post.description}
+                    readingTime={post.readingTime}
+                />
+            )}
+        />
     )
 }

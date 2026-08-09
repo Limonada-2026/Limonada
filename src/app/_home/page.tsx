@@ -3,12 +3,11 @@ import BannerHome from '@/components/BannerHome'
 import BlocksHome from '@/components/BlocksHome'
 import LemonVideo from '@/components/LemonVideo'
 import ClientsSlider from '@/components/ClientsSlider'
-import CaseBlock from '@/components/CaseBlock'
+import CasesGrid from '@/components/CasesGrid'
 import TeamBanner from '@/components/TeamBanner'
 import ContactFormSmall from '@/components/ContactFormSmall'
 
 import AnimatedText from '@/components/Utils/Animations/AnimatedText'
-import StaggerUp from '@/components/Utils/Animations/StaggerUp'
 
 // temp db
 import { cases } from '@/db/home'
@@ -39,23 +38,7 @@ export default function Home() {
 						Como uma boutique, partimos do contexto de cada desafio para construir jornadas de desenvolvimento que apoiam decisões e desdobram em ação, preparando times e lideranças para fazer o negócio avançar e sustentar o resultado.
 					</p>
 
-					<StaggerUp className='grid md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-6'>
-						{cases.map((item) => (
-							<div key={item.id}>
-								<CaseBlock
-									className='group'
-									link={{
-										href: `/clientes/${item.slug}`
-									}}
-									image={item.image}
-									imageSize='fixed'
-									logo={item.logo}
-									title={item.title}
-									description={item.description}
-								/>
-							</div>
-						))}
-					</StaggerUp>
+					<CasesGrid cases={cases} />
 
 				</div>
 			</section>

@@ -25,6 +25,44 @@ export function scrollViewportToTop(duration = 1.5) {
 	})
 }
 
+export function scrollViewportToElement(
+	element: HTMLElement | null,
+	offset = 120,
+	duration = .8,
+	onComplete?: () => void
+) {
+	const viewport = document.getElementById('viewport')
+
+	if (!viewport || !element) {
+		onComplete?.()
+		return
+	}
+
+	const target = Math.max(0, viewport.scrollTop + element.getBoundingClientRect().top - offset)
+
+	// already there, skip the tween
+	if (Math.abs(target - viewport.scrollTop) < 2) {
+		onComplete?.()
+		return
+	}
+
+	let done = false
+	const finish = () => {
+		if (done) return
+		done = true
+		onComplete?.()
+	}
+
+	return gsap.to(viewport, {
+		scrollTop: target,
+		duration,
+		ease: 'power2.inOut',
+		overwrite: true,
+		onComplete: finish,
+		onInterrupt: finish
+	})
+}
+
 export function lockViewportScroll() {
 	const viewport = document.getElementById('viewport')
 	if (viewport) {

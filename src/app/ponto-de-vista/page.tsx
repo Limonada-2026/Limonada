@@ -11,6 +11,12 @@ import { posts } from '@/db/ponto-de-vista'
 // components
 import Posts from './Posts'
 
+// how many posts per page
+const PER_PAGE = 8
+
+// types
+type SearchParams = Promise<{ page?: string }>
+
 // metadata
 export const metadata: Metadata = {
 	title: 'Ponto de Vista',
@@ -20,7 +26,12 @@ export const metadata: Metadata = {
 	},
 }
 
-export default function PontoDeVista() {
+export default async function PontoDeVista({ searchParams }: { searchParams: SearchParams }) {
+
+	const { page } = await searchParams
+
+	const initialPage = Number(page) || 1
+
 	return (
 		<main>
 
@@ -51,7 +62,11 @@ export default function PontoDeVista() {
 
             <section className='mb-20 md:mb-[10vw] mt-12 md:mt-[6vw]'>
                 <div className='base-container'>
-                    <Posts posts={posts} />
+                    <Posts
+                        posts={posts}
+                        perPage={PER_PAGE}
+                        initialPage={initialPage}
+                    />
                 </div>
             </section>
 
