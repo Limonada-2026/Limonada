@@ -72,6 +72,14 @@ export default function Footer() {
 											href: pages.metodo_limao
 										},
 										{
+											label: 'Clientes',
+											href: pages.clientes
+										},
+										{
+											label: 'O que resolvemos',
+											href: pages.o_que_resolvemos.home
+										},
+										{
 											label: 'Ponto de Vista',
 											href: pages.ponto_de_vista
 										},

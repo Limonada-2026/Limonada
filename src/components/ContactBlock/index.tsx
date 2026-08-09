@@ -14,7 +14,14 @@ import lemons from '@/assets/img/lemons-bg.jpg'
 // utils
 import { pages } from '@/utils/routes'
 
-export default function ContactBlock() {
+// interface
+interface ContactBlockProps {
+    text?: string
+}
+
+export default function ContactBlock({
+    text = 'Transforme seus limões em limonada'
+}: ContactBlockProps) {
 	return (
 		<section className='relative overflow-hidden py-14 sm:py-20 lg:py-30 rounded-tl-2xl rounded-tr-2xl sm:rounded-tl-4xl sm:rounded-tr-4xl md:rounded-tl-[3rem] md:rounded-tr-[3rem] md:-mb-12'>
 
@@ -33,7 +40,7 @@ export default function ContactBlock() {
                 <div className='bg-green-dark rounded-corners py-13 lg:py-[7vw] text-center'>
 
                     <h2 className='text-green-light block mb-6 md:mb-8 text-2xl md:text-3xl font-semibold'>
-                        <AnimatedText text='Transforme seus limões em limonada' />
+                        <AnimatedText text={text} />
                     </h2>
 
                     <MagneticButton className='mx-auto'>

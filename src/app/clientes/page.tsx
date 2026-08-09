@@ -13,7 +13,7 @@ import lemonade from '@/assets/img/lemonade.png'
 import { cases } from '@/db/clientes'
 
 // how many cases per page
-const PER_PAGE = 8
+const howMany = 8
 
 // types
 type SearchParams = Promise<{ page?: string }>
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 	description: 'Conheça os clientes que confiam na nossa equipe de desenvolvedores.',
 	alternates: {
 		canonical: '/clientes'
-	},
+	}
 }
 
 export default async function Clientes({ searchParams }: { searchParams: SearchParams }) {
@@ -66,7 +66,7 @@ export default async function Clientes({ searchParams }: { searchParams: SearchP
 
                     <Cases
                         cases={cases}
-                        perPage={PER_PAGE}
+                        perPage={howMany}
                         initialPage={initialPage}
                     />
 
