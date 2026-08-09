@@ -35,6 +35,7 @@ export default function BannerTop({
         if (sectionRef.current) {
             gsap.to('[data-bg]', {
                 opacity: 0.1,
+                scale: 1.2,
                 scrollTrigger: {
                     scroller: document.getElementById('viewport') as HTMLElement,
                     trigger: sectionRef.current,

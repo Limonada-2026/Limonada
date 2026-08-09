@@ -9,22 +9,31 @@ gsap.registerPlugin(ScrollTrigger)
 
 interface Props {
 	number: number
+	decimals?: number
 	className?: string
 }
 
 export default function Counter({
 	number,
+	decimals = 0,
 	className
 }: Props) {
-	
+
 	const item = useRef<HTMLSpanElement>(null)
 
 	useGSAP(() => {
 		if (item.current) {
 
-			// format the number in Brazilian standard (e.g., 1.000, 10.000)
+			// format the number in Brazilian standard (e.g., 1.000, 10.000, 9,74)
 			function formatBrazilianNumber(value: number | string) {
-				return Math.floor(+value).toLocaleString('pt-BR')
+				if (decimals === 0) {
+					return Math.floor(+value).toLocaleString('pt-BR')
+				}
+
+				return (+value).toLocaleString('pt-BR', {
+					minimumFractionDigits: decimals,
+					maximumFractionDigits: decimals
+				})
 			}
 
 			gsap.set(item.current, {
@@ -46,14 +55,17 @@ export default function Counter({
 				}
 			})
 		}
-	}, { dependencies: [number] })
+	}, { dependencies: [number, decimals] })
 
 	return (
 		<span
 			ref={item}
 			className={className}
 		>
-			{number.toLocaleString('pt-BR')}
+			{number.toLocaleString('pt-BR', {
+				minimumFractionDigits: decimals,
+				maximumFractionDigits: decimals
+			})}
 		</span>
 	)
 }

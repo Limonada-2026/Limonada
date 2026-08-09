@@ -13,7 +13,7 @@ import lemonade from '@/assets/img/lemonade.png'
 import { cases } from '@/db/clientes'
 
 // how many cases per page
-const howMany = 8
+const howMany = 12
 
 // types
 type SearchParams = Promise<{ page?: string }>

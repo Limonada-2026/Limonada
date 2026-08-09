@@ -1,4 +1,5 @@
 // libraries
+import { Fragment } from 'react'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
@@ -16,161 +17,173 @@ import image2 from '@/assets/img/clients-02.png'
 import image3 from '@/assets/img/clients-03.png'
 import image4 from '@/assets/img/clients-04.png'
 
-export default function ClientePost() {
+// temp db
+import { cases, getCase } from '@/db/clientes'
+
+// utils
+import { pages } from '@/utils/routes'
+
+// block illustrations, cycled in order
+const blockImages = [image1, image2, image3, image4]
+
+// types
+type Params = Promise<{ postId: string }>
+
+// renders each paragraph separated by a line break, keeping a single block of copy
+function Paragraphs({ items }: { items: string[] }) {
+	return (
+		<>
+			{items.map((text, i) => (
+				<Fragment key={i}>
+					{i > 0 && <><br /><br /></>}
+					{text}
+				</Fragment>
+			))}
+		</>
+	)
+}
+
+// static routes
+export function generateStaticParams() {
+	return cases.map((item) => ({ postId: item.slug }))
+}
+
+// metadata
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+
+	const { postId } = await params
+	const item = getCase(postId)
+
+	if (!item) return {}
+
+	return {
+		title: item.seoTitle || item.title,
+		description: item.description,
+		alternates: {
+			canonical: `${pages.clientes}/${item.slug}`
+		},
+		openGraph: {
+			type: 'article',
+			title: item.seoTitle || item.title,
+			description: item.description,
+			url: `${pages.clientes}/${item.slug}`,
+			images: [item.image]
+		}
+	}
+}
+
+export default async function ClientePost({ params }: { params: Params }) {
+
+	const { postId } = await params
+	const item = getCase(postId)
+
+	if (!item) notFound()
+
 	return (
 		<main>
 
 			<BannerTop
-				image='/img/clients/featured/john-deere.jpg'
-				logo='/img/clients/john-deere.svg'
-				title='John Deere: uma nova perspectiva para um programa consolidado'
-				description='Como redesenhamos uma jornada de desenvolvimento para manter a liderança preparada para os desafios de um negócio em constante transformação.'
-				tags={['Liderança', 'Jornada personalizada']}
+				image={item.image}
+				logo={item.logo}
+				title={item.title}
+				description={item.subtitle}
+				tags={[item.tema, item.formato]}
 			/>
 
-			<section className='relative z-2 bg-green-vivid section-padding rounded-bottom-corners -mt-4 sm:-mt-8 md:-mt-12'>
-				<div className='base-container pt-4 sm:pt-8 md:pt-12'>
-					<div className='row'>
+			{item.limao.length > 0 && (
+				<section className='relative z-2 bg-green-vivid section-padding rounded-bottom-corners -mt-4 sm:-mt-8 md:-mt-12'>
+					<div className='base-container pt-4 sm:pt-8 md:pt-12'>
+						<div className='row'>
 
-						<div className='col-lg-6'>
-							<AnimatedTitle
-								style='green-black'
-								className='title-96 mb-6'
-							>
-								O Limão
-							</AnimatedTitle>
+							<div className='col-lg-6'>
+								<AnimatedTitle
+									style='green-black'
+									className='title-96 mb-6'
+								>
+									O Limão
+								</AnimatedTitle>
+							</div>
+
+							<div className='col-lg-6 pt-1'>
+								<p className='lg:text-lg'>
+									<Paragraphs items={item.limao} />
+								</p>
+							</div>
+
 						</div>
-
-						<div className='col-lg-6 pt-1'>
-							<p className='lg:text-lg'>
-								O eLAP, programa de desenvolvimento de lideranças da John Deere, faz parte da história da companhia há uma década. Mas o negócio mudou, os mercados mudaram, e o programa precisava de uma nova perspectiva para continuar relevante.<br /><br />
-
-								A complexidade real apareceu rápido: lideranças no Brasil, na Argentina e no México, com a mesma base cultural da empresa, mas enfrentando desafios locais diferentes.<br /><br />
-
-								O desafio da Limonada era construir uma jornada capaz de conectar desenvolvimento individual, estratégia de negócio e transformação organizacional. Assim, o desenvolvimento das lideranças acontecia sempre ligado aos desafios reais da operação.
-							</p>
-						</div>
-
 					</div>
-				</div>
-			</section>
+				</section>
+			)}
 
-			<section className='relative z-1 bg-green-dark section-padding rounded-bottom-corners -mt-4 sm:-mt-8 md:-mt-12'>
-				<div className='base-container pt-4 sm:pt-8 md:pt-12'>
-					<div className='row'>
+			{item.corte.length > 0 && (
+				<section className='relative z-1 bg-green-dark section-padding rounded-bottom-corners -mt-4 sm:-mt-8 md:-mt-12'>
+					<div className='base-container pt-4 sm:pt-8 md:pt-12'>
+						<div className='row'>
 
-						<div className='col-lg-6'>
-							<AnimatedTitle
-								style='green-green-vivid'
-								className='title-96 mb-6'
-							>
-								O corte Limonada
-							</AnimatedTitle>
+							<div className='col-lg-6'>
+								<AnimatedTitle
+									style='green-green-vivid'
+									className='title-96 mb-6'
+								>
+									O corte Limonada
+								</AnimatedTitle>
+							</div>
+
+							<div className='col-lg-6 pt-1'>
+								<p className='lg:text-lg text-green-vivid'>
+									<Paragraphs items={item.corte} />
+								</p>
+							</div>
+
 						</div>
-
-						<div className='col-lg-6 pt-1'>
-							<p className='lg:text-lg text-green-vivid'>
-								Antes de propor qualquer mudança, ouvimos. Conversamos com RH, patrocinadores do programa e lideranças de diferentes áreas para entender o que tinha funcionado ao longo dos anos e o que já não gerava o mesmo impacto.<br /><br />
-
-								Dessas conversas nasceu um mapa de competências sobre três pilares: pensamento crítico, visão sistêmica e influência estratégica. Cada um explorado nas dimensões de indivíduo, negócio e mercado.
-							</p>
-						</div>
-
 					</div>
-				</div>
-			</section>
+				</section>
+			)}
 
-			<section className='relative z-0 bg-green-neon section-padding rounded-bottom-corners -mt-4 sm:-mt-8 md:-mt-12'>
-				<div className='base-container pt-4 sm:pt-8 md:pt-12 pb-[18vw] sm:pb-[12vw] lg:pb-[8vw] xl:pb-[5vw]'>
-					<div className='row'>
+			{item.espremendo.length > 0 && (
+				<section className='relative z-0 bg-green-neon section-padding rounded-bottom-corners -mt-4 sm:-mt-8 md:-mt-12'>
+					<div className='base-container pt-4 sm:pt-8 md:pt-12 pb-[18vw] sm:pb-[12vw] lg:pb-[8vw] xl:pb-[5vw]'>
+						<div className='row'>
 
-						<div className='col-lg-6'>
-							<AnimatedTitle
-								style='green-black'
-								className='title-96 mb-6'
-							>
-								Espremendo o Limão
-							</AnimatedTitle>
+							<div className='col-lg-6'>
+								<AnimatedTitle
+									style='green-black'
+									className='title-96 mb-6'
+								>
+									Espremendo o Limão
+								</AnimatedTitle>
+							</div>
+
+							<div className='col-lg-6 pt-1'>
+								<p className='lg:text-lg'>
+									<Paragraphs items={item.espremendo} />
+								</p>
+							</div>
+
 						</div>
-
-						<div className='col-lg-6 pt-1'>
-							<p className='lg:text-lg'>
-								Combinamos assessment individual, network para ampliar repertório, treinamento com curadoria de conteúdo respeitando o contexto de cada país, e projeto real para gerar movimento dentro da operação.<br /><br />
-
-								Os três países rodaram a trilha em paralelo, com o mesmo mapa de competências adaptado à realidade local de cada um.
-							</p>
-						</div>
-
 					</div>
-				</div>
-			</section>
+				</section>
+			)}
 
-			<FourBlocks
-				items={[
-					{
-						image: image1.src,
-						title: 'Assessment',
-						text: 'Entendimento completo do indivíduo'
-					},
-					{
-						image: image2.src,
-						title: 'Network',
-						text: 'Conexão que amplia repertório'
-					},
-					{
-						image: image3.src,
-						title: 'Treinamento',
-						text: 'Curadoria de conteúdo que respeita o contexto'
-					},
-					{
-						image: image4.src,
-						title: 'Projeto',
-						text: 'Aprendizagem prática que gera movimento'
-					}
-				]}
-			/>
+			{item.blocks.length > 0 && (
+				<FourBlocks
+					items={item.blocks.map((block, i) => ({
+						image: blockImages[i % blockImages.length].src,
+						title: block.title,
+						text: block.text
+					}))}
+				/>
+			)}
 
-			<Numbers
-				items={[
-					{
-						hasPlus: false,
-						number: 60,
-						text: 'participantes'
-					},
-					{
-						hasPlus: false,
-						number: 3,
-						text: 'países: Brasil, Argentina e México'
-					},
-					{
-						hasPlus: true,
-						number: 100,
-						text: 'horas de treinamento + mentoria'
-					},
-					{
-						hasPlus: false,
-						number: 14,
-						text: 'projetos desenvolvidos com desafios reais do negócio'
-					}
-				]}
-			/>
+			{item.numbers.length > 0 && (
+				<Numbers items={item.numbers} />
+			)}
 
-			<Testimonials
-				items={[
-					{
-						testimonial: 'Transformadora. Tive a oportunidade de conhecer e entender outras áreas muito distantes da minha, mas fundamentais para o negócio que deveriam estar muito próximas.',
-						position: 'Colaborador',
-						company: 'John Deere'
-					},
-					{
-						testimonial: 'Uma jornada de transformação, desde conteúdos para suportar o desenvolvimento pessoal quanto liderança e conexão com temas estratégicos da companhia.',
-						position: 'Colaborador',
-						company: 'John Deere'
-					}
-				]}
-			/>
+			{item.testimonials.length > 0 && (
+				<Testimonials items={item.testimonials} />
+			)}
 
-			<ContactBlock text='Seu desafio é desenvolver líderes para um cenário que muda o tempo todo?' />
+			<ContactBlock text={item.cta} />
 
 		</main>
 	)
