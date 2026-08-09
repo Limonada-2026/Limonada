@@ -1,12 +1,9 @@
 // libraries
 import { Metadata } from 'next'
-import Image from 'next/image'
 import { notFound } from 'next/navigation'
 
 // components
-import AnimatedText from '@/components/Utils/Animations/AnimatedText'
 import AnimatedTitle from '@/components/Utils/Animations/AnimatedTitle'
-import ScrollingImage from '@/components/Utils/Animations/ScrollingImage'
 import BannerTop from './BannerTop'
 import FourBlocks from './FourBlocks'
 import Numbers from './Numbers'
@@ -174,50 +171,6 @@ export default function ClientePost() {
 			/>
 
 			<ContactBlock text='Seu desafio é desenvolver líderes para um cenário que muda o tempo todo?' />
-
-			{/*
-			<section className='my-10 lg:my-[5vw]'>
-				<div className='base-container'>
-					<div className='row'>
-						<div className='col-lg-10 col-xl-8'>
-
-							<h1 className='text-2xl md:text-3xl xl:text-4xl font-semibold block mb-4 text-green-medium'>
-								<AnimatedText text={post.title} />
-							</h1>
-
-							<div className='flex flex-wrap gap-x-4 gap-y-1 items-center text-sm mb-6 lg:mb-10'>
-
-								<span>
-									Por {post.author}
-								</span>
-
-								<span className='flex gap-2 items-center'>
-									<Clock className='w-4 h-4' />
-									{post.readingTime} min de leitura
-								</span>
-
-							</div>
-
-							<div
-								className='rich-text'
-								dangerouslySetInnerHTML={{ __html: post.content }}
-							/>
-
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<section className='section-space'>
-				<div className='base-container'>
-
-					<h2 className='text-xl md:text-2xl font-semibold block mb-4 lg:mb-8'>
-						<AnimatedText text='Veja outros pontos de vista:' />
-					</h2>
-
-				</div>
-			</section>
-			*/}
 
 		</main>
 	)
