@@ -25,7 +25,7 @@ export default function ContactBlock({
 	return (
 		<section className='relative overflow-hidden py-14 sm:py-20 lg:py-30 rounded-tl-2xl rounded-tr-2xl sm:rounded-tl-4xl sm:rounded-tr-4xl md:rounded-tl-[3rem] md:rounded-tr-[3rem] md:-mb-12'>
 
-            <ScrollingImage>
+            <ScrollingImage big>
                 <Image
                     src={lemons}
                     alt='Lemons'

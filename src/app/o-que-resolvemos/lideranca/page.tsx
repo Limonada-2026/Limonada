@@ -58,7 +58,7 @@ export default function Lideranca() {
 
                 </div>
 
-                <ScrollingImage>
+                <ScrollingImage big>
                     <Image
                         src={banner}
                         alt='Liderança'

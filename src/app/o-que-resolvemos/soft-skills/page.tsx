@@ -58,7 +58,7 @@ export default function SoftSkills() {
 
                 </div>
 
-                <ScrollingImage>
+                <ScrollingImage big>
                     <Image
                         src={banner}
                         alt='Soft Skills'

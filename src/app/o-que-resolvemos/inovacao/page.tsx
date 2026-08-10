@@ -58,7 +58,7 @@ export default function Inovacao() {
 
                 </div>
 
-                <ScrollingImage>
+                <ScrollingImage big>
                     <Image
                         src={banner}
                         alt='Inovação'

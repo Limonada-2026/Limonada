@@ -3,7 +3,6 @@
 // libraries
 import clsx from 'clsx'
 import { useRef } from 'react'
-import { usePathname } from 'next/navigation'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
@@ -12,55 +11,61 @@ gsap.registerPlugin(ScrollTrigger)
 
 // interface
 interface Props {
-    children: React.ReactNode
-    className?: string
+	children: React.ReactNode
+	className?: string
+    big?: boolean
 }
 
 export default function ScrollingImage({
-    children,
-    className
+	children,
+	className,
+    big = false
 }: Props) {
 
-    const item = useRef<HTMLDivElement>(null)
-    const pathname = usePathname()
+	const item = useRef<HTMLDivElement>(null)
 
-    useGSAP(() => {
-        const trigger = item.current
-        if (!trigger) return
+    const height = big ? '10rem' : '3rem'
 
-        const timer = setTimeout(() => {
-            const children = trigger.children
+	useGSAP(() => {
+		const trigger = item.current
+		if (!trigger) return
 
-            Array.from(children).forEach(child => {
-                child.classList.add('cover')
-            })
+		const targets = trigger.children
+		if (!targets.length) return
 
-            gsap.set(children, {
-                height: 'calc(100% + 3rem)',
-                display: 'block'
-            })
+		const scroller = document.getElementById('viewport')
+		if (!scroller) return
 
-            gsap.from(children, {
-                y: '-3rem',
-                scrollTrigger: {
-                    scroller: document.getElementById('viewport') as HTMLElement,
-                    trigger: trigger,
-                    scrub: true,
-                    end: 'bottom top'
-                }
-            })
-        }, 50)
+		Array.from(targets).forEach((child) => {
+			child.classList.add('cover')
+		})
 
-        return () => clearTimeout(timer)
+		gsap.set(targets, {
+			height: `calc(100% + ${height})`,
+			display: 'block'
+		})
 
-	}, { dependencies: [pathname] })
+		gsap.fromTo(targets, {
+			y: `-${height}`
+		}, {
+			y: 0,
+			ease: 'none',
+			scrollTrigger: {
+				scroller,
+				trigger,
+				scrub: true,
+				end: 'bottom top',
+				invalidateOnRefresh: true
+			}
+		})
+	}, { scope: item })
 
-    return (
-        <div
-            ref={item}
-            className={clsx('absolute overflow-hidden top-0 left-0 w-full h-full', className)}
-        >
-            {children}
-        </div>
-    )
+	return (
+		<div
+			ref={item}
+			className={clsx('absolute overflow-hidden top-0 left-0 w-full h-full', className)}
+		>
+			{children}
+		</div>
+	)
 }
