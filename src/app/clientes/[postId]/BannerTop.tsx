@@ -78,7 +78,7 @@ export default function BannerTop({
                     className='w-60 sm:w-80 h-auto flex brightness-200 invert'
                 />
 
-                <div className='flex flex-col gap-4 items-center justify-center max-w-2xl'>
+                <div className='flex flex-col gap-4 items-center sm:justify-center max-w-2xl'>
 
                     <h1 className='text-white text-3xl font-semibold'>
                         <AnimatedText text={title} />

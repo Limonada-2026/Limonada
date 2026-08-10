@@ -37,7 +37,7 @@ export default function ContactBlock({
             </ScrollingImage>
 
             <div className='base-container my-10 lg:my-[7vw] relative z-2'>
-                <div className='bg-green-dark rounded-corners py-13 lg:py-[7vw] text-center'>
+                <div className='bg-green-dark rounded-corners py-13 lg:py-[7vw] px-8 text-center'>
 
                     <h2 className='text-green-light block mb-6 md:mb-8 text-2xl md:text-3xl font-semibold sm:text-balance'>
                         <AnimatedText text={text} />
