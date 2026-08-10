@@ -39,7 +39,7 @@ export default function ContactBlock({
             <div className='base-container my-10 lg:my-[7vw] relative z-2'>
                 <div className='bg-green-dark rounded-corners py-13 lg:py-[7vw] text-center'>
 
-                    <h2 className='text-green-light block mb-6 md:mb-8 text-2xl md:text-3xl font-semibold'>
+                    <h2 className='text-green-light block mb-6 md:mb-8 text-2xl md:text-3xl font-semibold sm:text-balance'>
                         <AnimatedText text={text} />
                     </h2>
 

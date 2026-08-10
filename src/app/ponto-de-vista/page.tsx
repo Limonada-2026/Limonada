@@ -12,18 +12,18 @@ import { posts } from '@/db/ponto-de-vista'
 import Posts from './Posts'
 
 // how many posts per page
-const PER_PAGE = 8
+const howMany = 12
 
 // types
 type SearchParams = Promise<{ page?: string }>
 
 // metadata
 export const metadata: Metadata = {
-	title: 'Ponto de Vista',
-	description: 'Nossa perspectiva sobre desenvolvimento de times e lideranças, as transformações no mundo dos negócios e o futuro do trabalho.',
+	title: 'Ponto de Vista | Limonada',
+	description: 'Aqui, reunimos nossa perspecitiva sobre desenvolvimento de times e lideranças, as transformações no mundo dos negócios e o futuro do trabalho.',
 	alternates: {
 		canonical: '/ponto-de-vista'
-	},
+	}
 }
 
 export default async function PontoDeVista({ searchParams }: { searchParams: SearchParams }) {
@@ -64,7 +64,7 @@ export default async function PontoDeVista({ searchParams }: { searchParams: Sea
                 <div className='base-container'>
                     <Posts
                         posts={posts}
-                        perPage={PER_PAGE}
+                        perPage={howMany}
                         initialPage={initialPage}
                     />
                 </div>

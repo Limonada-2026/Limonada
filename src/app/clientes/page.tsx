@@ -20,8 +20,8 @@ type SearchParams = Promise<{ page?: string }>
 
 // metadata
 export const metadata: Metadata = {
-	title: 'Clientes',
-	description: 'Conheça os clientes que confiam na nossa equipe de desenvolvedores.',
+	title: 'Clientes | Limonada',
+	description: 'Descubra como grandes empresas brasileiras estão transformando comportamento e resultados com a Limonada.',
 	alternates: {
 		canonical: '/clientes'
 	}

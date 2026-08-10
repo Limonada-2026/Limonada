@@ -18,8 +18,11 @@ import { pages } from '@/utils/routes'
 
 // metadata
 export const metadata: Metadata = {
-	title: 'O Que Resolvemos',
-	description: 'O Que Resolvemos',
+	title: 'O que resolvemos | Limonada',
+	description: 'Explore o caminho para o seu desafio com a Limonada.',
+    alternates: {
+        canonical: '/o-que-resolvemos'
+    }
 }
 
 export default function OQueResolvemos() {

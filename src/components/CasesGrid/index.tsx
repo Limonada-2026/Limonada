@@ -11,14 +11,23 @@ import { pages } from '@/utils/routes'
 // types
 import type { Case } from '@/db/clientes'
 
-interface CasesGridProps {
+export interface CasesGridProps {
     className?: string
     cases: Case[]
+    perRow?: number
 }
 
-export default function CasesGrid({ className, cases }: CasesGridProps) {
+export default function CasesGrid({
+    className,
+    cases,
+    perRow = 3
+}: CasesGridProps) {
     return (
-        <StaggerUp className={clsx('grid md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-6', className)}>
+        <StaggerUp className={clsx(
+            'grid md:grid-cols-2 gap-10 md:gap-6',
+            perRow === 3 && 'lg:grid-cols-3',
+            className
+        )}>
             {cases.map((item) => (
                 <div key={item.id}>
                     <CaseBlock

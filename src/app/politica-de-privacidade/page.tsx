@@ -6,7 +6,7 @@ import BannerInternal from '@/components/BannerInternal'
 import MultiText from '@/components/PortfolioBlocks/MultiText'
 
 export const metadata = {
-	title: 'Política de Privacidade',
+	title: 'Política de Privacidade | Limonada',
 	description: 'Política de Privacidade da Limonada',
 	canonical: '/politica-de-privacidade'
 }
@@ -31,7 +31,7 @@ export default function Privacy() {
                 className='pt-16 sm:pt-28 lg:pt-32'
             >
                 <p>
-                    A Política de Segurança da Informação e Proteção de Privacidade da JB Propaganda e Marketing Ltda tem como objetivo garantir a integridade, confidencialidade e disponibilidade das informações, bem como assegurar a proteção dos dados pessoais tratados pela empresa, em conformidade com a Lei Geral de Proteção de Dados (Lei n° 13.709/2018 - LGPD) e outras legislações aplicáveis.
+                    A Política de Segurança da Informação e Proteção de Privacidade da Limonada tem como objetivo garantir a integridade, confidencialidade e disponibilidade das informações, bem como assegurar a proteção dos dados pessoais tratados pela empresa, em conformidade com a Lei Geral de Proteção de Dados (Lei n° 13.709/2018 - LGPD) e outras legislações aplicáveis.
                 </p>
             </MultiText>
 
@@ -40,7 +40,7 @@ export default function Privacy() {
                 className='-mt-4 xs:-mt-8 md:-mt-12'
             >
                 <p>
-                    Esta política se aplica a todos os colaboradores, estagiários, terceiros, fornecedores e parceiros que tenham acesso a informações da JB Propaganda e Marketing Ltda.
+                    Esta política se aplica a todos os colaboradores, estagiários, terceiros, fornecedores e parceiros que tenham acesso a informações da Limonada.
                 </p>
             </MultiText>
 
@@ -159,7 +159,7 @@ export default function Privacy() {
             >
 
                 <p>
-                    A JB Propaganda e Marketing Ltda assegura aos titulares de dados os seguintes direitos:
+                    A Limonada assegura aos titulares de dados os seguintes direitos:
                 </p>
 
                 <ul>
@@ -185,7 +185,7 @@ export default function Privacy() {
                     </li>
 
                     <li>
-                        <b>Informação:</b> Obter informações sobre as entidades públicas e privadas com as quais a JB Propaganda e Marketing Ltda compartilhou seus dados.
+                        <b>Informação:</b> Obter informações sobre as entidades públicas e privadas com as quais a Limonada compartilhou seus dados.
                     </li>
 
                     <li>
