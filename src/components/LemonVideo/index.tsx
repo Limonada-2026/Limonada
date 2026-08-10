@@ -11,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger)
 // components
 import MagneticButton from '@/components/Utils/Animations/MagneticButton'
 import Video from '@/components/Video'
+import AnimatedTitle from '@/components/Utils/Animations/AnimatedTitle'
 
 // utils
 import { pages } from '@/utils/routes'
@@ -147,10 +148,13 @@ export default function LemonVideo() {
 
 					<div className='lg:max-w-1/3'>
 
-						<h2 className='text-6xl sm:text-7xl 2xl:text-8xl leading-[.9] font-bold font-heading uppercase text-green-medium'>
+						<AnimatedTitle
+							style='gray-green-medium'
+							className='text-6xl sm:text-7xl 2xl:text-8xl leading-[.9] font-bold font-heading uppercase'
+						>
 							O Método <br className='max-lg:hidden' />
 							L.I.M.Ã.O.
-						</h2>
+						</AnimatedTitle>
 
 						<p className='block my-8'>
 							Desenvolvemos uma abordagem própria que faz do desenvolvimento de pessoas um catalisador de mudanças reais. Quando combinamos todos os elementos do Método, transformamos os desafios em oportunidades. E geramos impacto positivo para pessoas e negócios.<br /><br />

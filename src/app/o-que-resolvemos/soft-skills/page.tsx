@@ -15,28 +15,28 @@ import ContactBlock from '@/components/ContactBlock'
 import UxArrowRight from '@/assets/svg/ux/arrow-right.svg'
 
 // images
-import banner from '@/assets/img/service-01.jpg'
+import banner from '@/assets/img/service-02.jpg'
 
 // db
 import { cases as allCases } from '@/db/clientes'
 
 const featuredCases = [
-	'limonada-com-stone',
-	'limonada-com-boticario'
+	'limonada-com-john-deere',
+	'limonada-com-neoenergia'
 ]
 	.map((slug) => allCases.find((item) => item.slug === slug))
 	.filter((item) => item !== undefined)
 
 // metadata
 export const metadata: Metadata = {
-	title: 'O que resolvemos: Liderança | Limonada',
-	description: 'Não existe transformação consistente sem líderes capazes de inspirar, traduzir estratégia em prática, mobilizar pessoas e sustentar a evolução do negócio.',
+	title: 'O que resolvemos: Soft Skills | Limonada',
+	description: 'Não há forma mais consistente de transformar organizações senão começar pelas pessoas - desenvolvendo como elas pensam, decidem e agem no dia a dia.',
 	alternates: {
-		canonical: '/o-que-resolvemos/lideranca'
+		canonical: '/o-que-resolvemos/soft-skills'
 	}
 }
 
-export default function Lideranca() {
+export default function SoftSkills() {
 	return (
 		<main>
 
@@ -47,11 +47,11 @@ export default function Lideranca() {
                     <div className='flex flex-col lg:flex-row lg:items-end justify-end lg:justify-between gap-1 sm:gap-4 text-white min-h-100 h-[90svh] sm:h-[87svh] pb-12 lg:pb-16'>
 
                         <h1 className='text-2xl md:text-3xl xl:text-4xl font-semibold max-lg:mb-4 max-w-md text-balance'>
-                            <AnimatedText text='Liderança que sustenta direção, desenvolvimento, decisão e resultado' />
+                            <AnimatedText text='Soft skills para equipes e líderes' />
                         </h1>
 
                         <h2 className='lg:text-lg lg:text-right max-w-md text-balance'>
-                            Não existe transformação consistente sem líderes capazes de inspirar, traduzir estratégia em prática, mobilizar pessoas e sustentar a evolução do negócio.
+                            Não há forma mais consistente de transformar organizações senão começar pelas pessoas - desenvolvendo como elas pensam, decidem e agem no dia a dia.
                         </h2>
 
                     </div>
@@ -61,9 +61,9 @@ export default function Lideranca() {
                 <ScrollingImage>
                     <Image
                         src={banner}
-                        alt='Liderança'
-                        width={1539}
-                        height={1190}
+                        alt='Soft Skills'
+                        width={1733}
+                        height={967}
                         priority
                         className='absolute z-0 inset-0 opacity-75'
                     />
@@ -80,10 +80,10 @@ export default function Lideranca() {
                     
                     <StaggerUp className='grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 text-green-medium'>
                         {[
-                            'Liderança não está alinhada com a estratégia.',
-                            'Mudanças são definidas, mas não refletem ação.',
-                            'Cultura, execução e direção não caminham juntas.',
-                            'O time entrega, mas não encontra segurança para performar melhor.'
+                            'As pessoas entregam individualmente, mas não há conexão e colaboração.',
+                            'Conversas difíceis não acontecem.',
+                            'As equipes não acompanham a velocidade que o negócio pede.',
+                            'As decisões avançam, mas nem sempre na mesma direção.'
                         ].map((item, i) => (
                             <div
                                 className='inline-flex gap-2 sm:text-balance'
@@ -116,34 +116,44 @@ export default function Lideranca() {
                         <StaggerUp className='grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-16 mt-8 lg:mt-14'>
                             {[
                                 {
-                                    image: 'people',
-                                    title: 'Gestão e desenvolvimento de pessoas',
-                                    text: 'Desenvolvemos líderes que dão clareza, acompanham de perto e elevam o nível de entrega dos times.'
+                                    image: 'message',
+                                    title: 'Comunicação e Influência',
+                                    text: 'Trabalhamos comunicação com empatia, assertividade e conversas difíceis.'
+                                },
+                                {
+                                    image: 'brain',
+                                    title: 'Inteligência Emocional',
+                                    text: 'Desenvolvemos a capacidade de reconhecer e lidar com emoções no momento em que elas impactam decisões, relações e desempenho.'
                                 },
                                 {
                                     image: 'scale',
-                                    title: 'Autogestão e consistência de liderança',
-                                    text: 'Trabalhamos rituais, priorização e autodesenvolvimento para sustentar uma liderança humanizada e empática.'
+                                    title: 'Produtividade e Autogestão',
+                                    text: 'Como gerir entregáveis com priorização, planejamento e consistência.'
                                 },
                                 {
-                                    image: 'message',
-                                    title: 'Comunicação estratégica e influência',
-                                    text: 'Fortalecemos a capacidade de mobilizar pessoas, sustentar posicionamentos e conduzir conversas que destravam decisões.'
+                                    image: 'direction',
+                                    title: 'Pensamento crítico e Tomada de decisão',
+                                    text: 'Fortalecemos o pensamento crítico para melhorar a qualidade das decisões.'
                                 },
                                 {
-                                    image: 'compass',
-                                    title: 'Direcionamento estratégico e tomada de decisão',
-                                    text: 'Desenvolvemos líderes que estruturam melhor problemas, definem critérios claros e tomam decisões com impacto real no negócio.'
+                                    image: 'flag',
+                                    title: 'Protagonismo e Responsabilidade',
+                                    text: 'Desenvolvemos a capacidade de assumir responsabilidade real sobre decisões, entregas e evolução.'
                                 },
                                 {
-                                    image: 'refresh',
-                                    title: 'Gestão de Mudança',
-                                    text: 'Preparamos líderes para conduzir transformações na prática, reduzindo resistências, engajando o time e sustentando novas formas de operar.'
+                                    image: 'rope',
+                                    title: 'Adaptabilidade e Resiliência',
+                                    text: 'Preparamos profissionais para lidar com pressão, mudança e incerteza sem perder consistência.'
+                                },
+                                {
+                                    image: 'handshake',
+                                    title: 'Influência e Negociação',
+                                    text: 'Fortalecemos a capacidade de negociar e influenciar sem impor, construindo acordos que sustentam relações e resultados.'
                                 },
                                 {
                                     image: 'eye',
-                                    title: 'Visão sistêmica e impacto organizacional',
-                                    text: 'Fortalecemos a capacidade de mobilizar pessoas, sustentar posicionamentos e conduzir conversas que destravam decisões.'
+                                    title: 'Visão Sistêmica',
+                                    text: 'Ampliamos a capacidade de enxergar como decisões em uma área afetam o todo, conectando pessoas, processos e negócio.'
                                 }
                             ].map((item, i) => (
                                 <div

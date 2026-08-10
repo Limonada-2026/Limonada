@@ -15,28 +15,28 @@ import ContactBlock from '@/components/ContactBlock'
 import UxArrowRight from '@/assets/svg/ux/arrow-right.svg'
 
 // images
-import banner from '@/assets/img/service-01.jpg'
+import banner from '@/assets/img/service-04.jpg'
 
 // db
 import { cases as allCases } from '@/db/clientes'
 
 const featuredCases = [
-	'limonada-com-stone',
-	'limonada-com-boticario'
+	'limonada-com-sakura',
+	'limonada-com-semantix'
 ]
 	.map((slug) => allCases.find((item) => item.slug === slug))
 	.filter((item) => item !== undefined)
 
 // metadata
 export const metadata: Metadata = {
-	title: 'O que resolvemos: Liderança | Limonada',
-	description: 'Não existe transformação consistente sem líderes capazes de inspirar, traduzir estratégia em prática, mobilizar pessoas e sustentar a evolução do negócio.',
+	title: 'O que resolvemos: Estratégia | Limonada',
+	description: 'Não existe avanço consistente sem clareza sobre prioridades, critérios de decisão e capacidade de sustentar escolhas ao longo do tempo.',
 	alternates: {
-		canonical: '/o-que-resolvemos/lideranca'
+		canonical: '/o-que-resolvemos/estrategia'
 	}
 }
 
-export default function Lideranca() {
+export default function Inovacao() {
 	return (
 		<main>
 
@@ -47,11 +47,11 @@ export default function Lideranca() {
                     <div className='flex flex-col lg:flex-row lg:items-end justify-end lg:justify-between gap-1 sm:gap-4 text-white min-h-100 h-[90svh] sm:h-[87svh] pb-12 lg:pb-16'>
 
                         <h1 className='text-2xl md:text-3xl xl:text-4xl font-semibold max-lg:mb-4 max-w-md text-balance'>
-                            <AnimatedText text='Liderança que sustenta direção, desenvolvimento, decisão e resultado' />
+                            <AnimatedText text='Estratégia com clareza para escolher e consistência para avançar' />
                         </h1>
 
                         <h2 className='lg:text-lg lg:text-right max-w-md text-balance'>
-                            Não existe transformação consistente sem líderes capazes de inspirar, traduzir estratégia em prática, mobilizar pessoas e sustentar a evolução do negócio.
+                            Não existe avanço consistente sem clareza sobre prioridades, critérios de decisão e capacidade de sustentar escolhas ao longo do tempo.
                         </h2>
 
                     </div>
@@ -61,9 +61,9 @@ export default function Lideranca() {
                 <ScrollingImage>
                     <Image
                         src={banner}
-                        alt='Liderança'
-                        width={1539}
-                        height={1190}
+                        alt='Estratégia'
+                        width={1885}
+                        height={1167}
                         priority
                         className='absolute z-0 inset-0 opacity-75'
                     />
@@ -80,10 +80,10 @@ export default function Lideranca() {
                     
                     <StaggerUp className='grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 text-green-medium'>
                         {[
-                            'Liderança não está alinhada com a estratégia.',
-                            'Mudanças são definidas, mas não refletem ação.',
-                            'Cultura, execução e direção não caminham juntas.',
-                            'O time entrega, mas não encontra segurança para performar melhor.'
+                            'A estratégia é definida, mas não executada.',
+                            'As decisões estão desalinhadas dos objetivos.',
+                            'Liderança e time operam em ritmos diferentes.',
+                            'Resultados são cobrados, mas não há rotina de acompanhamento.'
                         ].map((item, i) => (
                             <div
                                 className='inline-flex gap-2 sm:text-balance'
@@ -116,34 +116,34 @@ export default function Lideranca() {
                         <StaggerUp className='grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-16 mt-8 lg:mt-14'>
                             {[
                                 {
-                                    image: 'people',
-                                    title: 'Gestão e desenvolvimento de pessoas',
-                                    text: 'Desenvolvemos líderes que dão clareza, acompanham de perto e elevam o nível de entrega dos times.'
+                                    image: 'lighthouse',
+                                    title: 'Clareza estratégica e direcionamento',
+                                    text: 'Construímos direcionamento claro para orientar decisões, alinhar lideranças e dar foco ao que realmente importa.'
                                 },
                                 {
-                                    image: 'scale',
-                                    title: 'Autogestão e consistência de liderança',
-                                    text: 'Trabalhamos rituais, priorização e autodesenvolvimento para sustentar uma liderança humanizada e empática.'
+                                    image: 'target',
+                                    title: 'Foco estratégico e prioridades',
+                                    text: 'Ajudamos a transformar intenção em prioridade real, estruturando critérios para escolha e alocação de energia no que gera impacto.'
                                 },
                                 {
-                                    image: 'message',
-                                    title: 'Comunicação estratégica e influência',
-                                    text: 'Fortalecemos a capacidade de mobilizar pessoas, sustentar posicionamentos e conduzir conversas que destravam decisões.'
+                                    image: 'binocular',
+                                    title: 'Horizontes estratégicos e ambidestria',
+                                    text: 'Trabalhamos o equilíbrio entre curto e longo prazo, conectando decisões do presente com oportunidades futuras.'
                                 },
                                 {
-                                    image: 'compass',
-                                    title: 'Direcionamento estratégico e tomada de decisão',
-                                    text: 'Desenvolvemos líderes que estruturam melhor problemas, definem critérios claros e tomam decisões com impacto real no negócio.'
+                                    image: 'map',
+                                    title: 'Construção do mapa estratégico',
+                                    text: 'Traduzimos a estratégia em objetivos, iniciativas e responsabilidades claras para garantir coerência na execução.'
                                 },
                                 {
-                                    image: 'refresh',
-                                    title: 'Gestão de Mudança',
-                                    text: 'Preparamos líderes para conduzir transformações na prática, reduzindo resistências, engajando o time e sustentando novas formas de operar.'
+                                    image: 'traffic-light',
+                                    title: 'Tomada de decisão e alinhamento da liderança',
+                                    text: 'Fortalecemos a capacidade de decidir com clareza, assumir renúncias e alinhar lideranças que sustentam escolhas ao longo do tempo.'
                                 },
                                 {
-                                    image: 'eye',
-                                    title: 'Visão sistêmica e impacto organizacional',
-                                    text: 'Fortalecemos a capacidade de mobilizar pessoas, sustentar posicionamentos e conduzir conversas que destravam decisões.'
+                                    image: 'pin',
+                                    title: 'Execução acompanhada e disciplina estratégica',
+                                    text: 'Estruturamos rituais e acompanhamentos que mantêm a estratégia ativa e garantem avanço consistente, mesmo diante das mudanças.'
                                 }
                             ].map((item, i) => (
                                 <div

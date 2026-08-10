@@ -45,7 +45,7 @@ export default function ScrollingImage({
                 scrollTrigger: {
                     scroller: document.getElementById('viewport') as HTMLElement,
                     trigger: trigger,
-                    scrub: 2,
+                    scrub: true,
                     end: 'bottom top'
                 }
             })

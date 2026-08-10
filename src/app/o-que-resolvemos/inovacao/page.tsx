@@ -15,28 +15,28 @@ import ContactBlock from '@/components/ContactBlock'
 import UxArrowRight from '@/assets/svg/ux/arrow-right.svg'
 
 // images
-import banner from '@/assets/img/service-01.jpg'
+import banner from '@/assets/img/service-03.jpg'
 
 // db
 import { cases as allCases } from '@/db/clientes'
 
 const featuredCases = [
-	'limonada-com-stone',
-	'limonada-com-boticario'
+	'limonada-com-sicredi',
+	'limonada-com-rodobens'
 ]
 	.map((slug) => allCases.find((item) => item.slug === slug))
 	.filter((item) => item !== undefined)
 
 // metadata
 export const metadata: Metadata = {
-	title: 'O que resolvemos: Liderança | Limonada',
-	description: 'Não existe transformação consistente sem líderes capazes de inspirar, traduzir estratégia em prática, mobilizar pessoas e sustentar a evolução do negócio.',
+	title: 'O que resolvemos: Inovação | Limonada',
+	description: 'O grande desafio da inovação está na capacidade de executar. Priorizar, testar e sustentar decisões sobre o que funciona é o que transforma inovação em resultado.',
 	alternates: {
-		canonical: '/o-que-resolvemos/lideranca'
+		canonical: '/o-que-resolvemos/inovacao'
 	}
 }
 
-export default function Lideranca() {
+export default function Inovacao() {
 	return (
 		<main>
 
@@ -47,11 +47,11 @@ export default function Lideranca() {
                     <div className='flex flex-col lg:flex-row lg:items-end justify-end lg:justify-between gap-1 sm:gap-4 text-white min-h-100 h-[90svh] sm:h-[87svh] pb-12 lg:pb-16'>
 
                         <h1 className='text-2xl md:text-3xl xl:text-4xl font-semibold max-lg:mb-4 max-w-md text-balance'>
-                            <AnimatedText text='Liderança que sustenta direção, desenvolvimento, decisão e resultado' />
+                            <AnimatedText text='Inovação com foco em execução e resultado' />
                         </h1>
 
                         <h2 className='lg:text-lg lg:text-right max-w-md text-balance'>
-                            Não existe transformação consistente sem líderes capazes de inspirar, traduzir estratégia em prática, mobilizar pessoas e sustentar a evolução do negócio.
+                            O grande desafio da inovação está na capacidade de executar. Priorizar, testar e sustentar decisões sobre o que funciona é o que transforma inovação em resultado.
                         </h2>
 
                     </div>
@@ -61,9 +61,9 @@ export default function Lideranca() {
                 <ScrollingImage>
                     <Image
                         src={banner}
-                        alt='Liderança'
-                        width={1539}
-                        height={1190}
+                        alt='Inovação'
+                        width={1655}
+                        height={1030}
                         priority
                         className='absolute z-0 inset-0 opacity-75'
                     />
@@ -80,10 +80,10 @@ export default function Lideranca() {
                     
                     <StaggerUp className='grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 text-green-medium'>
                         {[
-                            'Liderança não está alinhada com a estratégia.',
-                            'Mudanças são definidas, mas não refletem ação.',
-                            'Cultura, execução e direção não caminham juntas.',
-                            'O time entrega, mas não encontra segurança para performar melhor.'
+                            'Ideias surgem, mas não saem do papel.',
+                            'A inovação acontece isoladamente e não faz parte da cultura.',
+                            'O erro trava a experimentação.',
+                            'Existe intenção de inovar, mas não há espaço na rotina para isso acontecer.'
                         ].map((item, i) => (
                             <div
                                 className='inline-flex gap-2 sm:text-balance'
@@ -116,34 +116,34 @@ export default function Lideranca() {
                         <StaggerUp className='grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-16 mt-8 lg:mt-14'>
                             {[
                                 {
-                                    image: 'people',
-                                    title: 'Gestão e desenvolvimento de pessoas',
-                                    text: 'Desenvolvemos líderes que dão clareza, acompanham de perto e elevam o nível de entrega dos times.'
-                                },
-                                {
-                                    image: 'scale',
-                                    title: 'Autogestão e consistência de liderança',
-                                    text: 'Trabalhamos rituais, priorização e autodesenvolvimento para sustentar uma liderança humanizada e empática.'
-                                },
-                                {
-                                    image: 'message',
-                                    title: 'Comunicação estratégica e influência',
-                                    text: 'Fortalecemos a capacidade de mobilizar pessoas, sustentar posicionamentos e conduzir conversas que destravam decisões.'
-                                },
-                                {
                                     image: 'compass',
-                                    title: 'Direcionamento estratégico e tomada de decisão',
-                                    text: 'Desenvolvemos líderes que estruturam melhor problemas, definem critérios claros e tomam decisões com impacto real no negócio.'
+                                    title: 'Estratégia, cultura e direção para inovação',
+                                    text: 'Conectamos estratégia, cultura e ambição de crescimento para definir onde inovar e orientar decisões com clareza.'
                                 },
                                 {
-                                    image: 'refresh',
-                                    title: 'Gestão de Mudança',
-                                    text: 'Preparamos líderes para conduzir transformações na prática, reduzindo resistências, engajando o time e sustentando novas formas de operar.'
+                                    image: 'brain',
+                                    title: 'Pensamento sistêmico',
+                                    text: 'Desenvolvemos a capacidade de ler o contexto, interpretar sinais e tomar decisões considerando impactos no todo.'
                                 },
                                 {
-                                    image: 'eye',
-                                    title: 'Visão sistêmica e impacto organizacional',
-                                    text: 'Fortalecemos a capacidade de mobilizar pessoas, sustentar posicionamentos e conduzir conversas que destravam decisões.'
+                                    image: 'magnifier',
+                                    title: 'Exploração de problemas e oportunidades',
+                                    text: 'Aprofundamos o entendimento do problema antes da solução, estruturando diagnósticos e hipóteses para garantir que a inovação resolva o que realmente importa.'
+                                },
+                                {
+                                    image: 'puzzle',
+                                    title: 'Criação e validação de soluções',
+                                    text: 'Utilizamos abordagens como Design Thinking e experimentação para construir, testar e evoluir soluções com foco em gerar valor real para o negócio.'
+                                },
+                                {
+                                    image: 'timer',
+                                    title: 'Agilidade e execução de projetos',
+                                    text: 'Transformar inovação em entrega exige método. Trabalhamos gestão ágil, priorização e acompanhamento para garantir ritmo, foco e avanço consistente.'
+                                },
+                                {
+                                    image: 'stocks',
+                                    title: 'Decisão orientada por dados',
+                                    text: 'Estruturamos indicadores e critérios de sucesso para apoiar decisões mais claras e sustentáveis, garantindo que a inovação seja mensurável.'
                                 }
                             ].map((item, i) => (
                                 <div
