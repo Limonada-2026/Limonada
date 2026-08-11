@@ -10,12 +10,14 @@ interface ClientsCasesProps {
     className?: string
     title?: string
     cases: CasesGridProps['cases']
+    howMany?: number
 }
 
 export default function ClientsCases({
     className,
     title = 'O método Limão é vivo e se adapta a cada projeto.',
-    cases
+    cases,
+    howMany = 2
 }: ClientsCasesProps) {
     return (
         <section className={clsx('section-space-half', className)}>
@@ -27,7 +29,7 @@ export default function ClientsCases({
 
                 <CasesGrid
                     cases={cases}
-                    perRow={2}
+                    perRow={howMany}
                 />
 
             </div>
