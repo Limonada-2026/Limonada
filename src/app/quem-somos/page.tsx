@@ -3,11 +3,11 @@ import { Metadata } from 'next'
 
 // components
 import BannerTop from './BannerTop'
+import TeamBlocks from './TeamBlocks'
+import Lemons from './Lemons'
 import ContactBlock from '@/components/ContactBlock'
 import AnimatedText from '@/components/Utils/Animations/AnimatedText'
-
-// images
-import banner from '@/assets/img/lemons-bg-2.jpg'
+import AnimatedTitle from '@/components/Utils/Animations/AnimatedTitle'
 
 // metadata
 export const metadata: Metadata = {
@@ -24,21 +24,28 @@ export default function QuemSomos() {
             
             <BannerTop />
 
-            <section className='section-space-half'>
+            <section className='section-space'>
                 <div className='base-container'>
                     <div className='flex flex-col gap-4 md:items-center md:justify-center md:text-center'>
 
-                        <h2 className='text-2xl lg:text-3xl font-semibold'>
-                            <AnimatedText text='As 5 etapas do Método Limão:' />
-                        </h2>
+                        <AnimatedTitle
+                            style='green-medium-green-vivid'
+                            className='title-96 md:text-balance max-sm:text-5xl!'
+                        >
+                            Atuamos como uma boutique de desenvolvimento que entra no contexto da empresa, conecta novas perspectivas e transforma desafios em ações que movem pessoas, cultura e negócios.
+                        </AnimatedTitle>
 
-                        <p className='md:max-w-sm md:mx-auto pb-14'>
-                            Da primeira conversa à análise de impacto, é assim que cocriamos jornadas de aprendizagem.
+                        <p className='md:max-w-2xl md:mx-auto sm:mt-4 md:text-lg xl:text-xl md:text-balance text-green-medium'>
+                            <AnimatedText text='No contato diário com líderes e equipes, ampliamos nosso repertório, trazemos nossos valores e fazemos limonadas.' />
                         </p>
 
                     </div>
                 </div>
             </section>
+
+            <TeamBlocks />
+
+            <Lemons />
 
             <ContactBlock text='Acreditamos na escuta como elemento fundamental para criar jornadas de impacto. Quer nos contar o seu desafio hoje?' />
 

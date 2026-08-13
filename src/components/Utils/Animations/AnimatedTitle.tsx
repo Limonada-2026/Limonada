@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger, SplitText)
 
 interface Props {
     children: React.ReactNode
-	style?: 'gray-yellow' | 'gray-green-dark' | 'gray-green-medium' | 'white-yellow' | 'green-black' | 'green-green-vivid'
+	style?: 'gray-yellow' | 'gray-green-dark' | 'gray-green-medium' | 'white-yellow' | 'green-black' | 'green-green-vivid' | 'green-medium-green-vivid'
     className?: string
 }
 
@@ -81,6 +81,7 @@ export default function AnimatedTitle({
 				style === 'white-yellow' && 'white-yellow',
 				style === 'green-black' && 'green-black',
 				style === 'green-green-vivid' && 'green-green-vivid',
+				style === 'green-medium-green-vivid' && 'green-medium-green-vivid',
 				className
 			)}
 			ref={item}

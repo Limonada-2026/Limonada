@@ -21,19 +21,19 @@ export default function BannerTop() {
                             <AnimatedText text='A Limonada existe para potencializar pessoas que tranformam desafios em decisões e ações e fazem a mudança acontecer.' />
                         </h1>
 
-                        <h2 className='text-white md:text-lg max-w-2xl md:text-center md:text-balance'>
+                        <h2 className='text-white md:text-lg max-w-4xl md:text-center md:text-balance'>
                             Conduzir a transformação pode ser azedo e desafiador. Azedo, para nós, é encarar o que ainda não está claro, fazer as perguntas certas e trabalhar o que precisa mudar de verdade.
                         </h2>
 
                     </div>
                 </div>
 
-                <div className='relative z-0 w-full -mt-[20vw]'>
+                <div className='relative z-0 w-full -mt-[40vw] sm:-mt-[25vw]'>
 
                     <div className='absolute z-1 top-0 left-0 w-full h-1/3 bg-linear-to-b from-[#383438] to-transparent' />
                     
                     <div className='absolute z-2 top-0 left-0 w-full h-full flex items-center'>
-                        <div className='base-container pt-[15vw] sm:pt-[10vw]'>
+                        <div className='base-container pt-[30vw] sm:pt-[10vw]'>
                             <div className='flex justify-between lg:justify-around items-center gap-4'>
                                 {['Aline', 'Eduardo', 'Marcela'].map((name) => (
                                     <MagneticButton
@@ -56,7 +56,7 @@ export default function BannerTop() {
                         width={2200}
                         height={1551}
                         sizes='100vw'
-                        className='w-full h-auto relative z-0'
+                        className='w-full h-auto relative z-0 max-sm:w-[140vw] max-sm:max-w-[140vw] max-sm:-ml-[20vw]'
                     />
 
                 </div>
