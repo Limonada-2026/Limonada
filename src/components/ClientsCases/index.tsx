@@ -23,7 +23,7 @@ export default function ClientsCases({
         <section className={clsx('section-space-half', className)}>
             <div className='base-container'>
 
-                <h2 className='text-2xl lg:text-3xl font-semibold mb-2 sm:mb-4 lg:mb-8'>
+                <h2 className='text-2xl lg:text-3xl font-semibold mb-4 lg:mb-8'>
                     <AnimatedText text={title} />
                 </h2>
 
