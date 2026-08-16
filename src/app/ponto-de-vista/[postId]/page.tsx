@@ -2,6 +2,7 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import { Link } from 'next-transition-router'
 
 // components
 import AnimatedText from '@/components/Utils/Animations/AnimatedText'
@@ -9,7 +10,10 @@ import ScrollingImage from '@/components/Utils/Animations/ScrollingImage'
 import RelatedPosts from './RelatedPosts'
 
 // icons
-import { Clock } from '@/components/Svg/Icons'
+import { Clock, Facebook, X, Linkedin, Whatsapp } from '@/components/Svg/Icons'
+
+// utils
+import { pages } from '@/utils/routes'
 
 // db
 import { posts, getPost } from '@/db/ponto-de-vista'
@@ -54,6 +58,31 @@ export default async function PontoDeVistaPost({ params }: { params: Params }) {
 	if (!post) notFound()
 
 	const related = posts.filter((item) => item.slug !== post.slug).slice(0, 3)
+	const shareUrl = `https://alimonada.com.br/ponto-de-vista/${post.slug}`
+	const shareText = post.title
+
+	const shareLinks = [
+		{
+			label: 'Facebook',
+			href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
+			icon: Facebook
+		},
+		{
+			label: 'X',
+			href: `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`,
+			icon: X
+		},
+		{
+			label: 'LinkedIn',
+			href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
+			icon: Linkedin
+		},
+		{
+			label: 'WhatsApp',
+			href: `https://wa.me/?text=${encodeURIComponent(`${shareText} ${shareUrl}`)}`,
+			icon: Whatsapp
+		}
+	]
 
 	return (
 		<main>
@@ -76,22 +105,38 @@ export default async function PontoDeVistaPost({ params }: { params: Params }) {
 			<section className='my-10 lg:my-[5vw]'>
 				<div className='base-container'>
 					<div className='row'>
-						<div className='col-lg-10 col-xl-8'>
+						<div className='col-lg-10 col-xl-8 col-xl-push-1'>
 
-							<h1 className='text-2xl md:text-3xl xl:text-4xl font-semibold block mb-4 text-green-medium'>
+							<span className='inline-block border border-green-medium/70 text-green-medium text-xs py-2 px-4 rounded-sm mb-4'>
+								{new Date(`${post.date}T12:00:00`).toLocaleDateString('pt-BR', {
+									day: 'numeric',
+									month: 'long',
+									year: 'numeric'
+								})}
+							</span>
+
+							<h1 className='block mb-4 text-green-medium text-6xl sm:text-7xl lg:text-8xl leading-[.9] font-bold font-heading uppercase'>
 								<AnimatedText text={post.title} />
 							</h1>
 
-							<div className='flex flex-wrap gap-x-4 gap-y-1 items-center text-sm mb-6 lg:mb-10'>
+							<h2 className='lg:text-lg italic block mb-4 lg:mb-8'>
+								{post.intro}
+							</h2>
 
-								<span>
-									Por {post.author}
-								</span>
+							<div className='flex flex-wrap gap-x-4 gap-y-1 items-center text-sm mb-6 lg:mb-10 pb-6 lg:pb-10 border-b border-b-gray-300'>
 
-								<span className='flex gap-2 items-center'>
-									<Clock className='w-4 h-4' />
-									{post.readingTime} min de leitura
-								</span>
+								<div className='flex flex-wrap items-center gap-x-6'>
+
+									<span className='flex gap-2 items-center bg-green-medium p-2 rounded-md text-white text-xs'>
+										<Clock className='w-3 h-3' />
+										{post.readingTime} min de leitura
+									</span>
+
+									<span>
+										Por {post.author}
+									</span>
+
+								</div>
 
 							</div>
 
@@ -99,6 +144,41 @@ export default async function PontoDeVistaPost({ params }: { params: Params }) {
 								className='rich-text'
 								dangerouslySetInnerHTML={{ __html: post.content }}
 							/>
+
+							<div className='flex flex-wrap gap-x-6 gap-y-4 items-center justify-between text-sm mt-6 lg:mt-10 pt-6 lg:pt-10 border-t border-t-gray-300'>
+
+								<Link
+									href={pages.ponto_de_vista}
+									className='hover-underline text-green-medium font-bold'
+								>
+									Ver todos os posts
+								</Link>
+
+								<div className='flex items-center gap-4'>
+
+									<span className='text-gray-medium'>
+										Compartilhar
+									</span>
+
+									<ul className='flex items-center gap-3'>
+										{shareLinks.map((item) => (
+											<li key={item.label}>
+												<a
+													href={item.href}
+													target='_blank'
+													rel='noopener noreferrer'
+													aria-label={`Compartilhar no ${item.label}`}
+													className='flex size-5 items-center justify-center text-green-medium hover:text-green-dark transition-colors'
+												>
+													<item.icon className='block size-full' />
+												</a>
+											</li>
+										))}
+									</ul>
+
+								</div>
+
+							</div>
 
 						</div>
 					</div>

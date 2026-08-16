@@ -67,7 +67,7 @@ export default function BannerTop({
                 />
             </ScrollingImage>
 
-            <div className='base-container relative z-2 min-h-svh flex flex-col sm:items-center justify-center sm:text-center gap-8'>
+            <div className='base-container relative z-2 min-h-svh flex flex-col items-start sm:items-center justify-center sm:text-center gap-8'>
 
                 <Image
                     src={logo}

@@ -4,7 +4,9 @@ export type Post = {
     title: string
     seoTitle: string
     description: string
+    intro: string
     image: string
+    date: string
     readingTime: string
     author: string
     tags: string[]
@@ -18,7 +20,9 @@ export const posts: Post[] = [
         title: 'A forte relação entre o índice de turnover e a cultura de inovação',
         seoTitle: 'Turnover e cultura de inovação: qual é a relação?',
         description: 'Entenda como cultura, liderança, inovação e significado do trabalho influenciam o turnover e a capacidade das empresas de reter talentos.',
+        intro: 'Salário e benefícios importam, mas a cultura costuma receber menos atenção do que deveria. Organizações com baixa capacidade de inovar também enfrentam mais dificuldade para engajar e reter pessoas — e essa relação merece um olhar mais atento.',
         image: '/img/ponto-de-vista/relacao-do-turnover-e-cultura.jpg',
+        date: '2026-03-12',
         readingTime: '3',
         author: 'Eduardo Albuquerque',
         tags: ['Inovação', 'Liderança'],
@@ -79,7 +83,9 @@ export const posts: Post[] = [
         title: 'Propósito está batido.',
         seoTitle: 'Liderança orientada ao propósito: por que ela faz diferença',
         description: 'Propósito não é discurso. Descubra por que líderes orientados ao propósito criam equipes mais engajadas e organizações mais consistentes.',
+        intro: 'Quando o propósito existe apenas na parede, realmente perde força. Mas quando orienta decisões e ajuda as pessoas a entenderem por que fazem o que fazem, continua sendo um dos temas mais relevantes para quem lidera.',
         image: '/img/ponto-de-vista/proposito-esta-batido.jpg',
+        date: '2026-04-18',
         readingTime: '3',
         author: 'Eduardo Albuquerque',
         tags: ['Liderança', 'Inovação'],
@@ -144,7 +150,9 @@ export const posts: Post[] = [
         title: 'O sistema imunológico dos líderes sem propósito',
         seoTitle: 'Por que líderes resistem às mudanças nas organizações',
         description: 'A resistência à mudança nem sempre está na estratégia. Entenda como o "sistema imunológico" das lideranças pode dificultar a transformação das organizações.',
+        intro: 'Toda empresa diz que quer mudar. Mas basta a transformação começar para aparecer uma força silenciosa tentando fazer tudo voltar ao que era antes — e essa resistência quase nunca vem da estratégia.',
         image: '/img/ponto-de-vista/sistema-imunologico-dos-lideres.jpg',
+        date: '2026-05-22',
         readingTime: '3',
         author: 'Eduardo Albuquerque',
         tags: ['Liderança', 'Soft Skills'],
@@ -206,7 +214,9 @@ export const posts: Post[] = [
         title: 'Por que a ambidestria é uma competência obrigatória para as lideranças?',
         seoTitle: 'Ambidestria na liderança: por que essa competência é indispensável',
         description: 'Executar o presente e construir o futuro ao mesmo tempo. Entenda por que a ambidestria se tornou uma competência indispensável para as lideranças.',
+        intro: 'Fazer Limonada significa transformar desafios em oportunidades. Isso exige líderes capazes de manter o negócio funcionando hoje enquanto constroem o que a empresa precisará ser amanhã — a ambidestria.',
         image: '/img/ponto-de-vista/por-que-a-ambidestria.jpg',
+        date: '2026-06-15',
         readingTime: '4',
         author: 'Eduardo Albuquerque',
         tags: ['Liderança', 'Inovação'],
@@ -277,7 +287,9 @@ export const posts: Post[] = [
         title: 'Segurança psicológica: uma alavanca de performance e aprendizado',
         seoTitle: 'Segurança psicológica não torna equipes mais frágeis. Torna conversas mais honestas.',
         description: 'A segurança psicológica não reduz a cobrança. Ela cria o ambiente para conversas honestas, aprendizado contínuo e melhores decisões nas empresas.',
+        intro: 'Muitas lideranças ainda enxergam segurança psicológica como obstáculo para a performance. Na prática, ela é uma das principais alavancas para aprendizado, conversas honestas e melhores resultados.',
         image: '/img/ponto-de-vista/seguranca-psicologica.jpg',
+        date: '2026-07-20',
         readingTime: '4',
         author: 'Eduardo Albuquerque',
         tags: ['Liderança', 'Soft Skills'],

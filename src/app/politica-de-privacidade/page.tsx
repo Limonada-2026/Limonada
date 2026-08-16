@@ -5,7 +5,7 @@ import { Metadata } from 'next'
 import BannerTop from './BannerTop'
 
 // images
-import banner from '@/assets/img/lemons-bg-2.jpg'
+import banner from '@/assets/img/lemons-bg-3.jpg'
 
 // metadata
 export const metadata: Metadata = {

@@ -107,7 +107,7 @@ export default function TeamBlocks() {
 	})
 
 	return (
-		<section className='section-space'>
+		<section className='section-space-half max-sm:-mt-8!'>
 			<div className='base-container'>
 				<div
 					ref={container}

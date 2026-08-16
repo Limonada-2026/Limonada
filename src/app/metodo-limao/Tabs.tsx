@@ -110,28 +110,26 @@ export default function Tabs() {
 
 		const rem = () => parseFloat(getComputedStyle(document.documentElement).fontSize) || 16
 
-		const tabOverhang = (panel: HTMLElement) => {
-			const tab = panel.querySelector<HTMLElement>('[data-tab]')
+		const tabOverhang = () => {
+			const tab = panels[0].querySelector<HTMLElement>('[data-tab]')
 			if (!tab) return 0
-			return Math.max(0, panel.getBoundingClientRect().top - tab.getBoundingClientRect().top)
+			return Math.max(0, panels[0].getBoundingClientRect().top - tab.getBoundingClientRect().top)
 		}
 
-		// pin offset: tab overhang for the 1st, then +0.5rem per step
-		const pinOffset = (panel: HTMLElement, i: number) => tabOverhang(panel) + i * rem() * 0.5
+		// 1st pin = tab overhang; each next +0.5rem
+		const pinOffset = (i: number) => tabOverhang() + i * rem() * 0.5
 
-		// [data-tab] uses -translate-y-14, so it sits above the panel box —
-		// pin the panel below the viewport top by that overhang so the tab
-		// stays on screen. cascade +0.5rem per step. unpin when the last panel
-		// reaches its own cascade slot (earlier than waiting for its bottom).
+		// absolute panels live in a fixed-height track, so pinSpacing:false
+		// doesn't collapse document flow — unpin stays gap-free
 		panels.forEach((panel, i) => {
 			if (i === panels.length - 1) return
 
 			ScrollTrigger.create({
 				trigger: panel,
 				scroller: scroller ?? undefined,
-				start: () => `top top+=${pinOffset(panel, i)}px`,
+				start: () => `top top+=${pinOffset(i)}px`,
 				endTrigger: last,
-				end: () => `top top+=${pinOffset(last, panels.length - 1)}px`,
+				end: () => `top top+=${pinOffset(panels.length - 1)}px`,
 				pin: true,
 				pinType: 'fixed',
 				anticipatePin: 1,
@@ -146,18 +144,23 @@ export default function Tabs() {
 	})
 
 	return (
-		<section ref={container}>
+		<section
+			ref={container}
+			className='relative'
+			style={{ height: `${tabs.length * 100}svh` }}
+		>
 			{tabs.map((item, i) => (
 				<div
 					key={i}
 					data-panel
 					style={{
 						backgroundColor: item.bgColor,
-						zIndex: i + 1
+						zIndex: i + 1,
+						top: `${i * 100}svh`
 					}}
-					className='relative'
+					className='absolute left-0 w-full h-svh'
 				>
-					<div className='base-container'>
+					<div className='base-container h-full'>
 
 						<div
 							style={{
@@ -180,9 +183,9 @@ export default function Tabs() {
 
 						</div>
 
-						<div className='flex flex-col-reverse sm:flex-row sm:justify-between sm:items-center sm:gap-4 max-sm:min-h-[calc(100svh-7rem)] max-sm:justify-end'>
+						<div className='flex flex-col-reverse sm:flex-row sm:justify-between sm:items-center sm:gap-4 h-[calc(100%-0.5rem)] max-sm:justify-end'>
 
-							<div className='lg:flex lg:justify-center lg:items-center relative z-2 lg:min-h-[calc(100svh-8rem)] lg:pb-20'>
+							<div className='lg:flex lg:justify-center lg:items-center relative z-2 lg:pb-20'>
 								<div className='lg:flex lg:gap-4'>
 
 									<p
@@ -194,7 +197,7 @@ export default function Tabs() {
 										{item.singleLetter}
 									</p>
 
-									<div className='flex flex-col gap-4 max-sm:-mt-4'>
+									<div className='flex flex-col gap-4 max-sm:-mt-24'>
 
 										<h2
 											className='font-heading leading-none text-8xl lg:text-[12rem] xl:text-[14rem] uppercase font-bold'
@@ -222,7 +225,7 @@ export default function Tabs() {
 								alt={item.title}
 								width={1400}
 								height={1200}
-								className='h-auto lg:absolute lg:z-1 lg:top-1/2 lg:-translate-y-1/2 lg:-right-20 min-w-[90vw] sm:min-w-[60vw] lg:min-w-[50vw] w-[90vw] sm:w-[60vw] lg:w-[50vw] xl:-right-[5vw] max-lg:-mr-30 max-sm:mr-auto max-sm:ml-auto'
+								className='h-auto lg:absolute lg:z-1 lg:top-1/2 lg:-translate-y-1/2 lg:-right-20 min-w-[70vw] sm:min-w-[60vw] lg:min-w-[50vw] w-[70vw] sm:w-[60vw] lg:w-[50vw] xl:-right-[5vw] max-lg:-mr-30 max-sm:-mr-12 max-sm:ml-auto max-sm:-mt-8'
 							/>
 
 						</div>

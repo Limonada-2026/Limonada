@@ -58,7 +58,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
 	width: 'device-width',
-	initialScale: 1
+	initialScale: 1,
+	themeColor: '#0F2D1E'
 }
 
 import { Public_Sans } from 'next/font/google'
