@@ -14,9 +14,17 @@ import { Clock, Facebook, X, Linkedin, Whatsapp } from '@/components/Svg/Icons'
 
 // utils
 import { pages } from '@/utils/routes'
+import { formatDateLongPtBR, getShareLinks } from '@/utils/functions'
 
 // db
 import { posts, getPost } from '@/db/ponto-de-vista'
+
+const shareIcons = {
+	facebook: Facebook,
+	x: X,
+	linkedin: Linkedin,
+	whatsapp: Whatsapp
+} as const
 
 // types
 type Params = Promise<{ postId: string }>
@@ -59,30 +67,7 @@ export default async function PontoDeVistaPost({ params }: { params: Params }) {
 
 	const related = posts.filter((item) => item.slug !== post.slug).slice(0, 3)
 	const shareUrl = `https://alimonada.com.br/ponto-de-vista/${post.slug}`
-	const shareText = post.title
-
-	const shareLinks = [
-		{
-			label: 'Facebook',
-			href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
-			icon: Facebook
-		},
-		{
-			label: 'X',
-			href: `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`,
-			icon: X
-		},
-		{
-			label: 'LinkedIn',
-			href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
-			icon: Linkedin
-		},
-		{
-			label: 'WhatsApp',
-			href: `https://wa.me/?text=${encodeURIComponent(`${shareText} ${shareUrl}`)}`,
-			icon: Whatsapp
-		}
-	]
+	const shareLinks = getShareLinks(shareUrl, post.title)
 
 	return (
 		<main>
@@ -108,11 +93,7 @@ export default async function PontoDeVistaPost({ params }: { params: Params }) {
 						<div className='col-lg-10 col-xl-8 col-xl-push-1'>
 
 							<span className='inline-block border border-green-medium/70 text-green-medium text-xs py-2 px-4 rounded-sm mb-4'>
-								{new Date(`${post.date}T12:00:00`).toLocaleDateString('pt-BR', {
-									day: 'numeric',
-									month: 'long',
-									year: 'numeric'
-								})}
+								{formatDateLongPtBR(post.date)}
 							</span>
 
 							<h1 className='block mb-4 text-green-medium text-6xl sm:text-7xl lg:text-8xl leading-[.9] font-bold font-heading uppercase'>
@@ -123,7 +104,7 @@ export default async function PontoDeVistaPost({ params }: { params: Params }) {
 								{post.intro}
 							</h2>
 
-							<div className='flex flex-wrap gap-x-4 gap-y-1 items-center text-sm mb-6 lg:mb-10 pb-6 lg:pb-10 border-b border-b-gray-300'>
+							<div className='flex flex-wrap gap-x-4 gap-y-1 items-center text-sm mb-10 lg:mb-18 pb-6 lg:pb-10 border-b border-b-gray-300'>
 
 								<div className='flex flex-wrap items-center gap-x-6'>
 
@@ -141,7 +122,7 @@ export default async function PontoDeVistaPost({ params }: { params: Params }) {
 							</div>
 
 							<div
-								className='rich-text'
+								className='rich-text first-of-type:first-letter:text-red-500!'
 								dangerouslySetInnerHTML={{ __html: post.content }}
 							/>
 
@@ -161,19 +142,23 @@ export default async function PontoDeVistaPost({ params }: { params: Params }) {
 									</span>
 
 									<ul className='flex items-center gap-3'>
-										{shareLinks.map((item) => (
-											<li key={item.label}>
-												<a
-													href={item.href}
-													target='_blank'
-													rel='noopener noreferrer'
-													aria-label={`Compartilhar no ${item.label}`}
-													className='flex size-5 items-center justify-center text-green-medium hover:text-green-dark transition-colors'
-												>
-													<item.icon className='block size-full' />
-												</a>
-											</li>
-										))}
+										{shareLinks.map((item) => {
+											const Icon = shareIcons[item.platform]
+
+											return (
+												<li key={item.label}>
+													<a
+														href={item.href}
+														target='_blank'
+														rel='noopener noreferrer'
+														aria-label={`Compartilhar no ${item.label}`}
+														className='flex size-5 items-center justify-center text-green-medium hover:text-green-dark transition-colors'
+													>
+														<Icon className='block size-full' />
+													</a>
+												</li>
+											)
+										})}
 									</ul>
 
 								</div>
