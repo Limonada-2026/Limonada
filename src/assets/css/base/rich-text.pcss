@@ -55,6 +55,12 @@
         p {
             @apply leading-relaxed;
         }
+
+        &.has-dropcap {
+            p:first-of-type::first-letter {
+                /*@apply text-6xl leading-none font-bold uppercase text-green-medium pr-3 float-left;*/
+            }
+        }
     
         h1,
         h2 {

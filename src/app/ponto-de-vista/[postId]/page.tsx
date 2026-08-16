@@ -122,7 +122,7 @@ export default async function PontoDeVistaPost({ params }: { params: Params }) {
 							</div>
 
 							<div
-								className='rich-text first-of-type:first-letter:text-red-500!'
+								className='rich-text has-dropcap'
 								dangerouslySetInnerHTML={{ __html: post.content }}
 							/>
 
