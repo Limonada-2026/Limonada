@@ -1,18 +1,7 @@
-import { Resend } from 'resend'
+import { sendRdStationConversion } from '@/lib/rdstation'
 
 export async function POST(req: Request) {
 	try {
-		if (!process.env.RESEND_API_KEY) {
-			throw new Error('RESEND_API_KEY is not defined')
-		}
-
-		if (!process.env.RESEND_NEWSLETTER_SEGMENT_ID) {
-			throw new Error('RESEND_NEWSLETTER_SEGMENT_ID is not defined')
-		}
-
-		const resend = new Resend(process.env.RESEND_API_KEY)
-		const segmentId = process.env.RESEND_NEWSLETTER_SEGMENT_ID
-
 		const body = await req.json()
 
 		if (!body.email) {
@@ -28,40 +17,10 @@ export async function POST(req: Request) {
 			)
 		}
 
-		const { error } = await resend.contacts.create({
+		await sendRdStationConversion({
+			identificador: 'site-newsletter',
 			email: body.email,
-			unsubscribed: false,
-			segments: [{ id: segmentId }],
 		})
-
-		if (error) {
-			// contact already exists: re-subscribe and make sure it's in the segment, instead of failing
-			const alreadyExists = error.message?.toLowerCase().includes('already exists')
-
-			if (!alreadyExists) {
-				console.error('Error creating contact:', error)
-				return new Response(
-					JSON.stringify({
-						status: 'error',
-						error: 'Erro ao inscrever email',
-					}),
-					{
-						status: 500,
-						headers: { 'Content-Type': 'application/json' },
-					}
-				)
-			}
-
-			await resend.contacts.update({
-				email: body.email,
-				unsubscribed: false,
-			})
-
-			await resend.contacts.segments.add({
-				email: body.email,
-				segmentId,
-			})
-		}
 
 		return new Response(
 			JSON.stringify({ status: 'success' }),

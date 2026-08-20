@@ -1,4 +1,5 @@
 import { Resend } from 'resend'
+import { sendRdStationConversion } from '@/lib/rdstation'
 
 const getDestinationEmail = (): string => {
 	return 'contato@alimonada.com.br'
@@ -86,15 +87,29 @@ export async function POST(req: Request) {
 			.map(([key, value]) => `${key}: ${normalizeValue(value)}`)
 			.join('\n')
 
-		const { error } = await resend.emails.send({
-			from: 'Limonada <contato@alimonada.com.br>',
-			//from: 'onboarding@resend.dev',
-			to: [destinationEmail],
-			replyTo: body.Email,
-			subject: 'Mensagem enviada de Formulário de Contato',
-			html: htmlMessage,
-			text: textMessage,
-		})
+		const [{ error }] = await Promise.all([
+			resend.emails.send({
+				from: 'Limonada <contato@alimonada.com.br>',
+				//from: 'onboarding@resend.dev',
+				to: [destinationEmail],
+				replyTo: body.Email,
+				subject: 'Mensagem enviada de Formulário de Contato',
+				html: htmlMessage,
+				text: textMessage,
+			}),
+			sendRdStationConversion({
+				identificador: 'site-formulario-contato',
+				email: body.Email,
+				nome: body.Nome,
+				telefone: body.Telefone,
+				empresa: body.Empresa,
+				cargo: body.Cargo,
+				traffic_source: body.utm_source,
+				traffic_medium: body.utm_medium,
+				traffic_campaign: body.utm_campaign,
+				traffic_value: body.utm_term,
+			}),
+		])
 
 		if (error) {
 			console.error('Error sending email:', error)
