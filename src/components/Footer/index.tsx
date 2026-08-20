@@ -143,6 +143,8 @@ export default function Footer() {
 								<Form
 									className='pointer-events-auto mt-6 mb-4 sm:mb-6'
 									endpoint='/api/subscribe'
+									name='newsletter'
+									gtmEvent='newsletter_signup'
 									onSuccess={{
 										title: 'Inscrito com sucesso',
 										text: 'Obrigado por se inscrever. Entraremos em contato o mais breve possível.'

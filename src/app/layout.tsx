@@ -12,6 +12,8 @@ import Guidelines from '@/components/Utils/Guidelines'
 import Footer from '@/components/Footer'
 import PreloadLemonImages from '@/components/Utils/Animations/PreloadLemonImages'
 import ViewportHeight from '@/components/Utils/ViewportHeight'
+import GtmPageView from '@/components/Utils/GtmPageView'
+import GtmScrollDepth from '@/components/Utils/GtmScrollDepth'
 
 // css
 import '@/assets/css/global.css'
@@ -215,6 +217,8 @@ export default function RootLayout({
 
 				<ViewportHeight />
 				<PreloadLemonImages />
+				<GtmPageView />
+				<GtmScrollDepth />
 
 				<Menu />
 

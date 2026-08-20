@@ -9,6 +9,9 @@ import { FormProvider, type RegisterOptions, type SubmitHandler, useForm, useFor
 import Portal from '@/components/Utils/Portal'
 import Dialog from '@/components/Dialog'
 
+// utils
+import { pushGtmEvent } from '@/utils/gtm'
+
 // svg
 import UxCheck from '@/assets/svg/ux/check.svg'
 import UxEye from '@/assets/svg/ux/eye.svg'
@@ -63,7 +66,7 @@ interface FormProps {
 	children: React.ReactNode
 	endpoint: string
 	isFormData?: boolean
-	onSuccess: {
+	onSuccess?: {
 		title: string
 		text: string
 	}
@@ -72,6 +75,11 @@ interface FormProps {
 		text: string
 	}
 	clearOnSubmit?: boolean
+	redirectTo?: string
+	/** Identifies this form in tracking events (e.g. 'newsletter', 'contact'). Defaults to endpoint. */
+	name?: string
+	/** Pushed to window.dataLayer on success, alongside the generic 'form_submit' event. Ignored when redirectTo is set, push it on the destination page instead. */
+	gtmEvent?: string
 }
 
 interface FormValues {
@@ -86,6 +94,9 @@ export const Form = ({
 	onSuccess,
 	onError,
 	clearOnSubmit,
+	redirectTo,
+	name,
+	gtmEvent,
 }: FormProps) => {
 
 	// refs
@@ -160,7 +171,27 @@ export const Form = ({
 
 			// if success
 			.then((_responseData) => {
-				if (onSuccess) {
+				if (redirectTo) {
+					setTimeout(() => {
+						if (form.current) {
+							form.current.setAttribute('data-is-sending', 'false')
+							document.dispatchEvent(new Event('formSent'))
+
+							if (clearOnSubmit) {
+								form?.current?.reset()
+								document.dispatchEvent(new Event('formReset'))
+							}
+						}
+
+						// flag this session so the destination page knows it was reached from a real submission
+						// (the gtmEvent, if any, fires on the destination page itself, not here, a dataLayer.push
+						// right before a hard navigation can get cut off before any tag's network request completes)
+						sessionStorage.setItem('formSubmitted', 'true')
+
+						// full navigation (not router.push) so GTM/ad pixels register a real pageview on the destination
+						window.location.href = redirectTo
+					}, fakeTimer)
+				} else if (onSuccess) {
 					setRenderSuccessModal(true)
 
 					setTimeout(() => {
@@ -178,6 +209,9 @@ export const Form = ({
 								document.dispatchEvent(new Event('formReset'))
 							}
 						}
+
+						pushGtmEvent('form_submit', { form_name: name || endpoint })
+						pushGtmEvent(gtmEvent)
 					}, fakeTimer)
 				}
 			})
@@ -252,7 +286,7 @@ export const Form = ({
 			</button>
 			*/}
 
-			{renderSuccessModal && (
+			{renderSuccessModal && onSuccess && (
 				<Modal
 					id='success'
 					title={onSuccess.title}

@@ -47,6 +47,7 @@ export default function ContactBlock({
                         <Link
                             href={pages.contato}
                             className='button button--green-neon whitespace-nowrap'
+                            data-gtm-cta='contact-block'
                         >
                             Vamos conversar
                         </Link>

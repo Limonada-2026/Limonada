@@ -2,6 +2,9 @@
 import MagneticButton from '@/components/Utils/Animations/MagneticButton'
 import { Form, Input, InputHidden, Textarea, Checkbox, Submit } from '@/components/Form'
 
+// utils
+import { pages } from '@/utils/routes'
+
 export const metadata = {
 	title: 'Contato Limonada: Entre em contato conosco',
 	description: 'A escuta é o primeiro passo para construir jornadas que movem pessoas, cultura e resultado. Vamos transformar limões em limonada!',
@@ -30,10 +33,7 @@ export default function Contact() {
 				<div className='base-container'>
 					<Form
 						endpoint='/api/resend'
-						onSuccess={{
-							title: 'Mensagem enviada com sucesso',
-							text: 'Obrigado por entrar em contato. Entraremos em contato o mais breve possível.'
-						}}
+						redirectTo={pages.contato_obrigado}
 						onError={{
 							title: 'Ocorreu um erro ao enviar a mensagem',
 							text: 'Por favor, tente novamente mais tarde.'

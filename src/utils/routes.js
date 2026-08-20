@@ -16,6 +16,7 @@ export const pages = {
 	ponto_de_vista: '/ponto-de-vista',
 	conteudo: '/conteudo',
 	contato: '/contato',
+	contato_obrigado: '/contato/obrigado',
 	politica_de_privacidade: '/politica-de-privacidade',
 }
 
