@@ -195,7 +195,7 @@ export default function Footer() {
 							<div className='pointer-events-auto flex items-center max-sm:justify-between gap-4 text-green-neon text-xs sm:text-sm'>
 
 								<p>
-									© {year} Limonada®
+									© {year} Limonada®.
 								</p>
 
 								<Link

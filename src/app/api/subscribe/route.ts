@@ -1,18 +1,18 @@
 import { Resend } from 'resend'
 
-if (!process.env.RESEND_API_KEY) {
-	throw new Error('RESEND_API_KEY is not defined')
-}
-
-if (!process.env.RESEND_NEWSLETTER_SEGMENT_ID) {
-	throw new Error('RESEND_NEWSLETTER_SEGMENT_ID is not defined')
-}
-
-const resend = new Resend(process.env.RESEND_API_KEY)
-const segmentId = process.env.RESEND_NEWSLETTER_SEGMENT_ID
-
 export async function POST(req: Request) {
 	try {
+		if (!process.env.RESEND_API_KEY) {
+			throw new Error('RESEND_API_KEY is not defined')
+		}
+
+		if (!process.env.RESEND_NEWSLETTER_SEGMENT_ID) {
+			throw new Error('RESEND_NEWSLETTER_SEGMENT_ID is not defined')
+		}
+
+		const resend = new Resend(process.env.RESEND_API_KEY)
+		const segmentId = process.env.RESEND_NEWSLETTER_SEGMENT_ID
+
 		const body = await req.json()
 
 		if (!body.email) {
