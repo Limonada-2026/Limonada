@@ -73,7 +73,7 @@ export default function AnimatedLogo({
 		<Link
 			href={pages.home}
 			onClick={handleClick}
-			className='relative overflow-hidden text-green-neon transition-colors duration-1000 hover:text-yellow group flex'
+			className='relative overflow-hidden text-green-neon transition-colors duration-1000 hover:text-green-vivid group flex'
 		>
 
 			<svg width='168' height='38' viewBox='0 0 168 38' fill='currentColor' xmlns='http://www.w3.org/2000/svg' className={clsx(classes, 'group-hover:[&_path]:-translate-y-full', className)}>

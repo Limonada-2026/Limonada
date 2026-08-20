@@ -40,7 +40,7 @@
         @apply relative! overflow-hidden! left-auto! bottom-auto! top-auto! w-full! h-1! bg-gray-lightest! rounded-xl! mt-6;
 
         div {
-            @apply bg-yellow!;
+            @apply bg-green-vivid!;
 
             &:after {
                 @apply content-[''] absolute top-0 right-0 w-screen h-full bg-green-vivid;
@@ -70,5 +70,12 @@
 
     .menu-space {
         @apply pt-19 md:pt-21 xl:pt-23;
+    }
+
+    /* while a lemon is dragged, the content above the LemonFall layer must stop
+       intercepting the mouse so the drag keeps tracking the cursor underneath it */
+    .lemon-dragging,
+    .lemon-dragging * {
+        pointer-events: none !important;
     }
 }

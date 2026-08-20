@@ -221,7 +221,7 @@ export default function Menu() {
 							</MagneticButton>
 
 							<button
-								className='relative flex xl:hidden text-white cursor-pointer transition-colors duration-200 hover:text-yellow'
+								className='relative flex xl:hidden text-white cursor-pointer transition-colors duration-200 hover:text-green-vivid'
 								type='button'
 								onClick={toggleMenu}
 							>
@@ -321,7 +321,7 @@ export default function Menu() {
 
 				<div className='absolute z-0 top-0 left-0 w-full h-full bg-green-neon rounded-bottom-corners' data-layer />
 				<div className='absolute z-1 top-0 left-0 w-full h-full bg-black rounded-bottom-corners' data-layer />
-				<div className='absolute z-2 top-0 left-0 w-full h-full bg-yellow rounded-bottom-corners' data-layer />
+				<div className='absolute z-2 top-0 left-0 w-full h-full bg-green-vivid rounded-bottom-corners' data-layer />
 				<div className='absolute z-3 top-0 left-0 w-full h-full bg-green-dark rounded-bottom-corners' data-layer />
 
 				<div className='base-container relative z-4 pt-30 overflow-y-auto overflow-x-hidden max-h-svh min-h-svh'>

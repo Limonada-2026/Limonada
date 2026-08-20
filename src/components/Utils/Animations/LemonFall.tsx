@@ -67,7 +67,7 @@ interface PhysicsResult {
 	controls: LemonFallHandle
 }
 
-function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: number, ceilingEnabled: boolean): PhysicsResult {
+function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, contentEl: HTMLDivElement | null, avoidEl: HTMLElement | null, count: number, ceilingEnabled: boolean, onLemonDragStart: () => void, onLemonDragEnd: () => void): PhysicsResult {
 	const noop = () => undefined
 	const engine = Matter.Engine.create({ gravity: { x: 0, y: 1, scale: 0.0025 } })
 	const { world } = engine
@@ -93,11 +93,39 @@ function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: nu
 	container.style.overflow = 'visible'
 	layer.style.overflow = 'visible'
 
+	// an invisible static body over `avoidEl` (e.g. a logo) so lemons can never
+	// come to rest on top of it — they're kept clear, spawning on its open side
+	let obstacle: Matter.Body | null = null
+	let obstacleRight: number | null = null
+	const obstaclePadding = 24
+	const syncObstacle = () => {
+		if (obstacle) {
+			Matter.Composite.remove(world, obstacle)
+			obstacle = null
+		}
+		if (!avoidEl) {
+			obstacleRight = null
+			return
+		}
+		const containerRect = container.getBoundingClientRect()
+		const r = avoidEl.getBoundingClientRect()
+		const left = r.left - containerRect.left - obstaclePadding
+		const top = r.top - containerRect.top - obstaclePadding
+		const right = r.right - containerRect.left + obstaclePadding
+		const bottom = r.bottom - containerRect.top + obstaclePadding
+		obstacleRight = right
+		obstacle = Matter.Bodies.rectangle((left + right) / 2, (top + bottom) / 2, right - left, bottom - top, wall_physics)
+		Matter.Composite.add(world, obstacle)
+	}
+	syncObstacle()
+
 	const entries: LemonEntry[] = []
 	for (let i = 0; i < count; i++) {
 		const size = getLemonSizePx()
 		const r = size / 2
-		const x = r + Math.random() * (w - r * 2)
+		// keep spawns clear of the obstacle horizontally so lemons always land on its open side
+		const clearLeft = obstacleRight !== null && obstacleRight + r * 2 < w ? obstacleRight : 0
+		const x = clearLeft + r + Math.random() * (w - clearLeft - r * 2)
 		const y = viewportTopInContainer - r - spawnPadding - Math.random() * spawnPadding - i * (size * 0.9)
 
 		const body = Matter.Bodies.circle(x, y, r, { ...LEMON_PHYSICS, angle: (Math.random() - 0.5) * Math.PI })
@@ -122,6 +150,20 @@ function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: nu
 		constraint: { stiffness: 0.65, damping: 0.08, render: { visible: false } },
 	})
 	Matter.Composite.add(world, mouseConstraint)
+
+	// while a lemon is being dragged, drop pointer-events on the content above it
+	// (and anything the consumer flagged via onLemonDragStart/onLemonDragEnd) so the drag
+	// keeps tracking the cursor even as it passes over links/text
+	const handleStartDrag = () => {
+		contentEl?.classList.add('lemon-dragging')
+		onLemonDragStart()
+	}
+	const handleEndDrag = () => {
+		contentEl?.classList.remove('lemon-dragging')
+		onLemonDragEnd()
+	}
+	Matter.Events.on(mouseConstraint, 'startdrag', handleStartDrag)
+	Matter.Events.on(mouseConstraint, 'enddrag', handleEndDrag)
 
 	const runner = Matter.Runner.create()
 	Matter.Runner.run(runner, engine)
@@ -185,6 +227,8 @@ function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: nu
 			h = nextH
 		}
 
+		syncObstacle()
+
 		for (const entry of entries) {
 			const nextSize = getLemonSizePx()
 			const scale = nextSize / entry.size
@@ -209,6 +253,10 @@ function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, count: nu
 		container.style.overflow = ''
 		layer.style.overflow = ''
 		Matter.Events.off(engine, 'afterUpdate', syncDom)
+		Matter.Events.off(mouseConstraint, 'startdrag', handleStartDrag)
+		Matter.Events.off(mouseConstraint, 'enddrag', handleEndDrag)
+		contentEl?.classList.remove('lemon-dragging')
+		onLemonDragEnd()
 		Matter.Runner.stop(runner)
 		Matter.Composite.remove(world, mouseConstraint)
 		Matter.Engine.clear(engine)
@@ -227,18 +275,36 @@ interface LemonFallProps extends React.HTMLAttributes<HTMLDivElement> {
 	scrollThreshold?: number
 	ceiling?: boolean
 	spawn?: boolean
+	// element to keep clear of — lemons never rest on it and spawn on its open side
+	avoidRef?: React.RefObject<HTMLElement | null>
+	// fired while any lemon is grabbed / released — use this to drop pointer-events
+	// on content that lives outside LemonFall's own children (e.g. sibling sections)
+	// so dragging keeps tracking the cursor as it passes over links/text there too
+	onLemonDragStart?: () => void
+	onLemonDragEnd?: () => void
 }
 
 function useLemonFall(
 	containerRef: React.RefObject<HTMLDivElement | null>,
 	layerRef: React.RefObject<HTMLDivElement | null>,
+	contentRef: React.RefObject<HTMLDivElement | null>,
+	avoidRef: React.RefObject<HTMLElement | null> | undefined,
 	controlsRef: React.MutableRefObject<LemonFallHandle | null>,
 	count: number,
 	scrollThreshold: number,
 	ceilingEnabled: boolean,
 	spawn: boolean | undefined,
+	onLemonDragStart: (() => void) | undefined,
+	onLemonDragEnd: (() => void) | undefined,
 ) {
 	const pathname = usePathname()
+
+	// keep the latest callbacks without tearing the physics sim down whenever
+	// the consumer passes a fresh function identity on re-render
+	const onLemonDragStartRef = useRef(onLemonDragStart)
+	const onLemonDragEndRef = useRef(onLemonDragEnd)
+	onLemonDragStartRef.current = onLemonDragStart
+	onLemonDragEndRef.current = onLemonDragEnd
 
 	useEffect(() => {
 		const container = containerRef.current
@@ -253,7 +319,16 @@ function useLemonFall(
 			if (spawned) return
 			spawned = true
 			requestAnimationFrame(() => requestAnimationFrame(() => {
-				const result = initPhysics(container, layer, count, ceilingEnabled)
+				const result = initPhysics(
+					container,
+					layer,
+					contentRef.current,
+					avoidRef?.current ?? null,
+					count,
+					ceilingEnabled,
+					() => onLemonDragStartRef.current?.(),
+					() => onLemonDragEndRef.current?.(),
+				)
 				teardown = result.teardown
 				controlsRef.current = result.controls
 			}))
@@ -287,7 +362,7 @@ function useLemonFall(
 			teardown?.()
 			controlsRef.current = null
 		}
-	}, [containerRef, layerRef, controlsRef, count, scrollThreshold, ceilingEnabled, spawn, pathname])
+	}, [containerRef, layerRef, contentRef, avoidRef, controlsRef, count, scrollThreshold, ceilingEnabled, spawn, pathname])
 }
 
 const LemonFall = forwardRef<LemonFallHandle, LemonFallProps>(function LemonFall({
@@ -295,15 +370,19 @@ const LemonFall = forwardRef<LemonFallHandle, LemonFallProps>(function LemonFall
 	scrollThreshold = 0.9,
 	ceiling = true,
 	spawn,
+	avoidRef,
+	onLemonDragStart,
+	onLemonDragEnd,
 	className,
 	children,
 	...props
 }, ref) {
 	const containerRef = useRef<HTMLDivElement>(null)
 	const layerRef = useRef<HTMLDivElement>(null)
+	const contentRef = useRef<HTMLDivElement>(null)
 	const controlsRef = useRef<LemonFallHandle | null>(null)
 
-	useLemonFall(containerRef, layerRef, controlsRef, count, scrollThreshold, ceiling, spawn)
+	useLemonFall(containerRef, layerRef, contentRef, avoidRef, controlsRef, count, scrollThreshold, ceiling, spawn, onLemonDragStart, onLemonDragEnd)
 
 	useImperativeHandle(ref, () => ({
 		release: (offset: number) => controlsRef.current?.release(offset),
@@ -320,11 +399,11 @@ const LemonFall = forwardRef<LemonFallHandle, LemonFallProps>(function LemonFall
 			{...props}
 		>
 			{children && (
-				<div className='relative z-0 pointer-events-auto'>{children}</div>
+				<div ref={contentRef} className='relative z-20 pointer-events-none'>{children}</div>
 			)}
 			<div
 				ref={layerRef}
-				className='absolute inset-0 z-10 touch-none pointer-events-none overflow-hidden'
+				className='absolute inset-0 z-0 touch-none pointer-events-none overflow-hidden'
 				aria-hidden='true'
 			/>
 		</div>

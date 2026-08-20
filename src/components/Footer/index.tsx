@@ -21,6 +21,7 @@ import { scrollViewportToTop } from '@/utils/scroll'
 export default function Footer() {
 
 	const sectionRef = useRef<HTMLDivElement>(null)
+	const logoRef = useRef<HTMLDivElement>(null)
 	const pathname = usePathname()
 
 	const year = getYear(new Date().getFullYear().toString())
@@ -49,6 +50,7 @@ export default function Footer() {
 				count={6}
 				className='relative w-full pointer-events-auto'
 				ceiling={false}
+				avoidRef={logoRef}
 			>
 				<div className='base-container'>
 					<div className='flex flex-col justify-between sm:gap-20 pb-10 sm:pb-4 md:pb-10 pt-10 xs:pt-14 sm:pt-20'>
@@ -57,7 +59,7 @@ export default function Footer() {
 							
 							<div className='col-md-4'>
 
-								<ul className='flex flex-col gap-2 xs:gap-x-8 xs:flex-row md:flex-col flex-wrap'>
+								<ul className='pointer-events-auto flex flex-col gap-2 xs:gap-x-8 xs:flex-row md:flex-col flex-wrap'>
 									{[
 										{
 											label: 'Início',
@@ -102,7 +104,7 @@ export default function Footer() {
 							</div>
 
 							<div className='col-md-4 my-6 sm:my-10 md:my-0'>
-								<ul className='flex flex-col gap-2 xs:gap-x-8 xs:flex-row md:flex-col flex-wrap'>
+								<ul className='pointer-events-auto flex flex-col gap-2 xs:gap-x-8 xs:flex-row md:flex-col flex-wrap'>
 									{[
 										{
 											label: 'Instagram',
@@ -134,12 +136,12 @@ export default function Footer() {
 
 							<div className='col-md-4'>
 
-								<p className='md:text-lg'>
+								<p className='pointer-events-auto md:text-lg'>
 									Inscreva-se para receber conteúdos autorais, relevantes e estratégicos sobre desenvolvimento de líderes, equipes e negócios.
 								</p>
 
 								<Form
-									className='mt-6 mb-4 sm:mb-6'
+									className='pointer-events-auto mt-6 mb-4 sm:mb-6'
 									endpoint='/api/subscribe'
 									onSuccess={{
 										title: 'Inscrito com sucesso',
@@ -182,11 +184,13 @@ export default function Footer() {
 
 						<div className='flex flex-col-reverse sm:flex-col gap-20 sm:gap-4'>
 
-							<MagneticButton className='max-sm:w-full!' strength={10}>
-								<AnimatedLogo className='w-full! sm:w-60!' />
-							</MagneticButton>
+							<div ref={logoRef} className='pointer-events-auto w-fit max-sm:w-full'>
+								<MagneticButton className='max-sm:w-full!' strength={10}>
+									<AnimatedLogo className='w-full! sm:w-60!' />
+								</MagneticButton>
+							</div>
 
-							<div className='flex items-center max-sm:justify-between gap-4 text-green-neon text-xs sm:text-sm'>
+							<div className='pointer-events-auto flex items-center max-sm:justify-between gap-4 text-green-neon text-xs sm:text-sm'>
 
 								<p>
 									© {year} Limonada®

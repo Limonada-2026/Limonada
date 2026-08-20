@@ -45,28 +45,24 @@ export default function AnimatedText({
 
             if (!item.current) return
 
-            animRef.current = gsap.from(splitRef.current.chars, {
-                scrollTrigger: {
-                    scroller: document.getElementById('viewport') as HTMLElement,
-                    trigger: item.current,
-                    toggleActions: 'restart pause resume reverse',
-                    start: 'top 85%'
-                },
-                duration: 0.5, 
-                ease: 'circ.out', 
-                y: '110%', 
-                stagger: 0.01,
-                onComplete: () => {
-                    if (item.current) {
-                        item.current.classList.add('completed')
-                    }
-                },
-                onReverseComplete: () => {
-                    if (item.current) {
-                        item.current.classList.remove('completed')
-                    }
-                }
-            })
+			animRef.current = gsap.from(splitRef.current.chars, {
+				scrollTrigger: {
+					scroller: document.getElementById('viewport') as HTMLElement,
+					trigger: item.current,
+					toggleActions: 'play none none none',
+					once: true,
+					start: 'top 85%'
+				},
+				duration: 0.5,
+				ease: 'circ.out',
+				y: '110%',
+				stagger: 0.01,
+				onComplete: () => {
+					if (item.current) {
+						item.current.classList.add('completed')
+					}
+				}
+			})
         }
 
         initAnimation()

@@ -13,12 +13,14 @@ interface Props {
 	video: string
 	className?: string
 	loopRewind?: boolean
+	speed?: number
 }
 
 export default function Video({
 	video,
 	className,
-	loopRewind = false
+	loopRewind = false,
+	speed = 1
 }: Props) {
 
 	const videoWrapperRef = useRef<HTMLDivElement>(null)
@@ -29,6 +31,7 @@ export default function Video({
 		if (!videoWrapperRef.current || !videoRef.current) return
 
 		const videoElement = videoRef.current
+		videoElement.playbackRate = speed
 		let rafId = 0
 		let rewinding = false
 		let lastTimestamp = 0
@@ -53,7 +56,7 @@ export default function Video({
 				const delta = (timestamp - lastTimestamp) / 1000
 				lastTimestamp = timestamp
 
-				const nextTime = Math.max(0, videoElement.currentTime - delta)
+				const nextTime = Math.max(0, videoElement.currentTime - delta * speed)
 				videoElement.currentTime = nextTime
 
 				if (nextTime <= 0) {
@@ -114,7 +117,7 @@ export default function Video({
 		}
 	}, {
 		scope: videoWrapperRef,
-		dependencies: [loopRewind]
+		dependencies: [loopRewind, speed]
 	})
 
 	return (

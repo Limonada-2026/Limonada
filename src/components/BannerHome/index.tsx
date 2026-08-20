@@ -1,7 +1,7 @@
 'use client'
 
 // libraries
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { gsap } from 'gsap'
@@ -34,9 +34,19 @@ export default function BannerHome() {
     const released = useRef(false)
     const ride = useRef(0)
 
-    const [landed, setLanded] = useState(false)
-
     const pathname = usePathname()
+
+    // the banner's text/button content lives outside LemonFall (as sibling
+    // sections, not children), so it needs to opt into the same drag-through
+    // fix manually: drop pointer-events on it while a lemon is being dragged
+    const handleLemonDragStart = () => {
+        firstSection.current?.classList.add('lemon-dragging')
+        secondSection.current?.classList.add('lemon-dragging')
+    }
+    const handleLemonDragEnd = () => {
+        firstSection.current?.classList.remove('lemon-dragging')
+        secondSection.current?.classList.remove('lemon-dragging')
+    }
 
     useGSAP(() => {
         if (!container.current || !firstSection.current) return
@@ -52,7 +62,6 @@ export default function BannerHome() {
         // full reset so a fresh route starts from the top of the animation
         released.current = false
         ride.current = 0
-        setLanded(false)
         if (clip.current) {
             clip.current.style.transform = ''
             gsap.set(clip.current, { autoAlpha: 1 })
@@ -99,7 +108,6 @@ export default function BannerHome() {
 
                     if (self.progress >= EXIT_AT) {
                         released.current = true
-                        setLanded(true)
                         if (clip.current) clip.current.style.transform = ''
                         lemons.current?.release(ride.current)
                     } else {
@@ -112,7 +120,6 @@ export default function BannerHome() {
                 onLeaveBack: () => {
                     released.current = false
                     ride.current = 0
-                    setLanded(false)
                     if (clip.current) clip.current.style.transform = ''
                 },
             }
@@ -138,7 +145,7 @@ export default function BannerHome() {
 
             <div
                 ref={clip}
-                className={`absolute inset-0 overflow-hidden rounded-bottom-corners pointer-events-none will-change-transform ${landed ? 'z-20' : 'z-40'}`}
+                className='absolute inset-0 z-10 overflow-hidden rounded-bottom-corners pointer-events-none will-change-transform'
             >
                 <LemonFall
                     ref={lemons}
@@ -146,6 +153,8 @@ export default function BannerHome() {
                     count={6}
                     ceiling={false}
                     className='h-full w-full'
+                    onLemonDragStart={handleLemonDragStart}
+                    onLemonDragEnd={handleLemonDragEnd}
                 />
             </div>
 
@@ -172,31 +181,35 @@ export default function BannerHome() {
             </section>
 
             <section
-                className='bg-green-medium absolute top-0 left-0 w-full z-10 overflow-hidden rounded-bottom-corners pointer-events-auto'
+                className='absolute top-0 left-0 w-full overflow-hidden rounded-bottom-corners pointer-events-none'
                 ref={secondSection}
             >
-                <div className='base-container'>
-                    <div className='flex flex-col gap-6 sm:gap-8 items-center justify-center min-h-svh text-center'>
+                <div className='absolute inset-0 z-0 bg-green-medium' />
 
-                        <h2 className='text-green-dark uppercase font-heading text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[9rem] leading-[.875] sm:leading-[.825] font-bold'>
-                            Transformamos <br />
-                            limões em limonada
-                        </h2>
+                <div className='relative z-20 pointer-events-none'>
+                    <div className='base-container'>
+                        <div className='flex flex-col gap-6 sm:gap-8 items-center justify-center min-h-svh text-center'>
 
-                        <p className='text-white mx-auto max-w-3xl md:text-lg'>
-                            Como uma boutique, partimos do contexto de cada desafio para construir jornadas de desenvolvimento que apoiam decisões e desdobram em ação, preparando times e lideranças para fazer o negócio avançar e sustentar o resultado. <span className='sm:hidden'>Toda transformação começa por um desafio.</span>
-                        </p>
+                            <h2 className='text-green-dark uppercase font-heading text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[9rem] leading-[.875] sm:leading-[.825] font-bold pointer-events-auto'>
+                                Transformamos <br />
+                                limões em limonada
+                            </h2>
 
-                        <MagneticButton>
-                            <Link
-                                href={pages.metodo_limao}
-                                className='button button--green-neon whitespace-nowrap'
-                            >
-                                <span className='max-sm:hidden'>Toda transformação começa por um desafio. Qual o seu?</span>
-                                <span className='sm:hidden'>Qual o seu?</span>
-                            </Link>
-                        </MagneticButton>
+                            <p className='text-white mx-auto max-w-3xl md:text-lg pointer-events-auto'>
+                                Como uma boutique, partimos do contexto de cada desafio para construir jornadas de desenvolvimento que apoiam decisões e desdobram em ação, preparando times e lideranças para fazer o negócio avançar e sustentar o resultado. <span className='sm:hidden'>Toda transformação começa por um desafio.</span>
+                            </p>
 
+                            <MagneticButton className='pointer-events-auto'>
+                                <Link
+                                    href={pages.metodo_limao}
+                                    className='button button--green-neon whitespace-nowrap'
+                                >
+                                    <span className='max-sm:hidden'>Toda transformação começa por um desafio. Qual o seu?</span>
+                                    <span className='sm:hidden'>Qual o seu?</span>
+                                </Link>
+                            </MagneticButton>
+
+                        </div>
                     </div>
                 </div>
             </section>
