@@ -55,7 +55,7 @@ export default function ServiceBlock({
                             href={href}
                             className='button button--green-neon whitespace-nowrap gap-4!'
                         >
-                            Descruba <UxArrowRight className='w-3 h-3' />
+                            Descubra <UxArrowRight className='w-3 h-3' />
                         </Link>
                     </MagneticButton>
 
