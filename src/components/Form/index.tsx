@@ -2,7 +2,7 @@
 
 // libraries
 import clsx from 'clsx'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { FormProvider, type RegisterOptions, type SubmitHandler, useForm, useFormContext } from 'react-hook-form'
 
 // components
@@ -10,7 +10,7 @@ import Portal from '@/components/Utils/Portal'
 import Dialog from '@/components/Dialog'
 
 // utils
-import { pushGtmEvent } from '@/utils/gtm'
+import { getUtms, pushGtmEvent } from '@/utils/gtm'
 
 // svg
 import UxCheck from '@/assets/svg/ux/check.svg'
@@ -744,6 +744,33 @@ export const InputHidden = ({ name, value, id }: InputHiddenProps) => {
             {...register(name)}
         />
     )
+}
+
+/** Tags a submission with whatever campaign UTMs were captured this session, only rendering fields that actually have a value. */
+export const UtmHiddenFields = () => {
+	const { register, setValue } = useFormContext()
+	const [utms, setUtms] = useState<Record<string, string>>({})
+
+	useEffect(() => {
+		const captured = getUtms()
+		setUtms(captured)
+
+		Object.entries(captured).forEach(([key, value]) => {
+			setValue(key, value)
+		})
+	}, [setValue])
+
+	return (
+		<>
+			{Object.keys(utms).map((key) => (
+				<input
+					type='hidden'
+					key={key}
+					{...register(key)}
+				/>
+			))}
+		</>
+	)
 }
 
 interface SubmitProps {

@@ -1,6 +1,6 @@
 // components
 import MagneticButton from '@/components/Utils/Animations/MagneticButton'
-import { Form, Input, InputHidden, Textarea, Checkbox, Submit } from '@/components/Form'
+import { Form, Input, InputHidden, Textarea, Checkbox, Submit, UtmHiddenFields } from '@/components/Form'
 
 // utils
 import { pages } from '@/utils/routes'
@@ -46,6 +46,8 @@ export default function Contact() {
 							value='contact'
 							id='form'
 						/>
+
+						<UtmHiddenFields />
 
 						<div className='row'>
 
