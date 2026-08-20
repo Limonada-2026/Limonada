@@ -4,11 +4,13 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 // components
+import AnimatedText from '@/components/Utils/Animations/AnimatedText'
 import AnimatedTitle from '@/components/Utils/Animations/AnimatedTitle'
 import BannerTop from './BannerTop'
 import FourBlocks from './FourBlocks'
 import Numbers from './Numbers'
 import Testimonials from './Testimonials'
+import RelatedClients from './RelatedClients'
 import ContactBlock from '@/components/ContactBlock'
 
 // images
@@ -78,6 +80,11 @@ export default async function ClientePost({ params }: { params: Params }) {
 	const item = getCase(postId)
 
 	if (!item) notFound()
+
+	const related = cases
+		.filter((c) => c.slug !== item.slug)
+		.sort(() => Math.random() - 0.5)
+		.slice(0, 3)
 
 	return (
 		<main>
@@ -181,6 +188,20 @@ export default async function ClientePost({ params }: { params: Params }) {
 
 			{item.testimonials.length > 0 && (
 				<Testimonials items={item.testimonials} />
+			)}
+
+			{related.length > 0 && (
+				<section className='section-space'>
+					<div className='base-container'>
+
+						<h2 className='text-xl md:text-2xl font-semibold block mb-4 lg:mb-8'>
+							<AnimatedText text='Descubra outros clientes' />
+						</h2>
+
+						<RelatedClients cases={related} />
+
+					</div>
+				</section>
 			)}
 
 			<ContactBlock text={item.cta} />

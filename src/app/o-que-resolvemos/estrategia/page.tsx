@@ -22,7 +22,7 @@ import { cases as allCases } from '@/db/clientes'
 
 const featuredCases = [
 	'limonada-com-sakura',
-	'limonada-com-semantix'
+	'limonada-com-oxford'
 ]
 	.map((slug) => allCases.find((item) => item.slug === slug))
 	.filter((item) => item !== undefined)

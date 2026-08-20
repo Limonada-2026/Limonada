@@ -95,6 +95,10 @@ export default function Numbers({ items }: NumbersProps) {
                         992: {
                             slidesPerView: 2,
                             spaceBetween: 30
+                        },
+                        1200: {
+                            slidesPerView: 3,
+                            spaceBetween: 30
                         }
                     }}
                     className='overflow-visible!'

@@ -21,8 +21,8 @@ import banner from '@/assets/img/service-03.jpg'
 import { cases as allCases } from '@/db/clientes'
 
 const featuredCases = [
-	'limonada-com-sicredi',
-	'limonada-com-rodobens'
+	'limonada-com-rodobens',
+	'limonada-com-sicredi'
 ]
 	.map((slug) => allCases.find((item) => item.slug === slug))
 	.filter((item) => item !== undefined)
