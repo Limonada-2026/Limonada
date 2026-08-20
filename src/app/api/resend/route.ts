@@ -98,7 +98,7 @@ export async function POST(req: Request) {
 				text: textMessage,
 			}),
 			sendRdStationConversion({
-				identificador: 'site-formulario-contato',
+				identificador: body.form === 'contact_home' ? 'site-formulario-home' : 'site-formulario-contato',
 				email: body.Email,
 				nome: body.Nome,
 				telefone: body.Telefone,

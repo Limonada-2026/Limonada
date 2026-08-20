@@ -2,9 +2,12 @@
 import clsx from 'clsx'
 
 // components
-import { Form, InputHidden, Input, Textarea, Submit } from '@/components/Form'
+import { Form, InputHidden, Input, Textarea, Submit, UtmHiddenFields } from '@/components/Form'
 import MagneticButton from '@/components/Utils/Animations/MagneticButton'
 import AnimatedTitle from '@/components/Utils/Animations/AnimatedTitle'
+
+// utils
+import { pages } from '@/utils/routes'
 
 // types
 interface ContactFormSmallProps {
@@ -37,11 +40,8 @@ export default function ContactFormSmall({
                     <div className='col-lg-7 col-xl-8'>
 
                         <Form
-                            endpoint='/api/contact'
-                            onSuccess={{
-                                title: 'Mensagem enviada com sucesso',
-                                text: 'Obrigado por entrar em contato. Entraremos em contato o mais breve possível.'
-                            }}
+                            endpoint='/api/resend'
+                            redirectTo={pages.contato_obrigado}
                             onError={{
                                 title: 'Ocorreu um erro ao enviar a mensagem',
                                 text: 'Por favor, tente novamente mais tarde.'
@@ -50,14 +50,16 @@ export default function ContactFormSmall({
                         >
 
                             <InputHidden
-                                name='contact_form_home'
-                                value='true'
-                                id='contact_form_home'
+                                name='form'
+                                value='contact_home'
+                                id='form'
                             />
+
+                            <UtmHiddenFields />
 
                             <Input
                                 id='name'
-                                name='name'
+                                name='Nome'
                                 label='Nome'
                                 placeholder='Digite seu nome'
                                 type='text'
@@ -69,7 +71,7 @@ export default function ContactFormSmall({
                                 <div className='col-sm-6'>
                                     <Input
                                         id='email'
-                                        name='email'
+                                        name='Email'
                                         label='Email'
                                         placeholder='Digite seu email'
                                         type='email'
@@ -80,7 +82,7 @@ export default function ContactFormSmall({
                                 <div className='col-sm-6'>
                                     <Input
                                         id='phone'
-                                        name='phone'
+                                        name='Telefone'
                                         label='Telefone'
                                         placeholder='(00) 00000-0000'
                                         type='tel'
@@ -90,7 +92,7 @@ export default function ContactFormSmall({
                                 <div className='col-sm-6'>
                                     <Input
                                         id='company'
-                                        name='company'
+                                        name='Empresa'
                                         label='Empresa'
                                         placeholder='Digite o nome da empresa'
                                         type='text'
@@ -100,7 +102,7 @@ export default function ContactFormSmall({
                                 <div className='col-sm-6'>
                                     <Input
                                         id='position'
-                                        name='position'
+                                        name='Cargo'
                                         label='Cargo'
                                         placeholder='Digite seu cargo'
                                         type='text'
@@ -111,7 +113,7 @@ export default function ContactFormSmall({
 
                             <Textarea
                                 id='challenge'
-                                name='challenge'
+                                name='Desafio'
                                 label='Desafio'
                                 placeholder='Digite o desafio do negócio'
                                 required
