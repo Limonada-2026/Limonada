@@ -3,7 +3,6 @@
 // libraries
 import { Fragment, useCallback, useMemo, useRef, useState } from 'react'
 import { Masonry } from 'grid-rows-masonry/react'
-import { useTransitionState } from 'next-transition-router'
 import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -43,7 +42,6 @@ export default function PaginatedGrid<T>({
 }: PaginatedGridProps<T>) {
 
     const container = useRef<HTMLDivElement>(null)
-    const { stage } = useTransitionState()
 
     const totalPages = Math.max(1, Math.ceil(items.length / perPage))
     const clamp = useCallback(
@@ -115,7 +113,6 @@ export default function PaginatedGrid<T>({
         const blocks = gsap.utils.toArray<HTMLElement>('.js-fade-up', container.current)
 
         if (blocks.length === 0) return
-        if (stage === 'leaving') return
 
         blocks.forEach(block => {
             gsap.set(block.children, {
@@ -123,8 +120,6 @@ export default function PaginatedGrid<T>({
                 y: '3rem'
             })
         })
-
-        if (stage !== 'none') return
 
         let triggers: ScrollTrigger[] = []
 
@@ -160,7 +155,7 @@ export default function PaginatedGrid<T>({
         }
     }, {
         scope: container,
-        dependencies: [stage, renderedPage]
+        dependencies: [renderedPage]
     })
 
     return (

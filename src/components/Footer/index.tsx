@@ -2,7 +2,7 @@
 
 // libraries
 import { useRef } from 'react'
-import { Link } from 'next-transition-router'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 // components

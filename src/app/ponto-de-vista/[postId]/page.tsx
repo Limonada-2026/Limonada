@@ -2,7 +2,7 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
-import { Link } from 'next-transition-router'
+import Link from 'next/link'
 
 // components
 import AnimatedText from '@/components/Utils/Animations/AnimatedText'

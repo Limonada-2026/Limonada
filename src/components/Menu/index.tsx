@@ -2,7 +2,7 @@
 
 // libraries
 import clsx from 'clsx'
-import { Link } from 'next-transition-router'
+import Link from 'next/link'
 import { useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { gsap } from 'gsap'
@@ -324,7 +324,7 @@ export default function Menu() {
 				<div className='absolute z-2 top-0 left-0 w-full h-full bg-yellow rounded-bottom-corners' data-layer />
 				<div className='absolute z-3 top-0 left-0 w-full h-full bg-green-dark rounded-bottom-corners' data-layer />
 
-				<div className='base-container relative z-4 pt-30 overflow-scroll max-h-svh min-h-svh'>
+				<div className='base-container relative z-4 pt-30 overflow-y-auto overflow-x-hidden max-h-svh min-h-svh'>
 					<div className='flex flex-col gap-2'>
 						{[
 							{

@@ -1,9 +1,9 @@
 'use client'
 
 // libraries
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { Link } from 'next-transition-router'
+import Link from 'next/link'
 import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -16,7 +16,6 @@ import LemonFall, { type LemonFallHandle } from '@/components/Utils/Animations/L
 
 // utils
 import { pages } from '@/utils/routes'
-import { hasPreloaderHomeDropped, isPreloaderActive, PRELOADER_HOME_DROP } from '@/utils/preloader'
 
 // the 1st section takes `1` of the pin to scroll out; the extra `FALL_HOLD` keeps
 // the banner pinned just long enough for the lemons to drop onto the 2nd section
@@ -36,23 +35,8 @@ export default function BannerHome() {
     const ride = useRef(0)
 
     const [landed, setLanded] = useState(false)
-    // wait for the preloader home beat on first paint; spawn immediately otherwise
-    // (client navigations, or when the preloader is skipped / already done)
-    const [spawnLemons, setSpawnLemons] = useState(false)
 
     const pathname = usePathname()
-
-    useEffect(() => {
-        // preloader already finished / skipped, or drop already fired before we listened
-        if (!isPreloaderActive() || hasPreloaderHomeDropped()) {
-            setSpawnLemons(true)
-            return
-        }
-
-        const onHomeDrop = () => setSpawnLemons(true)
-        window.addEventListener(PRELOADER_HOME_DROP, onHomeDrop)
-        return () => window.removeEventListener(PRELOADER_HOME_DROP, onHomeDrop)
-    }, [pathname])
 
     useGSAP(() => {
         if (!container.current || !firstSection.current) return
@@ -158,7 +142,7 @@ export default function BannerHome() {
             >
                 <LemonFall
                     ref={lemons}
-                    spawn={spawnLemons}
+                    spawn
                     count={6}
                     ceiling={false}
                     className='h-full w-full'

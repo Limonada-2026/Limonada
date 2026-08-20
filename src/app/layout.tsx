@@ -10,10 +10,8 @@ import Menu from '@/components/Menu'
 import SmoothScroller from '@/components/Utils/SmoothScroller'
 import Guidelines from '@/components/Utils/Guidelines'
 import Footer from '@/components/Footer'
-import Preloader from '@/components/Preloader'
 import PreloadLemonImages from '@/components/Utils/Animations/PreloadLemonImages'
 import ViewportHeight from '@/components/Utils/ViewportHeight'
-import PageTransition from '@/components/Utils/PageTransition'
 
 // css
 import '@/assets/css/global.css'
@@ -196,24 +194,15 @@ export default function RootLayout({
 				<ViewportHeight />
 				<PreloadLemonImages />
 
-				{/*
-				{ process.env.NODE_ENV !== 'development' && <Preloader /> }
-				*/}
-				<Preloader />
+				<Menu />
 
-				<PageTransition>
+				<SmoothScroller>
 
-					<Menu />
+					{children}
 
-					<SmoothScroller>
-						
-						{children}
+					<Footer />
 
-						<Footer />
-
-					</SmoothScroller>
-
-				</PageTransition>
+				</SmoothScroller>
 
 				{ process.env.NODE_ENV === 'development' && <Guidelines /> }
 

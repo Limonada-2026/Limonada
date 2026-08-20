@@ -1,5 +1,5 @@
 // libraries
-import { Link } from 'next-transition-router'
+import Link from 'next/link'
 import clsx from 'clsx'
 
 // icons

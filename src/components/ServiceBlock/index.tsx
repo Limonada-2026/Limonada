@@ -1,7 +1,7 @@
 // libraries
 import clsx from 'clsx'
 import Image, { StaticImageData } from 'next/image'
-import { Link } from 'next-transition-router'
+import Link from 'next/link'
 
 // components
 import ScrollingImage from '@/components/Utils/Animations/ScrollingImage'
