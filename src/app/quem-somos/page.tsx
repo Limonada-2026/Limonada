@@ -12,7 +12,7 @@ import AnimatedTitle from '@/components/Utils/Animations/AnimatedTitle'
 // metadata
 export const metadata: Metadata = {
 	title: 'Quem somos | Limonada',
-	description: 'A Limonada existe para potencializar pessoas que tranformam desafios em decisões e ações e fazem a mudança acontecer.',
+	description: 'A Limonada existe para potencializar pessoas que transformam desafios em decisões e ações e fazem a mudança acontecer.',
 	alternates: {
 		canonical: '/quem-somos'
 	}

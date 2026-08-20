@@ -34,7 +34,7 @@ const team = [
 	{
 		image: marcela,
 		name: 'Marcela <br />Cuenca',
-		text: `Com mais de 20 anos de carreira na interseção entre marketing, experiência do cliente e desenvolvimento de novos negócios, Marcela atuou em empresas como L'Oréal, Havaianas e H.Stern, liderando crescimento, inovação e lançamento de produtos. <br /><br />Hoje dedica sua atuação à consultoria e facilitação de processos de transformação organizacional, desenhando experiências de aprendizagem para líderes e equipes. É mestre em Marketing pela PUC-Rio, especialista em Design Thinking pelo MIT e graduada em Administração de Empresas pela UFRJ. <br /><br />Na Limonada, Marcela garante garante que cada jornada una conteúdo, conexão e hospitalidade para transformar aprendizagem em experiência.`,
+		text: `Com mais de 20 anos de carreira na interseção entre marketing, experiência do cliente e desenvolvimento de novos negócios, Marcela atuou em empresas como L'Oréal, Havaianas e H.Stern, liderando crescimento, inovação e lançamento de produtos. <br /><br />Hoje dedica sua atuação à consultoria e facilitação de processos de transformação organizacional, desenhando experiências de aprendizagem para líderes e equipes. É mestre em Marketing pela PUC-Rio, especialista em Design Thinking pelo MIT e graduada em Administração de Empresas pela UFRJ. <br /><br />Na Limonada, Marcela garante que cada jornada una conteúdo, conexão e hospitalidade para transformar aprendizagem em experiência.`,
 		invert: false
 	}
 ]

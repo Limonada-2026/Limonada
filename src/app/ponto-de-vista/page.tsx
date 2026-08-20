@@ -20,7 +20,7 @@ type SearchParams = Promise<{ page?: string }>
 // metadata
 export const metadata: Metadata = {
 	title: 'Ponto de Vista | Limonada',
-	description: 'Aqui, reunimos nossa perspecitiva sobre desenvolvimento de times e lideranças, as transformações no mundo dos negócios e o futuro do trabalho.',
+	description: 'Aqui, reunimos nossa perspectiva sobre desenvolvimento de times e lideranças, as transformações no mundo dos negócios e o futuro do trabalho.',
 	alternates: {
 		canonical: '/ponto-de-vista'
 	}
@@ -44,7 +44,7 @@ export default async function PontoDeVista({ searchParams }: { searchParams: Sea
 					</h1>
 
 					<h2 className='md:text-lg xl:text-xl text-white md:text-center md:max-w-180 md:mx-auto mt-4 md:mt-6'>
-                        Aqui, reunimos nossa perspecitiva sobre desenvolvimento de times e lideranças, as transformações no mundo dos negócios e o futuro do trabalho.
+                        Aqui, reunimos nossa perspectiva sobre desenvolvimento de times e lideranças, as transformações no mundo dos negócios e o futuro do trabalho.
 					</h2>
 
 				</div>

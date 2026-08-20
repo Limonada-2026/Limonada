@@ -16,7 +16,7 @@ export default function BannerTop() {
                 <div className='flex flex-col gap-4 md:items-center max-w-6xl md:mx-auto section-space-half'>
 
                     <h1 className='text-2xl md:text-3xl xl:text-4xl font-semibold text-white md:text-center md:text-balance'>
-                        <AnimatedText text='A Limonada existe para potencializar pessoas que tranformam desafios em decisões e ações e fazem a mudança acontecer.' />
+                        <AnimatedText text='A Limonada existe para potencializar pessoas que transformam desafios em decisões e ações e fazem a mudança acontecer.' />
                     </h1>
 
                     <h2 className='text-white md:text-lg xl:text-xl max-w-4xl md:text-center md:text-balance'>
