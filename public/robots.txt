@@ -3,6 +3,7 @@ User-agent: *
 Allow: /
 Disallow: /404
 Disallow: /500
+Disallow: /contato/obrigado
 
 # Host
 Host: https://alimonada.com.br
