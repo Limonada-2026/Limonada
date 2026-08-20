@@ -70,7 +70,7 @@ export default function BannerTop({
                         <AnimatedText text={title} />
                     </h1>
 
-                    <h2 className='text-white md:text-lg max-w-2xl md:text-center'>
+                    <h2 className='text-white md:text-lg xl:text-xl max-w-2xl md:text-center'>
                         {description}
                     </h2>
 

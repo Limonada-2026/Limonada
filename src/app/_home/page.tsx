@@ -46,7 +46,7 @@ export default function Home() {
 						<AnimatedText text='Transformando limões em limonada' />
 					</h2>
 
-					<p className='max-w-4xl block mt-2 md:mt-4 mb-6 md:mb-8 lg:mb-10'>
+					<p className='max-w-4xl block mt-2 md:mt-4 mb-6 md:mb-8 lg:mb-10 lg:text-lg'>
 						Como uma boutique, partimos do contexto de cada desafio para construir jornadas de desenvolvimento que apoiam decisões e desdobram em ação, preparando times e lideranças para fazer o negócio avançar e sustentar o resultado.
 					</p>
 

@@ -46,7 +46,7 @@ export default function ServiceBlock({
 
                 <div className='flex flex-col md:flex-row md:items-end md:justify-between gap-4 w-full'>
 
-                    <p className='text-white md:max-w-sm'>
+                    <p className='text-white md:max-w-sm lg:text-lg'>
                         {description}
                     </p>
 

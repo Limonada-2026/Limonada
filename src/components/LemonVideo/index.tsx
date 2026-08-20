@@ -42,7 +42,7 @@ export default function LemonVideo() {
 							L.I.M.Ã.O.
 						</AnimatedTitle>
 
-						<p className='block my-8'>
+						<p className='block my-8 lg:text-lg'>
 							Desenvolvemos uma abordagem própria que faz do desenvolvimento de pessoas um catalisador de mudanças reais. Quando combinamos todos os elementos do Método, transformamos os desafios em oportunidades. E geramos impacto positivo para pessoas e negócios.<br /><br />
 
 							Afinal, é assim que transformamos limões em Limonada.

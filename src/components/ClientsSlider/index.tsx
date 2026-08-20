@@ -60,7 +60,7 @@ export default function ClientsSlider() {
 
             <div className='base-container'>
                 
-                <p>
+                <p className='lg:text-lg'>
                     <AnimatedText text='Método testado e aprovado por grandes empresas:' />
                 </p>
 

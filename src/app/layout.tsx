@@ -60,7 +60,6 @@ export const viewport: Viewport = {
 	themeColor: '#0F2D1E'
 }
 
-import { Public_Sans } from 'next/font/google'
 import localFont from 'next/font/local'
 
 const networkFree = localFont({
@@ -69,10 +68,24 @@ const networkFree = localFont({
 	display: 'swap'
 })
 
-const publicSans = Public_Sans({
-	weight: ['400', '600', '700'],
-	style: ['normal'],
-	subsets: ['latin'],
+const publicSans = localFont({
+	src: [
+		{
+			path: '../assets/fonts/PublicSans-Regular.woff2',
+			weight: '400',
+			style: 'normal'
+		},
+		{
+			path: '../assets/fonts/PublicSans-SemiBold.woff2',
+			weight: '600',
+			style: 'normal'
+		},
+		{
+			path: '../assets/fonts/PublicSans-Bold.woff2',
+			weight: '700',
+			style: 'normal'
+		}
+	],
 	variable: '--font-public-sans',
 	display: 'swap'
 })

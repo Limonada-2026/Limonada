@@ -172,7 +172,7 @@ export default function BannerHome() {
                             e negócios
                         </h1>
 
-                        <p className='text-white mx-auto max-w-lg md:text-lg'>
+                        <p className='text-white mx-auto max-w-2xl md:text-lg xl:text-xl'>
                             Trabalhamos a partir do contexto de cada empresa para transformar desafios em decisões e ações que movem pessoas, culturas e negócios.
                         </p>
 
@@ -195,7 +195,7 @@ export default function BannerHome() {
                                 limões em limonada
                             </h2>
 
-                            <p className='text-white mx-auto max-w-3xl md:text-lg pointer-events-auto'>
+                            <p className='text-white mx-auto max-w-4xl md:text-lg pointer-events-auto xl:text-xl'>
                                 Como uma boutique, partimos do contexto de cada desafio para construir jornadas de desenvolvimento que apoiam decisões e desdobram em ação, preparando times e lideranças para fazer o negócio avançar e sustentar o resultado. <span className='sm:hidden'>Toda transformação começa por um desafio.</span>
                             </p>
 

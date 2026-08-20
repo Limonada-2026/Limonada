@@ -46,11 +46,11 @@ export default function MetodoLimao() {
                 <div className='base-container'>
                     <div className='flex flex-col gap-4 md:items-center md:justify-center md:text-center'>
 
-                        <h2 className='text-2xl lg:text-3xl font-semibold'>
+                        <h2 className='text-2xl lg:text-3xl xl:text-4xl font-semibold'>
                             <AnimatedText text='As 5 etapas do Método Limão:' />
                         </h2>
 
-                        <p className='md:max-w-sm md:mx-auto pb-14'>
+                        <p className='md:max-w-md md:mx-auto pb-14 lg:text-lg'>
                             Da primeira conversa à análise de impacto, é assim que cocriamos jornadas de aprendizagem.
                         </p>
 

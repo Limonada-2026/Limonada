@@ -37,7 +37,7 @@ export default function OQueResolvemos() {
                         O que resolvemos
                     </h1>
 
-                    <h2 className='md:text-lg text-white md:text-center md:max-w-180 md:mx-auto mt-4 md:mt-6 max-lg:pb-[15vw] max-sm:pb-[12vw]'>
+                    <h2 className='md:text-lg xl:text-xl text-white md:text-center md:max-w-180 md:mx-auto mt-4 md:mt-6 max-lg:pb-[15vw] max-sm:pb-[12vw]'>
                         Explore o caminho para o seu desafio
                     </h2>
 

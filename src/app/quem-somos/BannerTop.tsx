@@ -19,7 +19,7 @@ export default function BannerTop() {
                         <AnimatedText text='A Limonada existe para potencializar pessoas que tranformam desafios em decisões e ações e fazem a mudança acontecer.' />
                     </h1>
 
-                    <h2 className='text-white md:text-lg max-w-4xl md:text-center md:text-balance'>
+                    <h2 className='text-white md:text-lg xl:text-xl max-w-4xl md:text-center md:text-balance'>
                         Conduzir a transformação pode ser azedo e desafiador. Azedo, para nós, é encarar o que ainda não está claro, fazer as perguntas certas e trabalhar o que precisa mudar de verdade.
                     </h2>
 

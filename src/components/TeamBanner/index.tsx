@@ -50,7 +50,7 @@ export default function TeamBanner({
                             consistente
                         </h2>
 
-                        <p className='text-white xl:max-w-[75%]'>
+                        <p className='text-white xl:max-w-[75%] lg:text-lg'>
                             Combinamos nossos aprendizados de mais de 20 anos no mercado corporativo para ser o parceiro estratégico que provoca novas perspectivas sobre desafios e oportunidades do negócio.<br /><br />
 
                             Amamos desafios e transformamos <br />

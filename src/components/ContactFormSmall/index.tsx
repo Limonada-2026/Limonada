@@ -28,7 +28,7 @@ export default function ContactFormSmall({
                             Qual é o desafio do seu negócio?
                         </AnimatedTitle>
 
-                        <p className='text-green-dark mt-4 lg:pr-10 mb-6'>
+                        <p className='text-green-dark mt-4 lg:pr-10 mb-6 lg:text-lg'>
                             Cada projeto nasce de um desafio e contexto particular. Nos conte o seu! Estamos prontos para ouvir e construir uma jornada de impacto juntos.
                         </p>
 

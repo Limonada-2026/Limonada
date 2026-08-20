@@ -43,7 +43,7 @@ export default async function PontoDeVista({ searchParams }: { searchParams: Sea
 						Ponto de Vista
 					</h1>
 
-					<h2 className='md:text-lg text-white md:text-center md:max-w-180 md:mx-auto mt-4 md:mt-6'>
+					<h2 className='md:text-lg xl:text-xl text-white md:text-center md:max-w-180 md:mx-auto mt-4 md:mt-6'>
                         Aqui, reunimos nossa perspecitiva sobre desenvolvimento de times e lideranças, as transformações no mundo dos negócios e o futuro do trabalho.
 					</h2>
 
