@@ -1,6 +1,6 @@
 // libraries
 import type { Metadata } from 'next'
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleTagManager } from '@next/third-parties/google'
 import Script from 'next/script'
 import clsx from 'clsx'
 import type { Viewport } from 'next'
@@ -196,11 +196,20 @@ export default function RootLayout({
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 				/>
 
-				<GoogleAnalytics gaId='G-XXXX' />
+				<GoogleTagManager gtmId='GTM-5576XMPR' />
 
 			</head>
 
 			<body id='start'>
+
+				<noscript>
+					<iframe
+						src='https://www.googletagmanager.com/ns.html?id=GTM-5576XMPR'
+						height='0'
+						width='0'
+						style={{ display: 'none', visibility: 'hidden' }}
+					/>
+				</noscript>
 
 				<div id='portal'></div>
 
