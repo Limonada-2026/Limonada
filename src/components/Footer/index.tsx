@@ -202,7 +202,7 @@ export default function Footer() {
 									href={pages.politica_de_privacidade}
 									className='hover-underline'
 								>
-									Política de Privacidade
+									Política de Privacidade.
 								</Link>
 
 							</div>
