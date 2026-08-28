@@ -12,8 +12,15 @@ import ContactFormSmall from '@/components/ContactFormSmall'
 
 import AnimatedText from '@/components/Utils/Animations/AnimatedText'
 
-// db
-import { cases } from '@/db/home'
+// wordpress
+import { getCasesBySlugs } from '@/lib/wordpress/getCases'
+
+// cases featured on the homepage
+const featured = [
+	'limonada-com-john-deere',
+	'limonada-com-neoenergia',
+	'limonada-com-boticario'
+]
 
 // isr
 export const revalidate = 3600
@@ -27,7 +34,10 @@ export const metadata: Metadata = {
 	}
 }
 
-export default function Home() {
+export default async function Home() {
+
+	const cases = await getCasesBySlugs(featured)
+
 	return (
 		<main>
 

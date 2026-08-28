@@ -16,7 +16,7 @@ import CaseBlock from '@/components/CaseBlock'
 import { pages } from '@/utils/routes'
 
 // types
-import type { Case } from '@/db/clientes'
+import type { Case } from '@/lib/wordpress/getCases'
 
 interface RelatedClientsProps {
     cases: Case[]

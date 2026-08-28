@@ -9,7 +9,7 @@ import StaggerUp from '@/components/Utils/Animations/StaggerUp'
 import { pages } from '@/utils/routes'
 
 // types
-import type { Case } from '@/db/clientes'
+import type { Case } from '@/lib/wordpress/getCases'
 
 export interface CasesGridProps {
     className?: string

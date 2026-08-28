@@ -12,16 +12,15 @@ import AnimatedText from '@/components/Utils/Animations/AnimatedText'
 // images
 import banner from '@/assets/img/lemons-bg-2.jpg'
 
-// db
-import { cases as allCases } from '@/db/clientes'
+// wordpress
+import { getCasesBySlugs } from '@/lib/wordpress/getCases'
 
-const featuredCases = [
+// cases featured on this page
+const featured = [
 	'limonada-com-stone',
 	'limonada-com-sakura',
     'limonada-com-neoenergia'
 ]
-	.map((slug) => allCases.find((item) => item.slug === slug))
-	.filter((item) => item !== undefined)
 
 // metadata
 export const metadata: Metadata = {
@@ -32,7 +31,10 @@ export const metadata: Metadata = {
 	}
 }
 
-export default function MetodoLimao() {
+export default async function MetodoLimao() {
+
+	const featuredCases = await getCasesBySlugs(featured)
+
     return (
         <main>
             

@@ -75,27 +75,27 @@ export default function Lemons() {
                 >
                     {[
                         {
-                            image: './img/svg/lemon-1.svg',
+                            image: '/img/svg/lemon-1.svg',
                             title: 'Pessoas',
                             text: 'Feita por pessoas e para pessoas que movem negócios com propósito.'
                         },
                         {
-                            image: './img/svg/lemon-2.svg',
+                            image: '/img/svg/lemon-2.svg',
                             title: 'Conexão',
                             text: 'Conectamos repertório, parceiros e negócio para gerar transformação.'
                         },
                         {
-                            image: './img/svg/lemon-3.svg',
+                            image: '/img/svg/lemon-3.svg',
                             title: 'Inovação',
                             text: 'Trazemos o que é relevante no mundo para dentro do que é real no negócio.'
                         },
                         {
-                            image: './img/svg/lemon-4.svg',
+                            image: '/img/svg/lemon-4.svg',
                             title: 'Desafios',
                             text: 'Nossos olhos brilham por habilidades que ainda precisam ser desenvolvidas.'
                         },
                         {
-                            image: './img/svg/lemon-5.svg',
+                            image: '/img/svg/lemon-5.svg',
                             title: 'Agilidade',
                             text: 'Na velocidade que os negócios precisam.'
                         }

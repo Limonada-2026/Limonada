@@ -16,8 +16,8 @@ import { Clock, Facebook, X, Linkedin, Whatsapp } from '@/components/Svg/Icons'
 import { pages } from '@/utils/routes'
 import { formatDateLongPtBR, getShareLinks } from '@/utils/functions'
 
-// db
-import { posts, getPost } from '@/db/ponto-de-vista'
+// wordpress
+import { getPosts, getPost } from '@/lib/wordpress/getPosts'
 
 const shareIcons = {
 	facebook: Facebook,
@@ -30,7 +30,8 @@ const shareIcons = {
 type Params = Promise<{ postId: string }>
 
 // static routes
-export function generateStaticParams() {
+export async function generateStaticParams() {
+	const posts = await getPosts()
 	return posts.map((post) => ({ postId: post.slug }))
 }
 
@@ -38,7 +39,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
 
 	const { postId } = await params
-	const post = getPost(postId)
+	const post = await getPost(postId)
 
 	if (!post) return {}
 
@@ -61,10 +62,11 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 export default async function PontoDeVistaPost({ params }: { params: Params }) {
 
 	const { postId } = await params
-	const post = getPost(postId)
+	const post = await getPost(postId)
 
 	if (!post) notFound()
 
+	const posts = await getPosts()
 	const related = posts.filter((item) => item.slug !== post.slug).slice(0, 3)
 	const shareUrl = `https://alimonada.com.br/ponto-de-vista/${post.slug}`
 	const shareLinks = getShareLinks(shareUrl, post.title)
