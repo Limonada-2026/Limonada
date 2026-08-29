@@ -63,7 +63,7 @@ export default function LemonVideo() {
 
 					<div className='lg:max-w-1/3 max-lg:relative max-lg:my-10 max-sm:mt-4 max-sm:mb-8'>
 
-                        <StaggerUp className='flex flex-col gap-4 lg:gap-2 relative z-2'>
+                        <StaggerUp className='flex flex-col gap-1 sm:gap-4 lg:gap-2 relative z-2'>
                             {method_items.map((item, i) => (
                                 <div
                                     data-lemon-item
@@ -71,13 +71,13 @@ export default function LemonVideo() {
                                     key={i}
                                 >
 
-                                    <p className='text-green-medium font-cursive lowercase text-3xl sm:text-4xl lg:text-5xl font-normal absolute top-1/2 left-[calc(100%-3rem)] sm:left-[calc(100%-2rem)] lg:-left-10 -translate-y-1/2'>
-                                        {item.cursive}
-                                    </p>
-
                                     <h3 className='text-6xl sm:text-7xl 2xl:text-8xl leading-[.9] font-bold font-heading uppercase text-gray-200'>
                                         {item.text}
                                     </h3>
+
+									<p className='text-green-medium font-cursive lowercase text-4xl lg:text-5xl font-normal sm:absolute sm:top-1/2 sm:left-[calc(100%-2rem)] lg:-left-10 sm:-translate-y-1/2 max-sm:-mt-4'>
+                                        {item.cursive}
+                                    </p>
 
                                 </div>
                             ))}
