@@ -113,6 +113,15 @@ function initPhysics(container: HTMLDivElement, layer: HTMLDivElement, contentEl
 		const top = r.top - containerRect.top - obstaclePadding
 		const right = r.right - containerRect.left + obstaclePadding
 		const bottom = r.bottom - containerRect.top + obstaclePadding
+
+		// when the element spans (nearly) the whole width — the full-width logo on
+		// mobile, say — blocking it would leave nowhere for the lemons to go, so drop
+		// the obstacle and let them fall past it into the space underneath
+		if (right + getLemonSizePx() * 1.2 > w) {
+			obstacleRight = null
+			return
+		}
+
 		obstacleRight = right
 		obstacle = Matter.Bodies.rectangle((left + right) / 2, (top + bottom) / 2, right - left, bottom - top, wall_physics)
 		Matter.Composite.add(world, obstacle)
