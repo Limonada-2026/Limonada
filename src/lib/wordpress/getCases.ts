@@ -152,7 +152,7 @@ const caseFields = gql`
 `
 
 // graphql queries
-// MENU_ORDER keeps the ordering editors set with the "Order" field in the admin
+// cases are ordered by publish date, newest first, same as Ponto de Vista
 const listQuery = gql`
 	${caseFields}
 
@@ -162,8 +162,8 @@ const listQuery = gql`
 			where: {
 				status: PUBLISH
 				orderby: {
-					field: MENU_ORDER
-					order: ASC
+					field: DATE
+					order: DESC
 				}
 			}
 		) {
