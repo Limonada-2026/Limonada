@@ -22,12 +22,14 @@ export default function LemonVideo() {
 	return (
 		<section className='relative overflow-hidden py-4'>
 
-			<Video
-				video='/videos/lemon-loop.mp4'
-				className='absolute z-0 top-1/2 left-1/2 -translate-1/2 w-auto h-[75%] 2xl:h-[90%] object-contain max-lg:hidden'
-				loopRewind
-				speed={1.5}
-			/>
+			<div className='absolute z-0 inset-0 w-full h-full max-lg:hidden'>
+				<Video
+					video='/videos/lemon-loop.mp4'
+					className='absolute z-0 top-1/2 left-1/2 -translate-1/2 w-auto h-[75%] 2xl:h-[90%] object-contain'
+					loopRewind
+					speed={1.5}
+				/>
+			</div>
 
 			<div className='base-container relative z-2'>
 				<div className='lg:flex lg:items-center lg:justify-between lg:min-h-svh lg:py-20 pointer-events-auto'>
@@ -75,7 +77,7 @@ export default function LemonVideo() {
                                         {item.text}
                                     </h3>
 
-									<p className='text-green-medium font-cursive lowercase text-4xl lg:text-5xl font-normal sm:absolute sm:top-1/2 sm:left-[calc(100%-2rem)] lg:-left-10 sm:-translate-y-1/2 max-sm:-mt-4'>
+									<p className='text-green-medium font-cursive lowercase text-4xl lg:text-5xl font-normal md:absolute md:top-1/2 md:left-[calc(100%-2rem)] lg:-left-10 md:-translate-y-1/2 max-md:-mt-4'>
                                         {item.cursive}
                                     </p>
 
