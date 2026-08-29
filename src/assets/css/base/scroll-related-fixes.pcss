@@ -37,9 +37,13 @@ html.is-ios {
         height: 100svh!important;
     }
 
+    /* clears Safari's bottom toolbar, which overlays the page because #viewport
+       scrolls internally and never lets the toolbar collapse. the footer's lemons
+       rest on the inner container's floor, so anything past the toolbar's height
+       shows up as a gap under them */
     [data-main-footer] {
         @media (width <= 36rem) {
-            padding-bottom: calc(var(--spacing) * 26);
+            padding-bottom: calc(var(--spacing) * 22);
         }
     }
 }

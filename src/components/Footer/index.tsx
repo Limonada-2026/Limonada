@@ -184,9 +184,9 @@ export default function Footer() {
 
 						</div>
 
-						<div className='flex flex-col-reverse sm:flex-col gap-20 sm:gap-4'>
+						<div className='flex flex-col-reverse sm:flex-col gap-8 sm:gap-4'>
 
-							<div ref={logoRef} className='pointer-events-auto w-fit max-sm:w-full'>
+							<div ref={logoRef} className='pointer-events-auto w-fit max-sm:w-full max-sm:mb-[28vw]'>
 								<MagneticButton className='max-sm:w-full!' strength={10}>
 									<AnimatedLogo className='w-full! sm:w-60!' />
 								</MagneticButton>
