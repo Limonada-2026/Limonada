@@ -562,7 +562,7 @@ export const cases: Case[] = [
             { title: 'Governança', text: 'Estruturação de comitês que sustentam o acompanhamento contínuo das iniciativas e das decisões da liderança. A Limonada liderou, durante 8 meses, 3 comitês de execução: Comitê de Marketing, Comitê Industrial e Comitê de Resultados. O objetivo é fortalecer a governança por meio do monitoramento da implementação da estratégia.' }
         ],
         numbers: [
-            { number: 2025, display: '2025-2027', text: 'mapa estratégico e visão futura da companhia' },
+            { number: 2025, display: '25-27', text: 'mapa estratégico e visão futura da companhia' },
             { number: 42, text: 'líderes conectados à execução da estratégia' },
             { number: 5, text: 'comitês estratégicos implementados' },
             { number: 9, text: 'projetos estratégicos priorizados' }
