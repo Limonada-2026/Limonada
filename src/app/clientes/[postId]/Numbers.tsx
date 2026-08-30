@@ -17,16 +17,18 @@ import { ChevronLeft, ChevronRight } from '@/components/Svg/Icons'
 
 // interface
 interface NumbersProps {
+    title: string
     items: {
         hasPlus?: boolean
         number: number
         decimals?: number
         suffix?: string
+        display?: string
         text: string
     }[]
 }
 
-export default function Numbers({ items }: NumbersProps) {
+export default function Numbers({ title, items }: NumbersProps) {
 
     const swiperRef = useRef<SwiperType | null>(null)
 
@@ -45,7 +47,7 @@ export default function Numbers({ items }: NumbersProps) {
                 <div className='flex items-center justify-between gap-4 mb-4'>
 
                     <h2 className='text-2xl md:text-3xl xl:text-4xl font-semibold block mb-2 md:mb-4'>
-                        <AnimatedText text='Transformamos limão em limonada' />
+                        <AnimatedText text={title} />
                     </h2>
 
                     {!isLocked && (
@@ -112,10 +114,12 @@ export default function Numbers({ items }: NumbersProps) {
 
                                 <h2 className='text-[5rem] md:text-[6rem] lg:text-[8rem] xl:text-[10rem] leading-[1.1] text-green-vivid'>
                                     {item.hasPlus && '+'}
-                                    <Counter
-                                        number={item.number}
-                                        decimals={item.decimals}
-                                    />
+                                    {item.display ? item.display : (
+                                        <Counter
+                                            number={item.number}
+                                            decimals={item.decimals}
+                                        />
+                                    )}
                                     {item.suffix}
                                 </h2>
 

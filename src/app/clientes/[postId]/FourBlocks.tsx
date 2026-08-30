@@ -2,7 +2,7 @@
 
 // libraries
 import Image from 'next/image'
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, type CSSProperties } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import type { Swiper as SwiperType } from 'swiper'
 import { Navigation, Scrollbar, FreeMode, Mousewheel } from 'swiper/modules'
@@ -23,6 +23,26 @@ export default function FourBlocks({ items }: FourBlocksProps) {
 
     const scrollbarRef = useRef<HTMLDivElement>(null)
     const swiperRef = useRef<SwiperType | null>(null)
+
+    // never spread the items across more slots than there are items, otherwise
+    // a case with three blocks leaves an empty column on desktop
+    const slidesFor = (slots: number) => Math.min(slots, items.length)
+
+    // the slides then grow to fill the row, but the illustrations should stay
+    // the size they are on a full row. inside a slide 100% is the grown width,
+    // so solve for the width the slide would have had with every slot filled.
+    const imageCap = (slots: number, gap: number) => {
+        const shown = slidesFor(slots)
+        if (shown >= slots) return 'none'
+        const offset = (shown - slots) * gap
+        return `calc((100% * ${shown} - ${Math.abs(offset)}px) / ${slots})`
+    }
+
+    const imageCaps = {
+        '--cap-sm': imageCap(2, 15),
+        '--cap-lg': imageCap(3, 30),
+        '--cap-xl': imageCap(4, 30)
+    } as CSSProperties
 
     const handleSwiper = (swiper: SwiperType) => {
         swiperRef.current = swiper
@@ -46,7 +66,7 @@ export default function FourBlocks({ items }: FourBlocksProps) {
                 <Swiper
                     modules={[Navigation, Scrollbar, FreeMode, Mousewheel]}
                     allowTouchMove={true}
-                    slidesPerView={1.5}
+                    slidesPerView={slidesFor(1.5)}
                     spaceBetween={15}
                     freeMode={true}
                     mousewheel={{
@@ -59,14 +79,14 @@ export default function FourBlocks({ items }: FourBlocksProps) {
                     onSwiper={handleSwiper}
                     breakpoints={{
                         576: {
-                            slidesPerView: 2
+                            slidesPerView: slidesFor(2)
                         },
                         992: {
-                            slidesPerView: 3,
+                            slidesPerView: slidesFor(3),
                             spaceBetween: 30
                         },
                         1200: {
-                            slidesPerView: 4,
+                            slidesPerView: slidesFor(4),
                             spaceBetween: 30
                         }
                     }}
@@ -84,7 +104,8 @@ export default function FourBlocks({ items }: FourBlocksProps) {
                                     alt={item.title}
                                     width={926}
                                     height={925}
-                                    className='w-full h-auto'
+                                    style={imageCaps}
+                                    className='w-full h-auto sm:max-w-[var(--cap-sm)] lg:max-w-[var(--cap-lg)] xl:max-w-[var(--cap-xl)]'
                                 />
 
                                 <h2 className='text-xl lg:text-2xl font-semibold text-green-vivid'>

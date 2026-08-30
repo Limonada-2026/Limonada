@@ -21,12 +21,34 @@ export type CaseNumber = {
 	hasPlus?: boolean
 	decimals?: number
 	suffix?: string
+	// shown verbatim instead of the animated counter, for figures that are not
+	// a plain number (a year range, for instance)
+	display?: string
 }
 
 export type CaseTestimonial = {
 	testimonial: string
 	position: string
 	company: string
+}
+
+// headings above each section of a case page. every case uses the defaults
+// below today, but the naming comes from the client's copy and varies, so a
+// case can override any of them in WordPress.
+export type CaseSectionTitles = {
+	limao?: string
+	corte?: string
+	espremendo?: string
+	numbers?: string
+	testimonials?: string
+}
+
+export const defaultSectionTitles = {
+	limao: 'O Limão',
+	corte: 'O método Limão',
+	espremendo: 'Transformamos limão em Limonada',
+	numbers: 'O impacto Limonada',
+	testimonials: 'Depoimentos'
 }
 
 export type Case = {
@@ -48,6 +70,7 @@ export type Case = {
 	numbers: CaseNumber[]
 	testimonials: CaseTestimonial[]
 	cta: string
+	sectionTitles?: CaseSectionTitles
 }
 
 type MediaEdge = {
@@ -87,12 +110,20 @@ type ClienteNode = {
 			hasPlus: boolean | null
 			decimals: number | null
 			suffix: string | null
+			display: string | null
 		}[] | null
 		testimonials: {
 			testimonial: string | null
 			position: string | null
 			company: string | null
 		}[] | null
+		sectionTitles: {
+			limao: string | null
+			corte: string | null
+			espremendo: string | null
+			numbers: string | null
+			testimonials: string | null
+		} | null
 	} | null
 }
 
@@ -141,11 +172,19 @@ const caseFields = gql`
 				hasPlus
 				decimals
 				suffix
+				display
 			}
 			testimonials {
 				testimonial
 				position
 				company
+			}
+			sectionTitles {
+				limao
+				corte
+				espremendo
+				numbers
+				testimonials
 			}
 		}
 	}
@@ -217,14 +256,20 @@ function mapCase(node: ClienteNode): Case {
 			text: item.text ?? '',
 			hasPlus: item.hasPlus ?? false,
 			decimals: item.decimals ?? undefined,
-			suffix: item.suffix || undefined
+			suffix: item.suffix || undefined,
+			display: item.display || undefined
 		})),
 		testimonials: (fields?.testimonials ?? []).map((item) => ({
 			testimonial: item.testimonial ?? '',
 			position: item.position ?? '',
 			company: item.company ?? ''
 		})),
-		cta: fields?.cta ?? ''
+		cta: fields?.cta ?? '',
+		// ACF returns every subfield, empty ones included, so drop the blanks
+		// and let the defaults fill in
+		sectionTitles: Object.fromEntries(
+			Object.entries(fields?.sectionTitles ?? {}).filter(([, value]) => value)
+		) as CaseSectionTitles
 	}
 }
 

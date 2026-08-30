@@ -20,7 +20,7 @@ import image3 from '@/assets/img/clients-03.png'
 import image4 from '@/assets/img/clients-04.png'
 
 // wordpress
-import { getCases, getCase } from '@/lib/wordpress/getCases'
+import { getCases, getCase, defaultSectionTitles } from '@/lib/wordpress/getCases'
 
 // utils
 import { pages } from '@/utils/routes'
@@ -82,6 +82,8 @@ export default async function ClientePost({ params }: { params: Params }) {
 
 	if (!item) notFound()
 
+	const titles = { ...defaultSectionTitles, ...item.sectionTitles }
+
 	const cases = await getCases()
 	const related = cases
 		.filter((c) => c.slug !== item.slug)
@@ -109,7 +111,7 @@ export default async function ClientePost({ params }: { params: Params }) {
 									style='green-black'
 									className='title-96 mb-6'
 								>
-									O Limão
+									{titles.limao}
 								</AnimatedTitle>
 							</div>
 
@@ -134,7 +136,7 @@ export default async function ClientePost({ params }: { params: Params }) {
 									style='green-green-vivid'
 									className='title-96 mb-6'
 								>
-									O corte Limonada
+									{titles.corte}
 								</AnimatedTitle>
 							</div>
 
@@ -159,7 +161,7 @@ export default async function ClientePost({ params }: { params: Params }) {
 									style='green-black'
 									className='title-96 mb-6'
 								>
-									Espremendo o Limão
+									{titles.espremendo}
 								</AnimatedTitle>
 							</div>
 
@@ -185,11 +187,11 @@ export default async function ClientePost({ params }: { params: Params }) {
 			)}
 
 			{item.numbers.length > 0 && (
-				<Numbers items={item.numbers} />
+				<Numbers title={titles.numbers} items={item.numbers} />
 			)}
 
 			{item.testimonials.length > 0 && (
-				<Testimonials items={item.testimonials} />
+				<Testimonials title={titles.testimonials} items={item.testimonials} />
 			)}
 
 			{related.length > 0 && (
