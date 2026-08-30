@@ -21,7 +21,7 @@ type SearchParams = Promise<{ page?: string }>
 // metadata
 export const metadata: Metadata = {
 	title: 'Clientes | Limonada',
-	description: 'Descubra como grandes empresas brasileiras estão transformando comportamento e resultados com a Limonada.',
+	description: 'Descubra como empresas parceiras estão transformando comportamento e resultados com a Limonada.',
 	alternates: {
 		canonical: '/clientes'
 	}
@@ -45,7 +45,7 @@ export default async function Clientes({ searchParams }: { searchParams: SearchP
 					</h1>
 
 					<h2 className='md:text-lg text-white md:text-center md:max-w-180 md:mx-auto mt-4 md:mt-6'>
-						Descubra como grandes empresas brasileiras estão transformando comportamento e resultados com a Limonada.
+						Descubra como empresas parceiras estão transformando comportamento e resultados com a Limonada.
 					</h2>
 
 				</div>

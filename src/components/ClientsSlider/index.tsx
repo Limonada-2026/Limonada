@@ -6,52 +6,68 @@ export default function ClientsSlider() {
 
     const logos = [
         {
-            src: '/img/clients/99.svg',
-            alt: '99'
-        },
-        {
-            src: '/img/clients/banco-do-brasil.svg',
-            alt: 'Banco do Brasil'
-        },
-        {
-            src: '/img/clients/braskem.svg',
-            alt: 'Braskem'
-        },
-        {
-            src: '/img/clients/ifood.svg',
-            alt: 'iFood'
-        },
-        {
-            src: '/img/clients/john-deere.svg',
-            alt: 'John Deere'
-        },
-        {
             src: '/img/clients/kpmg.svg',
             alt: 'KPMG'
-        },
-        {
-            src: '/img/clients/metlife.svg',
-            alt: 'MetLife'
-        },
-        {
-            src: '/img/clients/o-boticario.svg',
-            alt: 'O Boticário'
         },
         {
             src: '/img/clients/rodobens.svg',
             alt: 'Rodobens'
         },
         {
+            src: '/img/clients/grupo-boticario.svg',
+            alt: 'Grupo Boticário'
+        },
+        {
+            src: '/img/clients/99.svg',
+            alt: '99'
+        },
+        {
+            src: '/img/clients/john-deere.svg',
+            alt: 'John Deere'
+        },
+        {
+            src: '/img/clients/semantix.svg',
+            alt: 'Semantix'
+        },
+        {
+            src: '/img/clients/sicredi.svg',
+            alt: 'Sicredi'
+        },
+        {
+            src: '/img/clients/stone.svg',
+            alt: 'Stone'
+        },
+        {
             src: '/img/clients/sakura.svg',
             alt: 'Sakura'
         },
         {
-            src: '/img/clients/sebrae.svg',
-            alt: 'Sebrae'
+            src: '/img/clients/renner.svg',
+            alt: 'Renner'
         },
         {
-            src: '/img/clients/senior.svg',
-            alt: 'Senior'
+            src: '/img/clients/neoenergia.svg',
+            alt: 'Neoenergia'
+        },
+        {
+            src: '/img/clients/e-core.svg',
+            alt: 'E-Core'
+        },
+        {
+            src: '/img/clients/oxford.svg',
+            alt: 'Oxford'
+        },
+        {
+            src: '/img/clients/ritmi.svg',
+            alt: 'Ritmi'
+        },
+        {
+            src: '/img/clients/rede-dor.svg',
+            alt: 'Rede D’Or'
+        },
+        {
+            src: '/img/clients/riachuelo.svg',
+            alt: 'Riachuelo'
         }
     ]
     

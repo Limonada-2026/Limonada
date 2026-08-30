@@ -153,7 +153,7 @@ export const cases: Case[] = [
         tema: 'Soft Skills',
         formato: 'Programa de Trainee',
         image: '/img/clients/featured/boticario.jpg',
-        logo: '/img/clients/o-boticario.svg',
+        logo: '/img/clients/grupo-boticario.svg',
         limao: [
             'O programa de trainees do Grupo Boticário já tinha história, talentos fortes e reconhecimento no mercado. O objetivo ia além: acelerar o desenvolvimento dos participantes para se tornarem especialistas de referência e futuros líderes da companhia.',
             'Habilidades individuais e estratégia do negócio precisavam estar fortemente conectadas.',
