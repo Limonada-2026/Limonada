@@ -103,7 +103,7 @@ export default function PinLemon() {
 							},
 							{
 								title: 'Repertório compartilhado',
-								text: 'O que se constrói em cada encontro não fica só na sala: vira ferramentas e aprendizados que os participantes levam para o dia a dia, e uma leitura de conjunto que ajuda o RH a decidir os próximos passos.'
+								text: 'O que se constrói em cada encontro não fica só na sala: vira ferramentas e aprendizados que os participantes levam para o dia a dia, e uma visão consolidada que ajuda o RH a decidir os próximos passos.'
 							}
 						].map((item, i) => (
 							<div
