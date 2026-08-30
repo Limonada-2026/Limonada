@@ -24,6 +24,10 @@ export default function FourBlocks({ items }: FourBlocksProps) {
     const scrollbarRef = useRef<HTMLDivElement>(null)
     const swiperRef = useRef<SwiperType | null>(null)
 
+    // never spread the items across more slots than there are items, otherwise
+    // a case with three blocks leaves an empty column on desktop
+    const slidesFor = (slots: number) => Math.min(slots, items.length)
+
     const handleSwiper = (swiper: SwiperType) => {
         swiperRef.current = swiper
     }
@@ -46,7 +50,7 @@ export default function FourBlocks({ items }: FourBlocksProps) {
                 <Swiper
                     modules={[Navigation, Scrollbar, FreeMode, Mousewheel]}
                     allowTouchMove={true}
-                    slidesPerView={1.5}
+                    slidesPerView={slidesFor(1.5)}
                     spaceBetween={15}
                     freeMode={true}
                     mousewheel={{
@@ -59,14 +63,14 @@ export default function FourBlocks({ items }: FourBlocksProps) {
                     onSwiper={handleSwiper}
                     breakpoints={{
                         576: {
-                            slidesPerView: 2
+                            slidesPerView: slidesFor(2)
                         },
                         992: {
-                            slidesPerView: 3,
+                            slidesPerView: slidesFor(3),
                             spaceBetween: 30
                         },
                         1200: {
-                            slidesPerView: 4,
+                            slidesPerView: slidesFor(4),
                             spaceBetween: 30
                         }
                     }}
