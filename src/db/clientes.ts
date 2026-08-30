@@ -20,6 +20,25 @@ export type CaseTestimonial = {
     company: string
 }
 
+// headings above each section of a case page. every case uses the defaults
+// below today, but the naming comes from the client's copy and varies, so a
+// case can override any of them.
+export type CaseSectionTitles = {
+    limao?: string
+    corte?: string
+    espremendo?: string
+    numbers?: string
+    testimonials?: string
+}
+
+export const defaultSectionTitles = {
+    limao: 'O Limão',
+    corte: 'O método Limão',
+    espremendo: 'Transformamos limão em Limonada',
+    numbers: 'O impacto Limonada',
+    testimonials: 'Depoimentos'
+}
+
 export type Case = {
     id: number
     slug: string
@@ -40,6 +59,7 @@ export type Case = {
     numbers: CaseNumber[]
     testimonials: CaseTestimonial[]
     cta: string
+    sectionTitles?: CaseSectionTitles
 }
 
 export const cases: Case[] = [
@@ -524,7 +544,10 @@ export const cases: Case[] = [
         formato: 'Consultoria estratégica',
         image: '/img/clients/featured/sakura.jpg',
         logo: '/img/clients/sakura.svg',
-        limao: [],
+        limao: [
+            'A Sakura Alimentos, tradicional empresa brasileira, é pioneira e líder nacional na fabricação de molho de soja (shoyu) e missô, destacando-se por utilizar processos de fermentação 100% natural e opções sem glúten à base de milho.',
+            'O desafio da Limonada foi apoiar a Sakura na sua estratégia de crescimento orientada a ampliação de portfólio baseada em uma marca forte e três marcas em desenvolvimento, e na proteção da maior categoria da companhia que é a linha de shoyu.'
+        ],
         corte: [
             'Antes de propor qualquer direcionamento, mergulhamos na realidade da Sakura. Foram entrevistas com lideranças de diferentes áreas, análise do mercado, diagnóstico organizacional e leitura das capacidades internas da empresa.',
             'Esse processo transformou diferentes percepções sobre marca, pessoas, operação, indústria, finanças e modelo de negócio em uma visão estratégica compartilhada, capaz de orientar prioridades, investimentos e decisões para os próximos anos.'

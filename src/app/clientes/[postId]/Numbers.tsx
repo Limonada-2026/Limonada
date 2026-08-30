@@ -17,6 +17,7 @@ import { ChevronLeft, ChevronRight } from '@/components/Svg/Icons'
 
 // interface
 interface NumbersProps {
+    title: string
     items: {
         hasPlus?: boolean
         number: number
@@ -27,7 +28,7 @@ interface NumbersProps {
     }[]
 }
 
-export default function Numbers({ items }: NumbersProps) {
+export default function Numbers({ title, items }: NumbersProps) {
 
     const swiperRef = useRef<SwiperType | null>(null)
 
@@ -46,7 +47,7 @@ export default function Numbers({ items }: NumbersProps) {
                 <div className='flex items-center justify-between gap-4 mb-4'>
 
                     <h2 className='text-2xl md:text-3xl xl:text-4xl font-semibold block mb-2 md:mb-4'>
-                        <AnimatedText text='Transformamos limão em limonada' />
+                        <AnimatedText text={title} />
                     </h2>
 
                     {!isLocked && (

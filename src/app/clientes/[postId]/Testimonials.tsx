@@ -16,6 +16,7 @@ import { ChevronLeft, ChevronRight } from '@/components/Svg/Icons'
 
 // interface
 interface TestimonialsProps {
+    title: string
     items: {
         testimonial: string
         position: string
@@ -23,7 +24,7 @@ interface TestimonialsProps {
     }[]
 }
 
-export default function Testimonials({ items }: TestimonialsProps) {
+export default function Testimonials({ title, items }: TestimonialsProps) {
 
     const swiperRef = useRef<SwiperType | null>(null)
 
@@ -42,7 +43,7 @@ export default function Testimonials({ items }: TestimonialsProps) {
                 <div className='flex items-center justify-between gap-4 mb-4'>
 
                     <h2 className='text-2xl md:text-3xl xl:text-4xl font-semibold block mb-2 md:mb-4'>
-                        <AnimatedText text='O impacto Limonada' />
+                        <AnimatedText text={title} />
                     </h2>
 
                     {!isLocked && (
