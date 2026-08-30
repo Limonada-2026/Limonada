@@ -25,7 +25,7 @@ export default function LemonVideo() {
 			<div className='absolute z-0 inset-0 w-full h-full max-lg:hidden'>
 				<Video
 					video='/videos/lemon-loop.mp4'
-					className='absolute z-0 top-1/2 left-1/2 -translate-1/2 w-auto h-[75%] 2xl:h-[90%] object-contain'
+					className='absolute z-0 top-1/2 left-1/2 -translate-1/2 h-[75%] 2xl:h-[90%] aspect-[1072/1920]'
 					loopRewind
 					speed={1.5}
 				/>
@@ -87,7 +87,7 @@ export default function LemonVideo() {
 
                         <Video
                             video='/videos/lemon-loop.mp4'
-                            className='absolute -z-1 top-0 -right-2 w-auto h-[95%] sm:h-full object-contain lg:hidden aspect-2/4'
+                            className='absolute -z-1 top-0 -right-2 h-[95%] sm:h-full lg:hidden aspect-2/4'
                             loopRewind
 							speed={1.5}
                         />
