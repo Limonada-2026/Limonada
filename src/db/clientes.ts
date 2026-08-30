@@ -9,6 +9,9 @@ export type CaseNumber = {
     hasPlus?: boolean
     decimals?: number
     suffix?: string
+    // shown verbatim instead of the animated counter, for figures that are not
+    // a plain number (a year range, for instance)
+    display?: string
 }
 
 export type CaseTestimonial = {
@@ -45,7 +48,7 @@ export const cases: Case[] = [
         slug: 'limonada-com-john-deere',
         client: 'John Deere',
         title: 'Uma nova perspectiva para um programa consolidado',
-        subtitle: 'Como redesenhamos uma jornada de desenvolvimento para manter a liderança preparada para os desafios de um negócio em constante transformação.',
+        subtitle: 'Como redesenhamos uma jornada de desenvolvimento internacional para manter a liderança preparada para os desafios de um negócio em constante transformação.',
         seoTitle: 'Desenvolvimento de liderança com a John Deere | Limonada',
         description: 'Como a John Deere desenvolveu 60 líderes em três países com uma jornada desenhada pela Limonada.',
         tema: 'Liderança',
@@ -58,17 +61,18 @@ export const cases: Case[] = [
             'O desafio da Limonada era construir uma jornada capaz de conectar desenvolvimento individual, estratégia de negócio e transformação organizacional. Assim, o desenvolvimento das lideranças acontecia sempre ligado aos desafios reais da operação.'
         ],
         corte: [
-            'Antes de propor qualquer mudança, ouvimos. Conversamos com RH, patrocinadores do programa e lideranças de diferentes áreas para entender o que tinha funcionado ao longo dos anos e o que já não gerava o mesmo impacto.',
+            'Antes de propor qualquer mudança, ouvimos. Mergulhamos no negócio, cultura, conversamos com lideranças estratégicas, time de pessoas e diferentes áreas do negócio para compreender de que maneira o programa poderia gerar impacto com resultados sustentáveis para o negócio.',
             'Dessas conversas nasceu um mapa de competências sobre três pilares: pensamento crítico, visão sistêmica e influência estratégica. Cada um explorado nas dimensões de indivíduo, negócio e mercado.'
         ],
         espremendo: [
             'Combinamos assessment individual, network para ampliar repertório, treinamento com curadoria de conteúdo respeitando o contexto de cada país, e projeto real para gerar movimento dentro da operação.',
-            'Os três países rodaram a trilha em paralelo, com o mesmo mapa de competências adaptado à realidade local de cada um.'
+            'Os três países rodaram a trilha em paralelo, com o mesmo mapa de competências adaptado à realidade local de cada um.',
+            'Os resultados foram projetos consistentes que aportaram valor para o negócio, lideranças com alto repertório para conduzir mudanças estratégicas e um grupo altamente engajado para liderar resultados e crescimento da empresa.'
         ],
         blocks: [
             { title: 'Assessment', text: 'Entendimento completo do indivíduo' },
             { title: 'Network', text: 'Conexão que amplia repertório' },
-            { title: 'Treinamento', text: 'Curadoria de conteúdo que respeita o contexto' },
+            { title: 'Treinamento', text: 'Curadoria de conteúdo que respeita o contexto e resultados esperados para o negócio' },
             { title: 'Projeto', text: 'Aprendizagem prática que gera movimento' }
         ],
         numbers: [
@@ -79,8 +83,8 @@ export const cases: Case[] = [
         ],
         testimonials: [
             {
-                testimonial: 'Transformadora. Tive a oportunidade de conhecer e entender outras áreas muito distantes da minha, mas fundamentais para o negócio que deveriam estar muito próximas.',
-                position: 'Colaborador',
+                testimonial: 'Contar com o apoio da Limonada na reestruturação desse programa tão relevante para a John Deere foi essencial. A equipe demonstrou disponibilidade, atitude positiva e profundo know-how, fatores que impulsionaram a qualidade e o sucesso da entrega.',
+                position: 'Time Talent & Leadership Development',
                 company: 'John Deere'
             },
             {
@@ -110,8 +114,7 @@ export const cases: Case[] = [
         corte: [
             'Antes de falar sobre metodologia, começamos entendendo o problema.',
             'Conduzimos entrevistas individuais com os sponsors de cada iniciativa para compreender objetivos, contexto, nível de complexidade e expectativas de resultado.',
-            'A partir desse diagnóstico, foram estruturados cinco desafios estratégicos voltados à eficiência, inovação e desburocratização do negócio.',
-            'Refinamos o escopo de cada desafio, equilibramos sua complexidade e garantimos que todos os grupos tivessem espaço para investigar problemas, explorar alternativas e construir recomendações capazes de influenciar decisões da companhia.'
+            'A partir desse diagnóstico, foram estruturados cinco desafios estratégicos voltados à eficiência, inovação e desburocratização do negócio. E então desenhada a jornada para garantir que os participantes tivessem espaço para investigar problemas, explorar alternativas e construir recomendações capazes de influenciar decisões da companhia.'
         ],
         espremendo: [
             'A partir do diagnóstico, estruturamos uma jornada que conectava desenvolvimento de liderança à aplicação prática em desafios estratégicos da Neoenergia.'
@@ -126,16 +129,16 @@ export const cases: Case[] = [
             { number: 27, text: 'participantes' },
             { number: 36, text: 'horas de treinamento' },
             { number: 5, text: 'projetos de inovação apresentados e implementados no negócio' },
-            { number: 9.74, decimals: 2, text: 'nota média de avaliação do programa' }
+            { number: 9.7, decimals: 1, text: 'nota de avaliação do programa' }
         ],
         testimonials: [
             {
-                testimonial: 'Conteúdo bem rico a respeito de gestão de projeto. Conseguimos nos preparar para os escopos que virão já nos familiarizando com os temas.',
-                position: 'Líder',
+                testimonial: 'A parceria da Limonada foi muito importante ao longo da jornada de gestão de projetos para fazer os participantes saírem da zona de conforto, se desafiarem e alcançarem resultado de sucesso. O ponto mais alto é a capacidade de compreensão da necessidade do negócio e reação com propostas e sugestões com o que fez sentido.',
+                position: 'Talento, Cultura e Experiência do Colaborador',
                 company: 'Neoenergia'
             },
             {
-                testimonial: 'A parceria da Limonada foi muito importante ao longo da jornada de gestão de projetos para fazer os participantes saírem da zona de conforto, se desafiarem e alcançarem resultado de sucesso.',
+                testimonial: 'Conteúdo bem rico a respeito de gestão de projeto. Conseguimos nos preparar para os escopos que virão já nos familiarizando com os temas.',
                 position: 'Líder',
                 company: 'Neoenergia'
             }
@@ -161,7 +164,7 @@ export const cases: Case[] = [
         ],
         corte: [
             'Antes de desenhar a jornada, mergulhamos no que o Grupo Boticário esperava dos seus futuros especialistas e líderes. Conversamos com o time de Desenvolvimento de Talentos e com lideranças de diferentes áreas para transformar expectativas, desafios e percepções em comportamentos concretos.',
-            'Foram definidas cinco competências universais: Influência Multifuncional, Adaptabilidade, Foco em Execução, Resolução de Problemas e Visão Holística de Negócio e Alavancas de Valor.',
+            'Foram escolhidas cinco competências universais para serem trabalhadas ao longo do programa: Influência Multifuncional, Adaptabilidade, Foco em Execução, Resolução de Problemas e Visão Holística de Negócio e Alavancas de Valor.',
             'Para cada uma delas, traduzimos os comportamentos esperados e os objetivos de negócio que a trilha deveria desenvolver, garantindo que cada encontro contribuísse para gerar impacto real nas áreas em que os trainees atuariam.'
         ],
         espremendo: [
@@ -184,6 +187,11 @@ export const cases: Case[] = [
         ],
         testimonials: [
             {
+                testimonial: 'A Limonada tem um equilíbrio ótimo entre a teoria e a experiência real. A teoria é importante, mas sozinha pode ser vaga e não engaja. A experiência é importante, mas sozinha não cria modelos mentais para replicar. Já tive experiências anteriores com ambos os cenários, por isso digo que esse é o grande diferencial da Limonada pra mim. A experiência durante as aulas tem pouca ou nenhuma fricção, o que é especialmente relevante no contexto remoto.',
+                position: 'Programas Corporativos',
+                company: 'Grupo Boticário'
+            },
+            {
                 testimonial: 'Me sinto mais preparada para lidar com conversas difíceis e situações de conflito. As metodologias mostradas me trouxeram clareza para agir e gerar mudanças nas minhas relações profissionais.',
                 position: 'Trainee',
                 company: 'Grupo Boticário'
@@ -191,11 +199,6 @@ export const cases: Case[] = [
             {
                 testimonial: 'O treinamento reverberou de uma forma muito positiva em mim e no meu momento de vida e carreira.',
                 position: 'Trainee',
-                company: 'Grupo Boticário'
-            },
-            {
-                testimonial: 'A Limonada tem um equilíbrio ótimo entre a teoria e a experiência real. A teoria é importante, mas sozinha pode ser vaga e não engaja. A experiência é importante, mas sozinha não cria modelos mentais para replicar. Já tive experiências anteriores com ambos os cenários, por isso digo que esse é o grande diferencial da Limonada pra mim.',
-                position: 'Profissional Programas Corporativos',
                 company: 'Grupo Boticário'
             }
         ],
@@ -220,30 +223,29 @@ export const cases: Case[] = [
         ],
         corte: [
             'Antes de desenhar a jornada, buscamos um desafio capaz de provocar exatamente os comportamentos que queríamos desenvolver nos participantes.',
-            'Conversamos com lideranças de inovação e de diferentes áreas da Rodobens, analisamos o mapa estratégico da companhia e identificamos uma iniciativa prioritária que reunia o nível certo de complexidade, colaboração e potencial de impacto.',
-            'A partir desse desafio, desenhamos toda a jornada. Cada ferramenta, workshop e mentoria foi pensado para ajudar trainees e starts a desenvolver uma mentalidade mais investigativa, experimental e orientada à geração de valor para o negócio.'
+            'Conversamos com lideranças de inovação e de diferentes áreas da Rodobens para entender mais sobre a cultura e desafios. Analisamos o mapa estratégico da companhia e identificamos uma iniciativa prioritária que reunia o nível certo de complexidade, colaboração e potencial de impacto para ser trabalhada pelos participantes ao longo da jornada.',
+            'Cada ferramenta, workshop e mentoria foi pensado para ajudar trainees e starts a desenvolver uma mentalidade mais investigativa, experimental e orientada à geração de valor para o negócio.'
         ],
         espremendo: [
-            'Com o desafio definido, estruturamos uma jornada de seis meses que combinou diagnóstico, desenvolvimento e experimentação. Cada etapa preparava os participantes para compreender o problema, construir soluções e validá-las junto às lideranças responsáveis.'
+            'Com o desafio definido, estruturamos uma jornada de sete meses que combinou diagnóstico, desenvolvimento e experimentação. Cada etapa preparava os participantes para compreender o problema, construir soluções e validá-las junto às lideranças responsáveis com foco em implementação real no negócio.',
+            'O ciclo fechou onde começou: na mesa do líder que trouxe o problema, agora com recomendações concretas construídas pelos próprios trainees e starts.'
         ],
         blocks: [
             { title: 'Treinamento', text: 'Encontros com especialistas combinando conceitos de inovação a ferramentas de Problem Thinking e Design Thinking para desenvolvimento de soluções para testagem' },
             { title: 'Mentoria', text: 'Mentorias para sustentar o desenvolvimento do projeto ao longo da trilha' },
-            { title: 'Projeto', text: 'Desafio real do negócio desenvolvido em grupo, com protótipo testado e apresentado a uma banca avaliadora para alta liderança da organização' },
-            { title: 'Resultado', text: 'O ciclo fechou onde começou: na mesa do líder que trouxe o problema, agora com recomendações concretas construídas pelos próprios trainees e starts.' }
+            { title: 'Projeto', text: 'Desafio real do negócio desenvolvido em grupo, com protótipo testado e apresentado a uma banca avaliadora para alta liderança da organização' }
         ],
         numbers: [
             { number: 9, text: 'trainees da área de inovação da Rodobens e starts' },
             { number: 7, text: 'meses de trilha' },
             { number: 51, text: 'horas de treinamento' },
             { number: 1, text: 'desafio real do mapa estratégico da Rodobens' },
-            { number: 2, text: 'iniciativas desenvolvidas para implementação no negócio' },
             { number: 9.9, decimals: 1, text: 'avaliação média da jornada' }
         ],
         testimonials: [
             {
-                testimonial: 'Cada encontro é um novo aprendizado. Tem sido muito enriquecedor e contribuído para meu crescimento principalmente profissional.',
-                position: 'Participante do Innovation Makers',
+                testimonial: 'O que mais se destacou positivamente foi o alto nível de engajamento e participação dos Trainees e Starts ao longo da trilha, mesmo sendo uma experiência online. A forma como os conteúdos foram apresentados, aliada à condução dinâmica e interativa dos facilitadores, criou um ambiente acolhedor e motivador, que estimulou a troca entre os participantes e manteve o interesse ativo durante os treinamentos.',
+                position: 'Desenvolvimento Organizacional',
                 company: 'Rodobens'
             },
             {
@@ -252,8 +254,8 @@ export const cases: Case[] = [
                 company: 'Rodobens'
             },
             {
-                testimonial: 'O que mais se destacou positivamente foi o alto nível de engajamento e participação dos Trainees e Starts ao longo da trilha, mesmo sendo uma experiência online, o que sabemos que pode ser bastante desafiador. A forma como os conteúdos foram apresentados, aliada à condução dinâmica e interativa dos facilitadores, criou um ambiente acolhedor e motivador, que estimulou a troca entre os participantes e manteve o interesse ativo durante os treinamentos.',
-                position: 'Thais Genova, Desenvolvimento Organizacional',
+                testimonial: 'Cada encontro é um novo aprendizado. Tem sido muito enriquecedor e contribuído para meu crescimento principalmente profissional.',
+                position: 'Participante do Innovation Makers',
                 company: 'Rodobens'
             }
         ],
@@ -278,8 +280,8 @@ export const cases: Case[] = [
         ],
         corte: [
             'Para desenhar a jornada, buscamos compreender o contexto da liderança dentro da Stone.',
-            'Construímos o programa em parceria com a equipe de Educação Corporativa, validando cada conteúdo e conectando os encontros aos desafios reais vividos pelas lideranças. Casos do dia a dia passaram a orientar as discussões, tornando o aprendizado imediatamente aplicável à rotina dos participantes.',
-            'A partir desse diagnóstico, desenhamos uma jornada que equilibrava desenvolvimento individual, troca entre pares e aplicação prática, respeitando o momento de maturidade dessas lideranças e os desafios da organização.'
+            'Construímos o programa em parceria com a equipe de Educação Corporativa, validando cada conteúdo e conectando os encontros aos desafios reais vividos pelas lideranças. Casos do dia a dia, dados de pesquisas passaram a orientar as discussões, tornando o aprendizado imediatamente aplicável à rotina dos participantes.',
+            'A partir desse diagnóstico e com alta curadoria alinhada a cultura e resultados esperados da empresa, desenhamos uma jornada que equilibrava desenvolvimento individual, troca entre pares e aplicação prática, respeitando o momento de maturidade dessas lideranças e os desafios da organização.'
         ],
         espremendo: [
             'A jornada foi construída para que cada conceito pudesse ser imediatamente aplicado na rotina das lideranças.'
@@ -293,16 +295,16 @@ export const cases: Case[] = [
         numbers: [
             { number: 250, text: 'participantes' },
             { number: 48, text: 'horas de treinamento' },
-            { number: 100, suffix: '%', text: 'recomendariam o programa' }
+            { number: 100, suffix: '%', text: 'recomendam o programa' }
         ],
         testimonials: [
             {
-                testimonial: 'Conteúdo muito bom. Ajudou a dar clareza sobre como evoluir e trouxe ferramentas para apoiar essa evolução. As trocas também foram muito importantes para compartilhar boas práticas e desafios.',
-                position: 'Líder',
+                testimonial: 'A Limonada joga junto - desde o discovery das necessidades até a parte da solução. Busca mergulhar no negócio, cultura, entender exemplos reais pra trazer o melhor conteúdo e discussão. As facilitadoras possuem uma didática incrível (os números não mentem) e são genuínas - querem que os participantes extraiam o melhor.',
+                position: 'Time Educação Corporativa',
                 company: 'Stone'
             },
             {
-                testimonial: 'Treinamento muito importante. Me fez refletir sobre como estou atuando hoje e abriu minha cabeça para muitas oportunidades de evolução.',
+                testimonial: 'Conteúdo muito bom. Ajudou a dar clareza sobre como evoluir e trouxe ferramentas para apoiar essa evolução. As trocas também foram muito importantes para compartilhar boas práticas e desafios.',
                 position: 'Líder',
                 company: 'Stone'
             }
@@ -322,17 +324,17 @@ export const cases: Case[] = [
         image: '/img/clients/featured/sicredi.jpg',
         logo: '/img/clients/sicredi.svg',
         limao: [
-            'O Centro de Serviços Compartilhados do Sicredi reúne profissionais altamente especializados, responsáveis por sustentar operações críticas que impactam centenas de agências e milhares de colaboradores.',
+            'O Sicredi reúne profissionais altamente especializados, responsáveis por sustentar operações críticas que impactam centenas de agências, milhares de colaboradores e clientes.',
             'Nesse contexto, excelência técnica é indispensável. Mas liderar exige mais do que conhecimento sobre processos, compliance e indicadores. É preciso desenvolver a capacidade de influenciar, dar feedback, conduzir conversas difíceis, criar segurança psicológica e transformar conhecimento em performance.',
             'O desafio da Limonada era construir uma jornada de desenvolvimento capaz de fortalecer essas competências ao longo do tempo, preparando líderes e futuros líderes para apoiar pessoas com a mesma excelência com que sustentam o negócio.'
         ],
         corte: [
             'O diagnóstico inicial revelou um time que conhecia profundamente o negócio e construía relações de confiança com facilidade, mas que precisava evoluir em competências de gestão, desenvolvimento de pessoas e geração de performance. Esse entendimento orientou toda a arquitetura da jornada e definiu as prioridades de desenvolvimento.',
             'Cada etapa prepara a próxima: primeiro fortalecemos os fundamentos da liderança, depois ampliamos repertório para inovação, desenvolvemos inteligência emocional para lidar com a pressão e, por fim, aprofundamos ferramentas para gestão e desenvolvimento de equipes.',
-            'Ao longo de dois anos, ampliamos o programa de duas para seis turmas, consolidando uma trilha contínua que conecta liderança, inovação, inteligência emocional e gestão da performance.'
+            'Ao longo de dois anos, ampliamos o programa, consolidando uma trilha contínua que conecta liderança, inovação, inteligência emocional e gestão da performance.'
         ],
         espremendo: [
-            'A trilha rodou em módulos sequenciais, cada um construindo sobre o anterior.'
+            'A trilha rodou em módulos sequenciais, cada um construindo sobre o anterior:'
         ],
         blocks: [
             { title: 'Gestão', text: 'Ferramentas para transformar conhecimento técnico em capacidade de desenvolver pessoas' },
@@ -341,9 +343,23 @@ export const cases: Case[] = [
             { title: 'Performance', text: 'Rituais, indicadores e desenvolvimento contínuo para gerar resultados sustentáveis' }
         ],
         numbers: [
-            { number: 2, text: 'anos de parceria' }
+            { number: 2, text: 'anos de parceria' },
+            { number: 100, hasPlus: true, text: 'colaboradores' },
+            { number: 4, text: 'competências' },
+            { number: 100, suffix: '%', text: 'recomendam o programa' }
         ],
-        testimonials: [],
+        testimonials: [
+            {
+                testimonial: 'Foi um excelente treinamento, trazendo ferramentas práticas e aplicáveis para o dia a dia da gestão. Foi uma formação enriquecedora, com muitos insights que poderão ser aplicados na rotina de trabalho.',
+                position: 'Colaborador',
+                company: 'Sicredi'
+            },
+            {
+                testimonial: 'A Limonada ofereceu uma excelente experiência de aprendizado ao longo do programa. O time elogiou muito e os comentários na avaliação reforçam isso. Parabéns Limonada!',
+                position: 'Time Pessoas e Cultura, Educação Corporativa',
+                company: 'Sicredi'
+            }
+        ],
         cta: 'Seu desafio é desenvolver liderança em um time técnico, sem perder o olhar humano?'
     },
     {
@@ -370,10 +386,10 @@ export const cases: Case[] = [
             'Combinamos planejamento estratégico, desenvolvimento da liderança, inovação aplicada e governança para criar uma transformação consistente ao longo da jornada.'
         ],
         blocks: [
-            { title: 'Strategy Maker', text: 'Construção colaborativa da visão Oxford 2030 e definição dos caminhos estratégicos do negócio' },
-            { title: 'Culture Strategy', text: 'Fortalecimento da cultura organizacional e desenvolvimento de lideranças capazes de transformar valores em atitudes' },
-            { title: 'Innovation Makers', text: 'Jornada prática que conecta estratégia, transformação digital e habilidades de execução, transformando oportunidades identificadas em projetos reais de negócio' },
-            { title: 'Comitê S&OP', text: 'Estrutura de governança que fortalece o planejamento integrado entre áreas, sustentando previsibilidade e decisão estratégica ao longo do tempo' }
+            { title: 'Strategy Maker', text: 'Construção colaborativa da visão Oxford 2030 e definição dos caminhos estratégicos do negócio. Apoiamos a alta liderança na definição das principais alavancas de crescimento, com decisões sobre estratégia de produto, fornecedores, parceiros globais e fortalecimento de processos críticos. A partir dos workshops, construímos um mapa estratégico simples e objetivo, priorizamos as iniciativas com maior potencial de impacto e definimos metas e indicadores para acompanhar sua execução. Também apoiamos a estratégia de comunicação e o cascateamento do plano para toda a organização, garantindo alinhamento e clareza sobre os próximos passos.' },
+            { title: 'Culture Strategy', text: 'O desafio foi fortalecer a cultura organizacional e desenvolver lideranças capazes de transformar valores em atitudes. Em um momento de transformação, a Oxford precisava preservar elementos históricos de sua cultura, ao mesmo tempo em que incorporava novos comportamentos alinhados à visão estratégica. Por isso, conectamos cultura e estratégia, traduzindo os valores da companhia em comportamentos e atitudes capazes de sustentar a implementação da nova estratégia.' },
+            { title: 'Innovation Makers', text: 'Jornada prática que conecta estratégia, transformação digital e execução para transformar oportunidades em projetos reais de negócio. A partir da estratégia, mapeamos projetos com alto potencial e selecionamos novos líderes da Oxford para desenvolver essas oportunidades. Ao longo do Innovation Makers, eles utilizaram competências e ferramentas de inovação para criar soluções sustentáveis, financeiramente viáveis e, principalmente, conectadas à estratégia do negócio.' },
+            { title: 'Comitê S&OP', text: 'Estrutura de governança que fortalece o planejamento integrado entre áreas, trazendo mais previsibilidade e qualidade para a tomada de decisão. Durante 8 meses, a Limonada apoiou a evolução do processo de S&OP, trazendo melhores práticas, acompanhando o comitê e preparando as lideranças da Oxford para dar continuidade ao modelo. O trabalho gerou ganhos de processo e contribuiu para indicadores estratégicos como fluxo de caixa, eficiência logística e gestão de portfólio.' }
         ],
         numbers: [
             { number: 66, text: 'participantes' },
@@ -420,7 +436,7 @@ export const cases: Case[] = [
             'Assim, cada etapa reforçava a seguinte: o autoconhecimento fortalecia as relações, as competências ampliavam a capacidade de atuação e a prática consolidava o aprendizado.'
         ],
         espremendo: [
-            'Ao longo da jornada, combinamos desenvolvimento humano, conhecimento técnico e aprendizagem prática para preparar os participantes para os desafios da Semantix.'
+            'Ao longo da jornada, combinamos desenvolvimento humano, conhecimento técnico e aprendizagem prática para preparar os participantes para os desafios da Semantix. O resultado foi um grupo preparado para aportar valor com assertividade e repertório para o negócio.'
         ],
         blocks: [
             { title: 'Assessment', text: 'Autoconhecimento como base para o desenvolvimento ao longo de toda a jornada' },
@@ -436,12 +452,12 @@ export const cases: Case[] = [
         ],
         testimonials: [
             {
-                testimonial: 'Muito importante para o autoconhecimento e para compartilhar com os outros estagiários. Dá um sentimento de conexão muito mais real e palpável.',
-                position: 'Estagiário',
+                testimonial: 'A Limonada elevou o conceito da palavra parceria. Nos acompanharam nessa jornada do início ao fim, apoiando na construção das trilhas, na escolha de professores de excelência e na entrega de conteúdos de alta qualidade. Estiveram conosco a cada passo do processo. Parceiros incríveis!',
+                position: 'Time Learning & Development',
                 company: 'Semantix'
             },
             {
-                testimonial: 'O insight que mais me marcou foi lembrar que, apesar de executar a parte técnica muito bem, a IA nunca será capaz de escutar o outro, compreender e se importar com os sentimentos dos seres humanos.',
+                testimonial: 'Muito importante para o autoconhecimento e para compartilhar com os outros estagiários. Dá um sentimento de conexão muito mais real e palpável.',
                 position: 'Estagiário',
                 company: 'Semantix'
             }
@@ -473,14 +489,14 @@ export const cases: Case[] = [
         ],
         blocks: [
             { title: 'Diagnóstico', text: 'Entrevistas e escuta ativa para compreender desafios do negócio e da jornada do cliente' },
-            { title: 'Curadoria', text: 'Conteúdo fundamentado em pesquisas, cases e metodologias de Customer Experience' },
-            { title: 'Dinâmicas', text: 'Exercícios práticos para analisar a jornada do cliente e identificar oportunidades reais de melhoria' },
+            { title: 'Curadoria', text: 'Nosso processo de curadoria permitiu que trouxéssemos as referências mais modernas sobre gestão e operação da experiência do cliente. As referências de empresas foram indicadas pelos próprios participantes, o que gerou uma proximidade grande e uma facilidade no entendimento dos temas. Empresas como Amazon, Nubank, Ifood entre outras, foram aquelas que nos aprofundamos para oferecer a experiência adequada para os participantes.' },
+            { title: 'Dinâmicas', text: 'Exercícios práticos para analisar a jornada do cliente e identificar oportunidades reais de melhora' },
             { title: 'Embaixadores', text: 'Desenvolvimento de profissionais preparados para disseminar a cultura de CX em toda a organização' }
         ],
         numbers: [
-            { number: 33, text: 'participantes' },
+            { number: 33, text: 'embaixadores de CX' },
             { number: 21, text: 'horas de formação' },
-            { number: 9.5, decimals: 1, text: 'de satisfação' }
+            { number: 5, text: 'iniciativas reais desenvolvidas para implementação no negócio' }
         ],
         testimonials: [
             {
@@ -517,12 +533,13 @@ export const cases: Case[] = [
             'Transformamos diagnóstico em estratégia e estratégia em plano de ação.'
         ],
         blocks: [
-            { title: 'Diagnóstico', text: 'Entrevistas, análise SWOT e leitura do ambiente interno e externo para identificar oportunidades, riscos e capacidades do negócio' },
-            { title: 'Estratégia', text: 'Construção colaborativa da proposta de valor, mapa estratégico e prioridades para o crescimento da companhia' },
-            { title: 'Execução', text: 'Definição de projetos prioritários, OKRs, indicadores e governança para acompanhar a implementação da estratégia' },
-            { title: 'Governança', text: 'Estruturação de comitês que sustentam o acompanhamento contínuo das iniciativas e das decisões da liderança' }
+            { title: 'Diagnóstico', text: 'Com profundidade realizamos entrevistas, análise SWOT e leitura do ambiente interno e externo para identificar oportunidades, riscos e capacidades do negócio. A partir da perspectiva do método Limão, o LEARN é fase essencial para a nossa customização. A Sakura é única, e foi dessa maneira que a Limonada iniciou esse projeto.' },
+            { title: 'Estratégia', text: 'A Sakura é uma empresa de gestão familiar, com Conselho e parte relevante da liderança compostos por familiares. Por isso, conduzimos a construção estratégica considerando cuidadosamente essa dinâmica. Ao longo de 40 horas de workshops, avaliamos diferentes caminhos para o crescimento da companhia, considerando impactos setoriais, financeiros e de portfólio, além das competências estratégicas necessárias para sustentar as escolhas. O trabalho resultou em um mapa estratégico coerente, projetos de alto impacto e indicadores e metas factíveis para orientar a execução.' },
+            { title: 'Execução', text: 'Definição de projetos prioritários, OKRs, indicadores e governança para acompanhar a implementação da estratégia. Para que isso fosse claro para toda a organização, a Limonada cascateou do planejamento estratégico os principais indicadores de mensuração da execução da estratégia.' },
+            { title: 'Governança', text: 'Estruturação de comitês que sustentam o acompanhamento contínuo das iniciativas e das decisões da liderança. A Limonada liderou, durante 8 meses, 3 comitês de execução: Comitê de Marketing, Comitê Industrial e Comitê de Resultados. O objetivo é fortalecer a governança por meio do monitoramento da implementação da estratégia.' }
         ],
         numbers: [
+            { number: 2025, display: '2025-2027', text: 'mapa estratégico e visão futura da companhia' },
             { number: 42, text: 'líderes conectados à execução da estratégia' },
             { number: 5, text: 'comitês estratégicos implementados' },
             { number: 9, text: 'projetos estratégicos priorizados' }

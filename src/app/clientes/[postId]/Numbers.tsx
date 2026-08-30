@@ -22,6 +22,7 @@ interface NumbersProps {
         number: number
         decimals?: number
         suffix?: string
+        display?: string
         text: string
     }[]
 }
@@ -112,10 +113,12 @@ export default function Numbers({ items }: NumbersProps) {
 
                                 <h2 className='text-[5rem] md:text-[6rem] lg:text-[8rem] xl:text-[10rem] leading-[1.1] text-green-vivid'>
                                     {item.hasPlus && '+'}
-                                    <Counter
-                                        number={item.number}
-                                        decimals={item.decimals}
-                                    />
+                                    {item.display ? item.display : (
+                                        <Counter
+                                            number={item.number}
+                                            decimals={item.decimals}
+                                        />
+                                    )}
                                     {item.suffix}
                                 </h2>
 
