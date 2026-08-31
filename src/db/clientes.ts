@@ -90,10 +90,10 @@ export const cases: Case[] = [
             'Os resultados foram projetos consistentes que aportaram valor para o negócio, lideranças com alto repertório para conduzir mudanças estratégicas e um grupo altamente engajado para liderar resultados e crescimento da empresa.'
         ],
         blocks: [
-            { title: 'Assessment', text: 'Entendimento completo do indivíduo' },
-            { title: 'Network', text: 'Conexão que amplia repertório' },
-            { title: 'Treinamento', text: 'Curadoria de conteúdo que respeita o contexto e resultados esperados para o negócio' },
-            { title: 'Projeto', text: 'Aprendizagem prática que gera movimento' }
+            { title: 'Assessment', text: 'Entendimento completo do indivíduo.' },
+            { title: 'Network', text: 'Conexão que amplia repertório.' },
+            { title: 'Treinamento', text: 'Curadoria de conteúdo que respeita o contexto e resultados esperados para o negócio.' },
+            { title: 'Projeto', text: 'Aprendizagem prática que gera movimento.' }
         ],
         numbers: [
             { number: 60, text: 'participantes' },
@@ -140,10 +140,10 @@ export const cases: Case[] = [
             'A partir do diagnóstico, estruturamos uma jornada que conectava desenvolvimento de liderança à aplicação prática em desafios estratégicos da Neoenergia.'
         ],
         blocks: [
-            { title: 'Skills', text: 'Base de habilidades para liderança inovadora, colaboração e comunicação assertiva' },
-            { title: 'Prática', text: 'Gestão de projetos aplicado às cinco iniciativas estratégicas do negócio' },
-            { title: 'Mentoria', text: 'Acompanhamento em grupo com foco nos desafios de cada frente como gestores de projetos' },
-            { title: 'Influência', text: 'Storytelling e comunicação executiva para o pitch final à liderança' }
+            { title: 'Skills', text: 'Base de habilidades para liderança inovadora, colaboração e comunicação assertiva.' },
+            { title: 'Prática', text: 'Gestão de projetos aplicado às cinco iniciativas estratégicas do negócio.' },
+            { title: 'Mentoria', text: 'Acompanhamento em grupo com foco nos desafios de cada frente como gestores de projetos.' },
+            { title: 'Influência', text: 'Storytelling e comunicação executiva para o pitch final à liderança.' }
         ],
         numbers: [
             { number: 27, text: 'participantes' },
@@ -193,10 +193,10 @@ export const cases: Case[] = [
             'Além dos encontros de desenvolvimento, acompanhamos continuamente os projetos conduzidos pelos trainees em suas áreas para ampliar o impacto das entregas.'
         ],
         blocks: [
-            { title: 'Assessment', text: 'Mapeamento de maturidade individual nas cinco competências' },
-            { title: 'Treinamento', text: 'Encontros com especialistas e owner do projeto' },
-            { title: 'Mentoria', text: 'Mentorias coletivas para sustentar a aplicação prática' },
-            { title: 'Projeto', text: 'Projetos reais acompanhados junto aos trainees' }
+            { title: 'Assessment', text: 'Mapeamento de maturidade individual nas cinco competências.' },
+            { title: 'Treinamento', text: 'Encontros com especialistas e owner do projeto.' },
+            { title: 'Mentoria', text: 'Mentorias coletivas para sustentar a aplicação prática.' },
+            { title: 'Projeto', text: 'Projetos reais acompanhados junto aos trainees.' }
         ],
         numbers: [
             { number: 10, text: 'trainees em formação' },
@@ -251,9 +251,9 @@ export const cases: Case[] = [
             'O ciclo fechou onde começou: na mesa do líder que trouxe o problema, agora com recomendações concretas construídas pelos próprios trainees e starts.'
         ],
         blocks: [
-            { title: 'Treinamento', text: 'Encontros com especialistas combinando conceitos de inovação a ferramentas de Problem Thinking e Design Thinking para desenvolvimento de soluções para testagem' },
-            { title: 'Mentoria', text: 'Mentorias para sustentar o desenvolvimento do projeto ao longo da trilha' },
-            { title: 'Projeto', text: 'Desafio real do negócio desenvolvido em grupo, com protótipo testado e apresentado a uma banca avaliadora para alta liderança da organização' }
+            { title: 'Treinamento', text: 'Encontros com especialistas combinando conceitos de inovação a ferramentas de Problem Thinking e Design Thinking para desenvolvimento de soluções para testagem.' },
+            { title: 'Mentoria', text: 'Mentorias para sustentar o desenvolvimento do projeto ao longo da trilha.' },
+            { title: 'Projeto', text: 'Desafio real do negócio desenvolvido em grupo, com protótipo testado e apresentado a uma banca avaliadora para alta liderança da organização.' }
         ],
         numbers: [
             { number: 9, text: 'trainees da área de inovação da Rodobens e starts' },
@@ -307,10 +307,10 @@ export const cases: Case[] = [
             'A jornada foi construída para que cada conceito pudesse ser imediatamente aplicado na rotina das lideranças.'
         ],
         blocks: [
-            { title: 'Conexão', text: 'Desenvolvimento da escuta, presença e construção de relações de confiança' },
-            { title: 'Comunicação', text: 'Ferramentas para conversas difíceis, feedbacks, influência e comunicação assertiva' },
-            { title: 'Prática', text: 'Peer coaching, estudos de caso e situações reais trazidas pelos próprios líderes durante os encontros' },
-            { title: 'Transferência', text: 'Materiais preparatórios, conteúdos complementares e atividades práticas entre as aulas para fortalecer a aplicação do aprendizado' }
+            { title: 'Conexão', text: 'Desenvolvimento da escuta, presença e construção de relações de confiança.' },
+            { title: 'Comunicação', text: 'Ferramentas para conversas difíceis, feedbacks, influência e comunicação assertiva.' },
+            { title: 'Prática', text: 'Peer coaching, estudos de caso e situações reais trazidas pelos próprios líderes durante os encontros.' },
+            { title: 'Transferência', text: 'Materiais preparatórios, conteúdos complementares e atividades práticas entre as aulas para fortalecer a aplicação do aprendizado.' }
         ],
         numbers: [
             { number: 250, text: 'participantes' },
@@ -357,10 +357,10 @@ export const cases: Case[] = [
             'A trilha rodou em módulos sequenciais, cada um construindo sobre o anterior:'
         ],
         blocks: [
-            { title: 'Gestão', text: 'Ferramentas para transformar conhecimento técnico em capacidade de desenvolver pessoas' },
-            { title: 'Influência', text: 'Práticas de comunicação, feedback e conversas difíceis para fortalecer relações de confiança' },
-            { title: 'Inovação', text: 'Mentalidade de experimentação e visão sistêmica para identificar oportunidades de melhoria' },
-            { title: 'Performance', text: 'Rituais, indicadores e desenvolvimento contínuo para gerar resultados sustentáveis' }
+            { title: 'Gestão', text: 'Ferramentas para transformar conhecimento técnico em capacidade de desenvolver pessoas.' },
+            { title: 'Influência', text: 'Práticas de comunicação, feedback e conversas difíceis para fortalecer relações de confiança.' },
+            { title: 'Inovação', text: 'Mentalidade de experimentação e visão sistêmica para identificar oportunidades de melhoria.' },
+            { title: 'Performance', text: 'Rituais, indicadores e desenvolvimento contínuo para gerar resultados sustentáveis.' }
         ],
         numbers: [
             { number: 2, text: 'anos de parceria' },
@@ -459,10 +459,10 @@ export const cases: Case[] = [
             'Ao longo da jornada, combinamos desenvolvimento humano, conhecimento técnico e aprendizagem prática para preparar os participantes para os desafios da Semantix. O resultado foi um grupo preparado para aportar valor com assertividade e repertório para o negócio.'
         ],
         blocks: [
-            { title: 'Assessment', text: 'Autoconhecimento como base para o desenvolvimento ao longo de toda a jornada' },
-            { title: 'Soft Skills', text: 'Comunicação, protagonismo, colaboração e inteligência emocional para acelerar o início da carreira' },
-            { title: 'Hard Skills', text: 'Ferramentas e metodologias conectadas aos desafios de tecnologia e inteligência artificial' },
-            { title: 'Projeto', text: 'Aplicação prática do aprendizado em um desafio real apresentado à liderança da empresa' }
+            { title: 'Assessment', text: 'Autoconhecimento como base para o desenvolvimento ao longo de toda a jornada.' },
+            { title: 'Soft Skills', text: 'Comunicação, protagonismo, colaboração e inteligência emocional para acelerar o início da carreira.' },
+            { title: 'Hard Skills', text: 'Ferramentas e metodologias conectadas aos desafios de tecnologia e inteligência artificial.' },
+            { title: 'Projeto', text: 'Aplicação prática do aprendizado em um desafio real apresentado à liderança da empresa.' }
         ],
         numbers: [
             { number: 30, text: 'participantes' },
@@ -508,10 +508,10 @@ export const cases: Case[] = [
             'Combinamos diagnóstico, aprendizagem aplicada, discussões sobre desafios reais e construção coletiva para transformar Customer Experience em prática.'
         ],
         blocks: [
-            { title: 'Diagnóstico', text: 'Entrevistas e escuta ativa para compreender desafios do negócio e da jornada do cliente' },
+            { title: 'Diagnóstico', text: 'Entrevistas e escuta ativa para compreender desafios do negócio e da jornada do cliente.' },
             { title: 'Curadoria', text: 'Nosso processo de curadoria permitiu que trouxéssemos as referências mais modernas sobre gestão e operação da experiência do cliente. As referências de empresas foram indicadas pelos próprios participantes, o que gerou uma proximidade grande e uma facilidade no entendimento dos temas. Empresas como Amazon, Nubank, Ifood entre outras, foram aquelas que nos aprofundamos para oferecer a experiência adequada para os participantes.' },
-            { title: 'Dinâmicas', text: 'Exercícios práticos para analisar a jornada do cliente e identificar oportunidades reais de melhora' },
-            { title: 'Embaixadores', text: 'Desenvolvimento de profissionais preparados para disseminar a cultura de CX em toda a organização' }
+            { title: 'Dinâmicas', text: 'Exercícios práticos para analisar a jornada do cliente e identificar oportunidades reais de melhora.' },
+            { title: 'Embaixadores', text: 'Desenvolvimento de profissionais preparados para disseminar a cultura de CX em toda a organização.' }
         ],
         numbers: [
             { number: 33, text: 'embaixadores de CX' },
