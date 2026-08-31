@@ -121,6 +121,7 @@ export default function Numbers({ title, items }: NumbersProps) {
                                             <Counter
                                                 number={item.number}
                                                 decimals={item.decimals}
+                                                delay={i}
                                             />
                                             {item.rangeEnd !== undefined && (
                                                 <>
@@ -128,6 +129,7 @@ export default function Numbers({ title, items }: NumbersProps) {
                                                     <Counter
                                                         number={item.rangeEnd}
                                                         decimals={item.decimals}
+                                                        delay={i}
                                                     />
                                                 </>
                                             )}

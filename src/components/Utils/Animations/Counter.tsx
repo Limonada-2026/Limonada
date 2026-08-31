@@ -10,12 +10,16 @@ gsap.registerPlugin(ScrollTrigger)
 interface Props {
 	number: number
 	decimals?: number
+	// held back this many seconds after the trigger, so a row of counters can
+	// start one after another instead of all at once
+	delay?: number
 	className?: string
 }
 
 export default function Counter({
 	number,
 	decimals = 0,
+	delay = 0,
 	className
 }: Props) {
 
@@ -43,6 +47,7 @@ export default function Counter({
 			gsap.to(item.current, {
 				textContent: number,
 				duration: 3,
+				delay,
 				ease: 'power2.inOut',
 				modifiers: {
 					textContent: (value) => formatBrazilianNumber(value)
@@ -55,7 +60,7 @@ export default function Counter({
 				}
 			})
 		}
-	}, { dependencies: [number, decimals] })
+	}, { dependencies: [number, decimals, delay] })
 
 	return (
 		<span
