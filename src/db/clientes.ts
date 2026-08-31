@@ -562,7 +562,7 @@ export const cases: Case[] = [
             { title: 'Governança', text: 'Estruturação e liderança de comitês para acompanhar a execução da estratégia e fortalecer a governança.' }
         ],
         numbers: [
-            { number: 25, display: '25-27', text: 'Construção da visão futura da companhia' },
+            { number: 25, suffix: '-27', text: 'Construção da visão futura da companhia' },
             { number: 42, text: 'líderes conectados à execução da estratégia' },
             { number: 5, text: 'comitês estratégicos implementados' },
             { number: 9, text: 'projetos estratégicos priorizados' }
