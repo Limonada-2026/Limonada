@@ -556,10 +556,10 @@ export const cases: Case[] = [
             'Transformamos diagnóstico em estratégia e estratégia em plano de ação.'
         ],
         blocks: [
-            { title: 'Diagnóstico', text: 'Com profundidade realizamos entrevistas, análise SWOT e leitura do ambiente interno e externo para identificar oportunidades, riscos e capacidades do negócio. A partir da perspectiva do método Limão, o LEARN é fase essencial para a nossa customização. A Sakura é única, e foi dessa maneira que a Limonada iniciou esse projeto.' },
-            { title: 'Estratégia', text: 'A Sakura é uma empresa de gestão familiar, com Conselho e parte relevante da liderança compostos por familiares. Por isso, conduzimos a construção estratégica considerando cuidadosamente essa dinâmica. Ao longo de 40 horas de workshops, avaliamos diferentes caminhos para o crescimento da companhia, considerando impactos setoriais, financeiros e de portfólio, além das competências estratégicas necessárias para sustentar as escolhas. O trabalho resultou em um mapa estratégico coerente, projetos de alto impacto e indicadores e metas factíveis para orientar a execução.' },
-            { title: 'Execução', text: 'Definição de projetos prioritários, OKRs, indicadores e governança para acompanhar a implementação da estratégia. Para que isso fosse claro para toda a organização, a Limonada cascateou do planejamento estratégico os principais indicadores de mensuração da execução da estratégia.' },
-            { title: 'Governança', text: 'Estruturação de comitês que sustentam o acompanhamento contínuo das iniciativas e das decisões da liderança. A Limonada liderou, durante 8 meses, 3 comitês de execução: Comitê de Marketing, Comitê Industrial e Comitê de Resultados. O objetivo é fortalecer a governança por meio do monitoramento da implementação da estratégia.' }
+            { title: 'Diagnóstico', text: 'Diagnóstico aprofundado para compreender o contexto, capacidades e oportunidades da Sakura, orientando uma abordagem estratégica customizada ao negócio.' },
+            { title: 'Estratégia', text: 'Construção colaborativa da estratégia, considerando a dinâmica familiar do negócio, caminhos de crescimento, portfólio e competências necessárias para sustentar as escolhas.' },
+            { title: 'Execução', text: 'Definição de projetos prioritários, OKRs, indicadores e governança para transformar a estratégia em execução e garantir clareza sobre os resultados esperados.' },
+            { title: 'Governança', text: 'Estruturação e liderança de comitês para acompanhar a execução da estratégia e fortalecer a governança.' }
         ],
         numbers: [
             { number: 25, display: '25-27', text: 'Construção da visão futura da companhia' },
