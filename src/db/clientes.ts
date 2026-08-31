@@ -577,6 +577,48 @@ export const cases: Case[] = [
             }
         ],
         cta: 'Seu desafio também é transformar estratégia em execução?'
+    },
+    {
+        id: 11,
+        slug: 'limonada-com-riachuelo',
+        client: 'Riachuelo',
+        title: 'Conectando liderança, produto e experiência para transformar o negócio',
+        subtitle: 'Como desenvolvemos a liderança da Riachuelo para conectar marca, produto, experiência e omnicanalidade em uma visão integrada do negócio.',
+        seoTitle: 'Riachuelo: liderança, estratégia e experiência | Limonada',
+        description: 'Como a Limonada ajudou a liderança da Riachuelo a conectar estratégia, produto, experiência do cliente e omnicanalidade para transformar desafios em ação.',
+        tema: 'Customer Experience',
+        formato: 'Jornada personalizada',
+        image: '/img/clients/featured/riachuelo.jpg',
+        logo: '/img/clients/riachuelo.svg',
+        limao: [
+            'A Riachuelo tem uma ambição clara: ser a melhor experiência de moda do Brasil.',
+            'O desafio era transformar essa ambição em uma agenda comum para a liderança. Era preciso ampliar e alinhar o repertório sobre temas fundamentais para o futuro do negócio: marca, produto, experiência do cliente e omnicanalidade.',
+            'Afinal, o cliente não percebe esses elementos de forma separada: ele interpreta a experiência como um todo.',
+            'A jornada precisava, então, criar espaço para que os líderes conectassem novas referências aos desafios reais da companhia e saíssem das discussões com movimentos concretos capazes de influenciar a estratégia e apoiar os planos de negócio.'
+        ],
+        corte: [
+            'Durante dois meses, construímos a jornada em parceria com os times de RH, Marketing e Moda da Riachuelo.',
+            'Começamos pelo diagnóstico. Por meio do Método Limão, entrevistamos líderes de diferentes áreas para entender o repertório de cada participante, seus desejos de aprendizagem, seu papel na estratégia da companhia e as referências de mercado que consideravam relevantes em cada tema.',
+            'A partir dessa escuta, cruzamos as necessidades da liderança com um estudo aprofundado sobre o negócio, seus resultados e movimentos de mercado.',
+            'O diagnóstico deu origem a uma jornada personalizada, combinando teoria, referências de mercado, discussão estratégica e aplicação prática.'
+        ],
+        espremendo: [
+            'Construímos uma jornada presencial para tirar a liderança de uma visão fragmentada e colocar marca, produto, experiência e omnicanalidade na mesma conversa.',
+            'Em vez de aprofundar conhecimentos isolados, criamos encontros que provocavam novas conexões entre repertório, estratégia e prática. Cada tema partia de referências, cases e conceitos para chegar aos desafios reais da Riachuelo, aproximando a discussão daquilo que, no fim, realmente importa: o valor percebido pelo cliente.'
+        ],
+        blocks: [
+            { title: 'Marca', text: 'Para entender como a marca orienta o negócio e como sua promessa precisa aparecer de forma consistente em todos os pontos de contato.' },
+            { title: 'Produto', text: 'Para deslocar o olhar dos atributos técnicos para aquilo que o cliente percebe, deseja e valoriza.' },
+            { title: 'Experiência', text: 'Para analisar a jornada pelos olhos do consumidor, identificando fricções e oportunidades de tornar cada interação mais fluida e relevante.' },
+            { title: 'Omnicanalidade', text: 'Para discutir como integrar diferentes canais e reduzir atritos em momentos como compra, pagamento e entrega.' }
+        ],
+        numbers: [
+            { number: 38, text: 'participantes' },
+            { number: 5, text: 'encontros presenciais' }
+        ],
+        // the doc still has both depoimento slots empty
+        testimonials: [],
+        cta: 'Sua empresa também precisa conectar estratégia, cliente e experiência?'
     }
 ]
 
