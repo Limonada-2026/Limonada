@@ -509,7 +509,7 @@ export const cases: Case[] = [
         ],
         blocks: [
             { title: 'Diagnóstico', text: 'Entrevistas e escuta ativa para compreender desafios do negócio e da jornada do cliente.' },
-            { title: 'Curadoria', text: 'Nosso processo de curadoria permitiu que trouxéssemos as referências mais modernas sobre gestão e operação da experiência do cliente. As referências de empresas foram indicadas pelos próprios participantes, o que gerou uma proximidade grande e uma facilidade no entendimento dos temas. Empresas como Amazon, Nubank, Ifood entre outras, foram aquelas que nos aprofundamos para oferecer a experiência adequada para os participantes.' },
+            { title: 'Curadoria', text: 'Curadoria de referências modernas em gestão e experiência do cliente, conectando aprendizados de grandes empresas aos desafios dos participantes.' },
             { title: 'Dinâmicas', text: 'Exercícios práticos para analisar a jornada do cliente e identificar oportunidades reais de melhora.' },
             { title: 'Embaixadores', text: 'Desenvolvimento de profissionais preparados para disseminar a cultura de CX em toda a organização.' }
         ],
