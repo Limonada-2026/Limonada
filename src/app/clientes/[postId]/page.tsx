@@ -159,7 +159,7 @@ export default async function ClientePost({ params }: { params: Params }) {
 							<div className='col-lg-6'>
 								<AnimatedTitle
 									style='green-black'
-									className='title-96 mb-6'
+									className='title-96 mb-6 text-balance hyphens-auto'
 								>
 									{titles.espremendo}
 								</AnimatedTitle>
