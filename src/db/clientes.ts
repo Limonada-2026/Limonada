@@ -12,6 +12,8 @@ export type CaseNumber = {
     // shown verbatim instead of the animated counter, for figures that are not
     // a plain number (a year range, for instance)
     display?: string
+    // second half of a range, counted up alongside the first
+    rangeEnd?: number
 }
 
 export type CaseTestimonial = {
@@ -562,7 +564,7 @@ export const cases: Case[] = [
             { title: 'Governança', text: 'Estruturação e liderança de comitês para acompanhar a execução da estratégia e fortalecer a governança.' }
         ],
         numbers: [
-            { number: 25, suffix: '-27', text: 'Construção da visão futura da companhia' },
+            { number: 25, rangeEnd: 27, text: 'Construção da visão futura da companhia' },
             { number: 42, text: 'líderes conectados à execução da estratégia' },
             { number: 5, text: 'comitês estratégicos implementados' },
             { number: 9, text: 'projetos estratégicos priorizados' }

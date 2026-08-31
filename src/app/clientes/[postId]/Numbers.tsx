@@ -24,6 +24,8 @@ interface NumbersProps {
         decimals?: number
         suffix?: string
         display?: string
+        // second half of a range, counted up alongside the first
+        rangeEnd?: number
         text: string
     }[]
 }
@@ -115,10 +117,21 @@ export default function Numbers({ title, items }: NumbersProps) {
                                 <h2 className='text-[5rem] md:text-[6rem] lg:text-[8rem] xl:text-[10rem] leading-[1.1] text-green-vivid'>
                                     {item.hasPlus && '+'}
                                     {item.display ? item.display : (
-                                        <Counter
-                                            number={item.number}
-                                            decimals={item.decimals}
-                                        />
+                                        <>
+                                            <Counter
+                                                number={item.number}
+                                                decimals={item.decimals}
+                                            />
+                                            {item.rangeEnd !== undefined && (
+                                                <>
+                                                    -
+                                                    <Counter
+                                                        number={item.rangeEnd}
+                                                        decimals={item.decimals}
+                                                    />
+                                                </>
+                                            )}
+                                        </>
                                     )}
                                     {item.suffix}
                                 </h2>
