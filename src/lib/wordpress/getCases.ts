@@ -24,6 +24,8 @@ export type CaseNumber = {
 	// shown verbatim instead of the animated counter, for figures that are not
 	// a plain number (a year range, for instance)
 	display?: string
+	// second half of a range, counted up alongside the first
+	rangeEnd?: number
 }
 
 export type CaseTestimonial = {
@@ -111,6 +113,7 @@ type ClienteNode = {
 			decimals: number | null
 			suffix: string | null
 			display: string | null
+			rangeEnd: number | null
 		}[] | null
 		testimonials: {
 			testimonial: string | null
@@ -173,6 +176,7 @@ const caseFields = gql`
 				decimals
 				suffix
 				display
+				rangeEnd
 			}
 			testimonials {
 				testimonial
@@ -257,7 +261,8 @@ function mapCase(node: ClienteNode): Case {
 			hasPlus: item.hasPlus ?? false,
 			decimals: item.decimals ?? undefined,
 			suffix: item.suffix || undefined,
-			display: item.display || undefined
+			display: item.display || undefined,
+			rangeEnd: item.rangeEnd ?? undefined
 		})),
 		testimonials: (fields?.testimonials ?? []).map((item) => ({
 			testimonial: item.testimonial ?? '',
