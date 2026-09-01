@@ -62,11 +62,15 @@ export type Case = {
     testimonials: CaseTestimonial[]
     cta: string
     sectionTitles?: CaseSectionTitles
+    // set to false to take a case off the site without deleting it. the entry
+    // drops out of the listing, the related blocks and the static routes
+    published?: boolean
 }
 
-export const cases: Case[] = [
+const allCases: Case[] = [
     {
         id: 11,
+        published: false,
         slug: 'limonada-com-riachuelo',
         client: 'Riachuelo',
         title: 'Conectando liderança, produto e experiência para transformar o negócio',
@@ -622,6 +626,8 @@ export const cases: Case[] = [
     }
 
 ]
+
+export const cases: Case[] = allCases.filter((item) => item.published !== false)
 
 export function getCase(slug: string) {
     return cases.find((item) => item.slug === slug)
