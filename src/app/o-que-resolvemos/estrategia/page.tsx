@@ -10,17 +10,21 @@ import LemonVideo from '@/components/LemonVideo'
 import RelatedCases from '@/components/WhatWeSolve/RelatedCases'
 import ContactBlock from '@/components/ContactBlock'
 
+// utils
+import { pageMetadata } from '@/utils/seo'
+
 // images
 import banner from '@/assets/img/service-04.jpg'
 
 // metadata
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
 	title: 'O que resolvemos: Estratégia | Limonada',
 	description: 'Não existe avanço consistente sem clareza sobre prioridades, critérios de decisão e capacidade de sustentar escolhas ao longo do tempo.',
-	alternates: {
-		canonical: '/o-que-resolvemos/estrategia'
-	}
-}
+	path: '/o-que-resolvemos/estrategia',
+	image: banner.src,
+	imageWidth: banner.width,
+	imageHeight: banner.height
+})
 
 export default function Estrategia() {
 	return (

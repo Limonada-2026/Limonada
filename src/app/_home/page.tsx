@@ -1,6 +1,3 @@
-// libraries
-import { Metadata } from 'next'
-
 // components
 import BannerHome from '@/components/BannerHome'
 import BlocksHome from '@/components/BlocksHome'
@@ -22,22 +19,9 @@ const featured = [
 	'limonada-com-boticario'
 ]
 
-// isr
-export const revalidate = 3600
-
-// metadata
-export const metadata: Metadata = {
-	title: 'Limonada',
-	description: 'Transformando limões em limonada',
-	alternates: {
-		canonical: '/'
-	}
-}
-
 export default async function Home() {
 
 	const cases = await getCasesBySlugs(featured)
-
 	return (
 		<main>
 

@@ -12,6 +12,9 @@ import lemonade from '@/assets/img/lemonade.png'
 // wordpress
 import { getCases } from '@/lib/wordpress/getCases'
 
+// utils
+import { pageMetadata } from '@/utils/seo'
+
 // how many cases per page
 const howMany = 12
 
@@ -19,13 +22,11 @@ const howMany = 12
 type SearchParams = Promise<{ page?: string }>
 
 // metadata
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
 	title: 'Clientes | Limonada',
 	description: 'Descubra como empresas parceiras estão transformando comportamento e resultados com a Limonada.',
-	alternates: {
-		canonical: '/clientes'
-	}
-}
+	path: '/clientes'
+})
 
 export default async function Clientes({ searchParams }: { searchParams: SearchParams }) {
 

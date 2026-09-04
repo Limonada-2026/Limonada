@@ -1,6 +1,5 @@
 // libraries
 import Link from 'next/link'
-import { Metadata } from 'next'
 
 // components
 import MagneticButton from '@/components/Utils/Animations/MagneticButton'
@@ -11,15 +10,6 @@ import UxArrowLeft from '@/assets/svg/ux/arrow-left.svg'
 // utils
 import { pages } from '@/utils/routes'
 import LemonTrail from '@/components/Utils/Animations/LemonTrail'
-
-// metadata
-export const metadata: Metadata = {
-	title: 'Erro 404: Página não encontrada | Limonada',
-	description: 'Parece que o link que você seguiu não está mais disponível.',
-	alternates: {
-		canonical: '/404'
-	}
-}
 
 export default function Error404() {
 	return (

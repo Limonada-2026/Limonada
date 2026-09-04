@@ -10,17 +10,21 @@ import LemonVideo from '@/components/LemonVideo'
 import RelatedCases from '@/components/WhatWeSolve/RelatedCases'
 import ContactBlock from '@/components/ContactBlock'
 
+// utils
+import { pageMetadata } from '@/utils/seo'
+
 // images
 import banner from '@/assets/img/service-02.jpg'
 
 // metadata
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
 	title: 'O que resolvemos: Soft Skills | Limonada',
 	description: 'Não há forma mais consistente de transformar organizações senão começar pelas pessoas - desenvolvendo como elas pensam, decidem e agem no dia a dia.',
-	alternates: {
-		canonical: '/o-que-resolvemos/soft-skills'
-	}
-}
+	path: '/o-que-resolvemos/soft-skills',
+	image: banner.src,
+	imageWidth: banner.width,
+	imageHeight: banner.height
+})
 
 export default function SoftSkills() {
 	return (

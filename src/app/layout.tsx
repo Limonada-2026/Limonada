@@ -16,17 +16,22 @@ import GtmPageView from '@/components/Utils/GtmPageView'
 import GtmScrollDepth from '@/components/Utils/GtmScrollDepth'
 import GtmUtmCapture from '@/components/Utils/GtmUtmCapture'
 
+// utils
+import { siteUrl, siteName, siteDescription, defaultOgImage } from '@/utils/seo'
+
 // css
 import '@/assets/css/global.css'
 
 // metadata
 export const metadata: Metadata = {
-	metadataBase: new URL(`https://alimonada.com.br`),
+	metadataBase: new URL(siteUrl),
 	alternates: {
-        canonical: './',
-    },
-	title: 'Limonada',
-	description: 'Boutique de desenvolvimento para pessoas e negócios. Trabalhamos a partir do contexto de cada empresa para transformar desafios em decisões e ações que movem pessoas, culturas e negócios.',
+		canonical: './',
+	},
+	title: siteName,
+	description: siteDescription,
+	applicationName: siteName,
+	publisher: siteName,
 	icons: {
 		icon: [
 			{ url: '/icon.svg', type: 'image/svg+xml' },
@@ -39,21 +44,38 @@ export const metadata: Metadata = {
 		]
 	},
 	manifest: '/manifest.json',
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: {
+			index: true,
+			follow: true,
+			'max-image-preview': 'large',
+			'max-snippet': -1,
+			'max-video-preview': -1
+		}
+	},
 	openGraph: {
-		title: 'Limonada',
-		description: 'Boutique de desenvolvimento para pessoas e negócios. Trabalhamos a partir do contexto de cada empresa para transformar desafios em decisões e ações que movem pessoas, culturas e negócios.',
-		url: 'https://alimonada.com.br',
-		siteName: 'Limonada',
+		title: siteName,
+		description: siteDescription,
+		url: siteUrl,
+		siteName,
 		images: [
 			{
-				url: 'https://alimonada.com.br/img/og-image.png',
-				width: 1280,
-				height: 630,
-				alt: 'Limonada'
+				url: defaultOgImage.url,
+				width: defaultOgImage.width,
+				height: defaultOgImage.height,
+				alt: siteName
 			}
 		],
 		locale: 'pt_BR',
 		type: 'website'
+	},
+	twitter: {
+		card: 'summary_large_image',
+		title: siteName,
+		description: siteDescription,
+		images: [defaultOgImage.url]
 	}
 }
 
@@ -108,8 +130,8 @@ export default function RootLayout({
 		"name": "Limonada",
 		"legalName": "Limonada",
 		"url": "https://alimonada.com.br",
-		"logo": "https://alimonada.com.br/img/og-image.jpg",
-		"description": "Boutique de desenvolvimento para pessoas e negócios. Trabalhamos a partir do contexto de cada empresa para transformar desafios em decisões e ações que movem pessoas, culturas e negócios.",
+		"logo": "https://alimonada.com.br/img/og-image.png",
+		"description": siteDescription,
 		"address": {
 			"@type": "PostalAddress",
 			"streetAddress": "Rua José Casemiro Stenzowski, 21D",

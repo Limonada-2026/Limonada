@@ -9,14 +9,21 @@ import ContactBlock from '@/components/ContactBlock'
 import AnimatedText from '@/components/Utils/Animations/AnimatedText'
 import AnimatedTitle from '@/components/Utils/Animations/AnimatedTitle'
 
+// images
+import ogImage from '@/assets/img/team-2.jpg'
+
+// utils
+import { pageMetadata } from '@/utils/seo'
+
 // metadata
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
 	title: 'Quem somos | Limonada',
 	description: 'A Limonada existe para potencializar pessoas que transformam desafios em decisões e ações e fazem a mudança acontecer.',
-	alternates: {
-		canonical: '/quem-somos'
-	}
-}
+	path: '/quem-somos',
+	image: ogImage.src,
+	imageWidth: ogImage.width,
+	imageHeight: ogImage.height
+})
 
 export default function QuemSomos() {
     return (
