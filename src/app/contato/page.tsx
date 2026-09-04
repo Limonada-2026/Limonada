@@ -1,15 +1,20 @@
+// libraries
+import { Metadata } from 'next'
+
 // components
 import MagneticButton from '@/components/Utils/Animations/MagneticButton'
 import { Form, Input, InputHidden, Textarea, Checkbox, Submit, UtmHiddenFields } from '@/components/Form'
 
 // utils
 import { pages } from '@/utils/routes'
+import { pageMetadata } from '@/utils/seo'
 
-export const metadata = {
+// metadata
+export const metadata: Metadata = pageMetadata({
 	title: 'Contato Limonada: Entre em contato conosco',
 	description: 'A escuta é o primeiro passo para construir jornadas que movem pessoas, cultura e resultado. Vamos transformar limões em limonada!',
-	canonical: '/contato'
-}
+	path: '/contato'
+})
 
 export default function Contact() {
 	return (

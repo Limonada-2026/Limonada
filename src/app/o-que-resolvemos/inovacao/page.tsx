@@ -10,17 +10,21 @@ import LemonVideo from '@/components/LemonVideo'
 import RelatedCases from '@/components/WhatWeSolve/RelatedCases'
 import ContactBlock from '@/components/ContactBlock'
 
+// utils
+import { pageMetadata } from '@/utils/seo'
+
 // images
 import banner from '@/assets/img/service-03.jpg'
 
 // metadata
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
 	title: 'O que resolvemos: Inovação | Limonada',
 	description: 'O grande desafio da inovação está na capacidade de executar. Priorizar, testar e sustentar decisões sobre o que funciona é o que transforma inovação em resultado.',
-	alternates: {
-		canonical: '/o-que-resolvemos/inovacao'
-	}
-}
+	path: '/o-que-resolvemos/inovacao',
+	image: banner.src,
+	imageWidth: banner.width,
+	imageHeight: banner.height
+})
 
 export default function Inovacao() {
 	return (

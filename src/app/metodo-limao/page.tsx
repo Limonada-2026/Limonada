@@ -12,6 +12,9 @@ import AnimatedText from '@/components/Utils/Animations/AnimatedText'
 // images
 import banner from '@/assets/img/lemons-bg-2.jpg'
 
+// utils
+import { pageMetadata } from '@/utils/seo'
+
 // db
 import { cases as allCases } from '@/db/clientes'
 
@@ -24,13 +27,14 @@ const featuredCases = [
 	.filter((item) => item !== undefined)
 
 // metadata
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
 	title: 'Método Limão | Limonada',
-	description: 'Sabemos que conduzir a transformação pode ser azedo e desafiador.',
-	alternates: {
-		canonical: '/metodo-limao'
-	}
-}
+	description: 'Não existe receita pronta. O Método Limão desenha um caminho único para transformar desafios em decisões e ações que geram resultado.',
+	path: '/metodo-limao',
+	image: banner.src,
+	imageWidth: banner.width,
+	imageHeight: banner.height
+})
 
 export default function MetodoLimao() {
     return (

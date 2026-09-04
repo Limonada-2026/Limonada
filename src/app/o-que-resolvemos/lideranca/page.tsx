@@ -10,17 +10,21 @@ import LemonVideo from '@/components/LemonVideo'
 import RelatedCases from '@/components/WhatWeSolve/RelatedCases'
 import ContactBlock from '@/components/ContactBlock'
 
+// utils
+import { pageMetadata } from '@/utils/seo'
+
 // images
 import banner from '@/assets/img/service-01.jpg'
 
 // metadata
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
 	title: 'O que resolvemos: Liderança | Limonada',
 	description: 'Não existe transformação consistente sem líderes capazes de inspirar, traduzir estratégia em prática, mobilizar pessoas e sustentar a evolução do negócio.',
-	alternates: {
-		canonical: '/o-que-resolvemos/lideranca'
-	}
-}
+	path: '/o-que-resolvemos/lideranca',
+	image: banner.src,
+	imageWidth: banner.width,
+	imageHeight: banner.height
+})
 
 export default function Lideranca() {
 	return (

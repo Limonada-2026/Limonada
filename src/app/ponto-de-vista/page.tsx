@@ -5,6 +5,9 @@ import Image from 'next/image'
 // image
 import lemonTree from '@/assets/img/lemon-tree.png'
 
+// utils
+import { pageMetadata } from '@/utils/seo'
+
 // temp db
 import { posts } from '@/db/ponto-de-vista'
 
@@ -18,13 +21,11 @@ const howMany = 12
 type SearchParams = Promise<{ page?: string }>
 
 // metadata
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
 	title: 'Ponto de Vista | Limonada',
-	description: 'Aqui, reunimos nossa perspectiva sobre desenvolvimento de times e lideranças, as transformações no mundo dos negócios e o futuro do trabalho.',
-	alternates: {
-		canonical: '/ponto-de-vista'
-	}
-}
+	description: 'Nossa perspectiva sobre desenvolvimento de times e lideranças, as transformações no mundo dos negócios e o futuro do trabalho.',
+	path: '/ponto-de-vista'
+})
 
 export default async function PontoDeVista({ searchParams }: { searchParams: SearchParams }) {
 

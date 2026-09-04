@@ -15,15 +15,14 @@ import service_04 from '@/assets/img/service-04.jpg'
 
 // utils
 import { pages } from '@/utils/routes'
+import { pageMetadata } from '@/utils/seo'
 
 // metadata
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
 	title: 'O que resolvemos | Limonada',
-	description: 'Explore o caminho para o seu desafio com a Limonada.',
-    alternates: {
-        canonical: '/o-que-resolvemos'
-    }
-}
+	description: 'Liderança, soft skills, inovação e estratégia. Explore o caminho da Limonada para o desafio da sua empresa.',
+	path: '/o-que-resolvemos'
+})
 
 export default function OQueResolvemos() {
 	return (

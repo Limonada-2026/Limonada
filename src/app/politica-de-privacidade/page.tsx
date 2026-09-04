@@ -7,14 +7,18 @@ import BannerTop from './BannerTop'
 // images
 import banner from '@/assets/img/lemons-bg-3.jpg'
 
+// utils
+import { pageMetadata } from '@/utils/seo'
+
 // metadata
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
 	title: 'Política de Privacidade | Limonada',
-	description: 'Compromisso e transparência no tratamento das informações.',
-	alternates: {
-		canonical: '/politica-de-privacidade'
-	}
-}
+	description: 'Como a Limonada trata, protege e armazena dados pessoais, em conformidade com a LGPD. Compromisso e transparência no tratamento das informações.',
+	path: '/politica-de-privacidade',
+	image: banner.src,
+	imageWidth: banner.width,
+	imageHeight: banner.height
+})
 
 export default function Privacy() {
     return (

@@ -1,6 +1,3 @@
-// libraries
-import { Metadata } from 'next'
-
 // components
 import BannerHome from '@/components/BannerHome'
 import BlocksHome from '@/components/BlocksHome'
@@ -14,18 +11,6 @@ import AnimatedText from '@/components/Utils/Animations/AnimatedText'
 
 // db
 import { cases } from '@/db/home'
-
-// isr
-export const revalidate = 3600
-
-// metadata
-export const metadata: Metadata = {
-	title: 'Limonada',
-	description: 'Transformando limões em limonada',
-	alternates: {
-		canonical: '/'
-	}
-}
 
 export default function Home() {
 	return (

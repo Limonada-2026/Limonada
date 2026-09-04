@@ -15,6 +15,7 @@ import { Clock, Facebook, X, Linkedin, Whatsapp } from '@/components/Svg/Icons'
 // utils
 import { pages } from '@/utils/routes'
 import { formatDateLongPtBR, getShareLinks } from '@/utils/functions'
+import { pageMetadata, absoluteUrl, siteName, siteUrl } from '@/utils/seo'
 
 // db
 import { posts, getPost } from '@/db/ponto-de-vista'
@@ -42,20 +43,16 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
 	if (!post) return {}
 
-	return {
+	return pageMetadata({
 		title: post.seoTitle || post.title,
 		description: post.description,
-		alternates: {
-			canonical: `/ponto-de-vista/${post.slug}`
-		},
-		openGraph: {
-			type: 'article',
-			title: post.seoTitle || post.title,
-			description: post.description,
-			url: `/ponto-de-vista/${post.slug}`,
-			images: [post.image]
-		}
-	}
+		path: `${pages.ponto_de_vista}/${post.slug}`,
+		image: post.image,
+		type: 'article',
+		publishedTime: post.date,
+		authors: [post.author],
+		tags: post.tags
+	})
 }
 
 export default async function PontoDeVistaPost({ params }: { params: Params }) {
@@ -66,11 +63,46 @@ export default async function PontoDeVistaPost({ params }: { params: Params }) {
 	if (!post) notFound()
 
 	const related = posts.filter((item) => item.slug !== post.slug).slice(0, 3)
-	const shareUrl = `https://alimonada.com.br/ponto-de-vista/${post.slug}`
+	const shareUrl = absoluteUrl(`${pages.ponto_de_vista}/${post.slug}`)
 	const shareLinks = getShareLinks(shareUrl, post.title)
+
+	// schema
+	const jsonLd = {
+		'@context': 'https://schema.org',
+		'@type': 'Article',
+		headline: post.title,
+		description: post.description,
+		image: [absoluteUrl(post.image)],
+		datePublished: post.date,
+		dateModified: post.date,
+		inLanguage: 'pt-BR',
+		keywords: post.tags,
+		mainEntityOfPage: {
+			'@type': 'WebPage',
+			'@id': shareUrl
+		},
+		author: {
+			'@type': 'Person',
+			name: post.author
+		},
+		publisher: {
+			'@type': 'Organization',
+			name: siteName,
+			url: siteUrl,
+			logo: {
+				'@type': 'ImageObject',
+				url: absoluteUrl('/img/og-image.png')
+			}
+		}
+	}
 
 	return (
 		<main>
+
+			<script
+				type='application/ld+json'
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+			/>
 
 			<section className='menu-space bg-green-dark rounded-bottom-corners relative overflow-hidden'>
 				<div className='h-[40vh] md:h-[50vh] lg:h-[60vh]'>

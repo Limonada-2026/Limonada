@@ -24,6 +24,7 @@ import { cases, getCase, defaultSectionTitles } from '@/db/clientes'
 
 // utils
 import { pages } from '@/utils/routes'
+import { pageMetadata } from '@/utils/seo'
 
 // block illustrations, cycled in order
 const blockImages = [image1, image2, image3, image4]
@@ -58,20 +59,13 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
 	if (!item) return {}
 
-	return {
+	return pageMetadata({
 		title: item.seoTitle || item.title,
 		description: item.description,
-		alternates: {
-			canonical: `${pages.clientes}/${item.slug}`
-		},
-		openGraph: {
-			type: 'article',
-			title: item.seoTitle || item.title,
-			description: item.description,
-			url: `${pages.clientes}/${item.slug}`,
-			images: [item.image]
-		}
-	}
+		path: `${pages.clientes}/${item.slug}`,
+		image: item.image,
+		type: 'article'
+	})
 }
 
 export default async function ClientePost({ params }: { params: Params }) {
