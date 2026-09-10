@@ -70,45 +70,61 @@ export type Case = {
 const allCases: Case[] = [
     {
         id: 11,
-        published: false,
         slug: 'limonada-com-riachuelo',
         client: 'Riachuelo',
         title: 'Conectando liderança, produto e experiência para transformar o negócio',
-        subtitle: 'Como desenvolvemos a liderança da Riachuelo para conectar marca, produto, experiência e omnicanalidade em uma visão integrada do negócio.',
+        subtitle: 'Como desenvolvemos a liderança da Riachuelo para conectar marca, produto e experiência em uma visão integrada do negócio.',
         seoTitle: 'Riachuelo: liderança, estratégia e experiência | Limonada',
-        description: 'Como a Limonada ajudou a liderança da Riachuelo a conectar estratégia, produto, experiência do cliente e omnicanalidade para transformar desafios em ação.',
+        description: 'Como a Limonada ajudou a liderança da Riachuelo a conectar estratégia, produto, experiência e jornada do cliente para transformar desafios em ação.',
         tema: 'Customer Experience',
         formato: 'Jornada personalizada',
         image: '/img/clients/featured/riachuelo.jpg',
         logo: '/img/clients/riachuelo.svg',
         limao: [
             'A Riachuelo tem uma ambição clara: ser a melhor experiência de moda do Brasil.',
-            'O desafio era transformar essa ambição em uma agenda comum para a liderança. Era preciso ampliar e alinhar o repertório sobre temas fundamentais para o futuro do negócio: marca, produto, experiência do cliente e omnicanalidade.',
+            'O desafio era transformar essa ambição em uma agenda comum para a liderança. Era preciso ampliar e alinhar o repertório sobre temas fundamentais para o futuro do negócio: marca, produto, experiência e jornada do cliente.',
             'Afinal, o cliente não percebe esses elementos de forma separada: ele interpreta a experiência como um todo.',
             'A jornada precisava, então, criar espaço para que os líderes conectassem novas referências aos desafios reais da companhia e saíssem das discussões com movimentos concretos capazes de influenciar a estratégia e apoiar os planos de negócio.'
         ],
         corte: [
-            'Durante dois meses, construímos a jornada em parceria com os times de RH, Marketing e Moda da Riachuelo.',
+            'Durante dois meses, construímos a jornada em parceria com os times de RH, Marketing, Estratégia e Moda da Riachuelo.',
             'Começamos pelo diagnóstico. Por meio do Método Limão, entrevistamos líderes de diferentes áreas para entender o repertório de cada participante, seus desejos de aprendizagem, seu papel na estratégia da companhia e as referências de mercado que consideravam relevantes em cada tema.',
             'A partir dessa escuta, cruzamos as necessidades da liderança com um estudo aprofundado sobre o negócio, seus resultados e movimentos de mercado.',
             'O diagnóstico deu origem a uma jornada personalizada, combinando teoria, referências de mercado, discussão estratégica e aplicação prática.'
         ],
         espremendo: [
-            'Construímos uma jornada presencial para tirar a liderança de uma visão fragmentada e colocar marca, produto, experiência e omnicanalidade na mesma conversa.',
-            'Em vez de aprofundar conhecimentos isolados, criamos encontros que provocavam novas conexões entre repertório, estratégia e prática. Cada tema partia de referências, cases e conceitos para chegar aos desafios reais da Riachuelo, aproximando a discussão daquilo que, no fim, realmente importa: o valor percebido pelo cliente.'
+            'Construímos uma jornada presencial para tirar a liderança de uma visão fragmentada e colocar marca, produto, experiência e jornada na mesma conversa.',
+            'Em vez de aprofundar conhecimentos isolados, criamos encontros que provocavam novas conexões entre repertório, estratégia e prática. Estudamos cases como Dengo, Track & Field, os concorrentes de varejo de moda para amplificar a discussão. Cada tema partia de referências, cases e conceitos para chegar aos desafios reais da Riachuelo, aproximando a discussão daquilo que, no fim, realmente importa: o valor percebido pelo cliente.'
         ],
         blocks: [
             { title: 'Marca', text: 'Para entender como a marca orienta o negócio e como sua promessa precisa aparecer de forma consistente em todos os pontos de contato.' },
             { title: 'Produto', text: 'Para deslocar o olhar dos atributos técnicos para aquilo que o cliente percebe, deseja e valoriza.' },
             { title: 'Experiência', text: 'Para analisar a jornada pelos olhos do consumidor, identificando fricções e oportunidades de tornar cada interação mais fluida e relevante.' },
-            { title: 'Omnicanalidade', text: 'Para discutir como integrar diferentes canais e reduzir atritos em momentos como compra, pagamento e entrega.' }
+            { title: 'Cliente no centro', text: 'Para discutir a jornada do consumidor, seus diferentes perfis e necessidade, além da importância de cada ponto de contato gerar um valor genuíno para o cliente.' }
         ],
         numbers: [
-            { number: 38, text: 'participantes' },
-            { number: 5, text: 'encontros presenciais' }
+            { number: 40, text: 'líderes da Riachuelo' },
+            { number: 16, text: 'horas de treinamento' },
+            { number: 10, text: 'atividades práticas integradas' },
+            { number: 1, text: 'visão consolidada sobre o novo posicionamento Riachuelo' }
         ],
-        // the doc still has both depoimento slots empty
-        testimonials: [],
+        testimonials: [
+            {
+                testimonial: 'Acabamos de fazer uma daquelas entregas que enchem a gente de orgulho. O time da Limonada e Edu foram fundamentais pra que isso acontecesse: desde o minuto um se conectaram com o nosso grande objetivo e foram o parceiro certo para desenhar a solução, mudar a rota quando preciso e realizar uma jornada de desenvolvimento tão incrível. Eles unem de forma potente: conteúdo, provocação e ação. Certamente estaremos juntos novamente.',
+                position: 'Cecy Nascimento, People Director Talent & Culture',
+                company: 'Riachuelo'
+            },
+            {
+                testimonial: 'Estou orgulhosa e motivada a melhorar ainda mais a experiência de moda da RIA.',
+                position: 'Líder',
+                company: 'Riachuelo'
+            },
+            {
+                testimonial: 'Me sinto mais integrada com a própria equipe! Tive contato com muitas novas pessoas. Vai me ajudar a construir pontes e me aproximar das áreas.',
+                position: 'Líder',
+                company: 'Riachuelo'
+            }
+        ],
         cta: 'Sua empresa também precisa conectar estratégia, cliente e experiência?'
     },
     {
