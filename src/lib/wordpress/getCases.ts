@@ -6,7 +6,7 @@ import { gql } from 'graphql-request'
 import { client } from './client'
 
 // utils
-import { decodeEntities, toPlainText, toParagraphs, toSameOrigin } from './utils'
+import { decodeEntities, toPlainText, toParagraphs, toSameOrigin, toDateOnly } from './utils'
 
 // types
 export type CaseBlock = {
@@ -58,6 +58,8 @@ export type Case = {
 	slug: string
 	client: string
 	title: string
+	// publish date, YYYY-MM-DD
+	date: string
 	subtitle: string
 	seoTitle: string
 	description: string
@@ -85,6 +87,7 @@ type ClienteNode = {
 	databaseId: number
 	slug: string
 	title: string
+	date: string | null
 	excerpt: string | null
 	featuredImage: MediaEdge
 	tags: {
@@ -136,6 +139,7 @@ const caseFields = gql`
 		databaseId
 		slug
 		title
+		date
 		excerpt
 		featuredImage {
 			node {
@@ -241,6 +245,7 @@ function mapCase(node: ClienteNode): Case {
 		slug: node.slug,
 		client: fields?.clientName ?? '',
 		title: decodeEntities(node.title ?? ''),
+		date: toDateOnly(node.date),
 		subtitle: fields?.subtitle ?? '',
 		seoTitle: fields?.seoTitle ?? '',
 		description: toPlainText(node.excerpt),

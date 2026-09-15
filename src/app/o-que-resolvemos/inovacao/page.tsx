@@ -9,9 +9,11 @@ import LemonLine from '@/components/LemonLine'
 import LemonVideo from '@/components/LemonVideo'
 import RelatedCases from '@/components/WhatWeSolve/RelatedCases'
 import ContactBlock from '@/components/ContactBlock'
+import JsonLd from '@/components/Utils/JsonLd'
 
 // utils
-import { pageMetadata } from '@/utils/seo'
+import { pageMetadata, breadcrumbSchema } from '@/utils/seo'
+import { pages } from '@/utils/routes'
 
 // images
 import banner from '@/assets/img/service-03.jpg'
@@ -26,9 +28,17 @@ export const metadata: Metadata = pageMetadata({
 	imageHeight: banner.height
 })
 
+// schema
+const breadcrumbs = breadcrumbSchema([
+	{ name: 'O que resolvemos', path: pages.o_que_resolvemos.home },
+	{ name: 'Inovação', path: pages.o_que_resolvemos.inovacao }
+])
+
 export default function Inovacao() {
 	return (
 		<main>
+
+			<JsonLd data={breadcrumbs} />
 
             <Banner
                 title='Inovação com foco em execução e resultado'

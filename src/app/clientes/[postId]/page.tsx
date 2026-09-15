@@ -12,6 +12,7 @@ import Numbers from './Numbers'
 import Testimonials from './Testimonials'
 import RelatedClients from './RelatedClients'
 import ContactBlock from '@/components/ContactBlock'
+import JsonLd from '@/components/Utils/JsonLd'
 
 // images
 import image1 from '@/assets/img/clients-01.png'
@@ -24,7 +25,7 @@ import { getCases, getCase, defaultSectionTitles } from '@/lib/wordpress/getCase
 
 // utils
 import { pages } from '@/utils/routes'
-import { pageMetadata } from '@/utils/seo'
+import { pageMetadata, articleSchema, breadcrumbSchema } from '@/utils/seo'
 
 // block illustrations, cycled in order
 const blockImages = [image1, image2, image3, image4]
@@ -84,8 +85,29 @@ export default async function ClientePost({ params }: { params: Params }) {
 		.sort(() => Math.random() - 0.5)
 		.slice(0, 3)
 
+	// schema
+	const path = `${pages.clientes}/${item.slug}`
+
+	const article = articleSchema({
+		title: item.seoTitle || item.title,
+		description: item.description,
+		path,
+		image: item.image,
+		datePublished: item.date,
+		tags: item.tags,
+		about: item.client
+	})
+
+	const breadcrumbs = breadcrumbSchema([
+		{ name: 'Clientes', path: pages.clientes },
+		{ name: item.client, path }
+	])
+
 	return (
 		<main>
+
+			<JsonLd data={article} />
+			<JsonLd data={breadcrumbs} />
 
 			<BannerTop
 				image={item.image}

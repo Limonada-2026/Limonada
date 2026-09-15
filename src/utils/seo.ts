@@ -92,3 +92,119 @@ export function pageMetadata({
 export function absoluteUrl(path: string) {
 	return new URL(path, siteUrl).toString()
 }
+
+// schema.org
+// the organization is declared once, in the root layout. page-level blocks point
+// back at it through this id instead of repeating every field
+export const organizationId = absoluteUrl('/#organization')
+export const websiteId = absoluteUrl('/#website')
+
+// square logo, Google renders it on a white background and wants at least 112px
+const schemaLogo = {
+	'@type': 'ImageObject',
+	url: absoluteUrl('/web-app-manifest-512x512.png'),
+	width: 512,
+	height: 512
+}
+
+export const organizationRef = {
+	'@type': 'Organization',
+	'@id': organizationId,
+	name: siteName,
+	url: siteUrl,
+	logo: schemaLogo
+}
+
+export function organizationSchema({ sameAs }: { sameAs: string[] }) {
+	return {
+		...organizationRef,
+		description: siteDescription,
+		image: absoluteUrl(defaultOgImage.url),
+		email: 'contato@alimonada.com.br',
+		address: {
+			'@type': 'PostalAddress',
+			streetAddress: 'Rua José Casemiro Stenzowski, 21D - Novo Mundo',
+			addressLocality: 'Curitiba',
+			addressRegion: 'PR',
+			postalCode: '81010-370',
+			addressCountry: 'BR'
+		},
+		contactPoint: {
+			'@type': 'ContactPoint',
+			email: 'contato@alimonada.com.br',
+			contactType: 'customer service',
+			availableLanguage: 'Portuguese'
+		},
+		sameAs,
+		knowsAbout: ['Liderança', 'Soft skills', 'Inovação', 'Estratégia']
+	}
+}
+
+export function websiteSchema() {
+	return {
+		'@type': 'WebSite',
+		'@id': websiteId,
+		url: siteUrl,
+		name: siteName,
+		inLanguage: 'pt-BR',
+		publisher: { '@id': organizationId }
+	}
+}
+
+type ArticleSchema = {
+	title: string
+	description: string
+	path: string
+	image: string
+	datePublished?: string
+	dateModified?: string
+	// a person's name, or the organization itself when nobody signs the piece
+	author?: string
+	tags?: string[]
+	// the company a case is about
+	about?: string
+}
+
+export function articleSchema({
+	title,
+	description,
+	path,
+	image,
+	datePublished,
+	dateModified,
+	author,
+	tags,
+	about
+}: ArticleSchema) {
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'Article',
+		headline: title,
+		description,
+		image: [absoluteUrl(image)],
+		...(datePublished ? { datePublished, dateModified: dateModified || datePublished } : {}),
+		inLanguage: 'pt-BR',
+		...(tags?.length ? { keywords: tags } : {}),
+		mainEntityOfPage: {
+			'@type': 'WebPage',
+			'@id': absoluteUrl(path)
+		},
+		author: author ? { '@type': 'Person', name: author } : organizationRef,
+		publisher: organizationRef,
+		...(about ? { about: { '@type': 'Organization', name: about } } : {})
+	}
+}
+
+// trail from the home page down to the current page, home is added here
+export function breadcrumbSchema(items: { name: string, path: string }[]) {
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [{ name: 'Início', path: '/' }, ...items].map((item, i) => ({
+			'@type': 'ListItem',
+			position: i + 1,
+			name: item.name,
+			item: absoluteUrl(item.path)
+		}))
+	}
+}

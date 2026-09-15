@@ -7,6 +7,7 @@ import Link from 'next/link'
 // components
 import AnimatedText from '@/components/Utils/Animations/AnimatedText'
 import ScrollingImage from '@/components/Utils/Animations/ScrollingImage'
+import JsonLd from '@/components/Utils/JsonLd'
 import RelatedPosts from './RelatedPosts'
 
 // icons
@@ -15,7 +16,7 @@ import { Clock, Facebook, X, Linkedin, Whatsapp } from '@/components/Svg/Icons'
 // utils
 import { pages } from '@/utils/routes'
 import { formatDateLongPtBR, getShareLinks } from '@/utils/functions'
-import { pageMetadata, absoluteUrl, siteName, siteUrl } from '@/utils/seo'
+import { pageMetadata, absoluteUrl, articleSchema, breadcrumbSchema } from '@/utils/seo'
 
 // wordpress
 import { getPosts, getPost } from '@/lib/wordpress/getPosts'
@@ -69,42 +70,28 @@ export default async function PontoDeVistaPost({ params }: { params: Params }) {
 	const shareLinks = getShareLinks(shareUrl, post.title)
 
 	// schema
-	const jsonLd = {
-		'@context': 'https://schema.org',
-		'@type': 'Article',
-		headline: post.title,
+	const path = `${pages.ponto_de_vista}/${post.slug}`
+
+	const article = articleSchema({
+		title: post.title,
 		description: post.description,
-		image: [absoluteUrl(post.image)],
+		path,
+		image: post.image,
 		datePublished: post.date,
-		dateModified: post.date,
-		inLanguage: 'pt-BR',
-		keywords: post.tags,
-		mainEntityOfPage: {
-			'@type': 'WebPage',
-			'@id': shareUrl
-		},
-		author: {
-			'@type': 'Person',
-			name: post.author
-		},
-		publisher: {
-			'@type': 'Organization',
-			name: siteName,
-			url: siteUrl,
-			logo: {
-				'@type': 'ImageObject',
-				url: absoluteUrl('/img/og-image.png')
-			}
-		}
-	}
+		author: post.author,
+		tags: post.tags
+	})
+
+	const breadcrumbs = breadcrumbSchema([
+		{ name: 'Ponto de Vista', path: pages.ponto_de_vista },
+		{ name: post.title, path }
+	])
 
 	return (
 		<main>
 
-			<script
-				type='application/ld+json'
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-			/>
+			<JsonLd data={article} />
+			<JsonLd data={breadcrumbs} />
 
 			<section className='menu-space bg-green-dark rounded-bottom-corners relative overflow-hidden'>
 				<div className='h-[40vh] md:h-[50vh] lg:h-[60vh]'>

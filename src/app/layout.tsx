@@ -1,7 +1,6 @@
 // libraries
 import type { Metadata } from 'next'
 import { GoogleTagManager } from '@next/third-parties/google'
-import Script from 'next/script'
 import clsx from 'clsx'
 import type { Viewport } from 'next'
 
@@ -15,9 +14,11 @@ import ViewportHeight from '@/components/Utils/ViewportHeight'
 import GtmPageView from '@/components/Utils/GtmPageView'
 import GtmScrollDepth from '@/components/Utils/GtmScrollDepth'
 import GtmUtmCapture from '@/components/Utils/GtmUtmCapture'
+import JsonLd from '@/components/Utils/JsonLd'
 
 // utils
-import { siteUrl, siteName, siteDescription, defaultOgImage } from '@/utils/seo'
+import { siteUrl, siteName, siteDescription, defaultOgImage, organizationSchema, websiteSchema } from '@/utils/seo'
+import { social } from '@/utils/routes'
 
 // css
 import '@/assets/css/global.css'
@@ -32,18 +33,11 @@ export const metadata: Metadata = {
 	description: siteDescription,
 	applicationName: siteName,
 	publisher: siteName,
-	icons: {
-		icon: [
-			{ url: '/icon.svg', type: 'image/svg+xml' },
-			{ url: '/icon.png', type: 'image/png', sizes: '32x32' },
-			{ url: '/icon.png', type: 'image/png', sizes: '96x96' },
-			{ url: '/favicon.ico', sizes: 'any' }
-		],
-		apple: [
-			{ url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }
-		]
+	// favicon.ico, icon.svg, icon.png, apple-icon.png and manifest.json in src/app
+	// are picked up by Next's file conventions, which write the <link> tags
+	appleWebApp: {
+		title: siteName
 	},
-	manifest: '/manifest.json',
 	robots: {
 		index: true,
 		follow: true,
@@ -125,40 +119,10 @@ export default function RootLayout({
 
 	// schema
 	const jsonLd = {
-		"@context": "https://schema.org",
-		"@type": "Organization",
-		"name": "Limonada",
-		"legalName": "Limonada",
-		"url": "https://alimonada.com.br",
-		"logo": "https://alimonada.com.br/img/og-image.png",
-		"description": siteDescription,
-		"address": {
-			"@type": "PostalAddress",
-			"streetAddress": "Rua José Casemiro Stenzowski, 21D",
-			"addressLocality": "Novo Mundo, Curitiba",
-			"addressRegion": "PR",
-			"postalCode": "81010-370",
-			"addressCountry": "BR"
-		},
-		"contactPoint": [
-			{
-				"@type": "ContactPoint",
-				"email": "contato@alimonada.com.br",
-				"contactType": "customer support"
-			}
-		],
-		"email": "contato@alimonada.com.br",
-		"sameAs": [
-			"https://instagram.com/limonadahub/",
-			"https://linkedin.com/company/limonadahub/",
-			"https://www.youtube.com/@limonadahub"
-		],
-		"keywords": [
-			"Consultoria",
-			"Desenvolvimento",
-			"Liderança",
-			"Equipes",
-			"Negócios"
+		'@context': 'https://schema.org',
+		'@graph': [
+			organizationSchema({ sameAs: Object.values(social) }),
+			websiteSchema()
 		]
 	}
 
@@ -171,55 +135,10 @@ export default function RootLayout({
 
 			<head>
 
-				<meta
-					name='apple-mobile-web-app-title'
-					content='Limonada'
-				/>
-
 				<link rel='preconnect' href='https://use.typekit.net' />
 				<link rel='stylesheet' href='https://use.typekit.net/dnh8ags.css' />
 
-				<link
-					rel='icon'
-					type='image/svg+xml'
-					href='/icon.svg'
-				/>
-
-				<link
-					rel='icon'
-					type='image/png'
-					sizes='32x32'
-					href='/icon.png'
-				/>
-
-				<link
-					rel='icon'
-					type='image/png'
-					sizes='96x96'
-					href='/icon.png'
-				/>
-
-				<link
-					rel='shortcut icon'
-					href='/favicon.ico'
-				/>
-
-				<link
-					rel='apple-touch-icon'
-					href='/apple-icon.png'
-					sizes='180x180'
-				/>
-
-				<link
-					rel='manifest'
-					href='/manifest.json'
-				/>
-
-				<Script
-					id='jsonld'
-					type='application/ld+json'
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-				/>
+				<JsonLd data={jsonLd} />
 
 				<GoogleTagManager gtmId='GTM-5576XMPR' />
 
