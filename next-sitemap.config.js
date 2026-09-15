@@ -1,7 +1,7 @@
 /** @type {import('next-sitemap').IConfig} */
 
 // asset routes that Next generates from src/app but that are not pages
-const assets = ['/icon.svg', '/icon.png', '/apple-icon.png', '/favicon.ico', '/manifest.json']
+const assets = ['/icon0.svg', '/icon1.png', '/apple-icon.png', '/favicon.ico', '/manifest.json']
 
 const notIndexed = ['/404', '/500', '/contato/obrigado']
 

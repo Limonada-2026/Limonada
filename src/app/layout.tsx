@@ -33,10 +33,11 @@ export const metadata: Metadata = {
 	description: siteDescription,
 	applicationName: siteName,
 	publisher: siteName,
-	// favicon.ico, icon.svg, icon.png, apple-icon.png and manifest.json in src/app
-	// are picked up by Next's file conventions, which write the <link> tags
-	appleWebApp: {
-		title: siteName
+	// favicon.ico, icon0.svg, icon1.png, apple-icon.png and manifest.json in src/app
+	// are picked up by Next's file conventions, which write the <link> tags. the
+	// icons are numbered because two files both named "icon" only emit one tag
+	other: {
+		'apple-mobile-web-app-title': siteName
 	},
 	robots: {
 		index: true,

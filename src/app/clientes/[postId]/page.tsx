@@ -89,7 +89,7 @@ export default async function ClientePost({ params }: { params: Params }) {
 	const path = `${pages.clientes}/${item.slug}`
 
 	const article = articleSchema({
-		title: item.seoTitle || item.title,
+		title: item.title,
 		description: item.description,
 		path,
 		image: item.image,
