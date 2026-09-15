@@ -10,9 +10,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// components
-import ScrollingImage from '@/components/Utils/Animations/ScrollingImage'
-
 // images
 import aline from '@/assets/img/team-aline.jpg'
 import eduardo from '@/assets/img/team-eduardo.jpg'

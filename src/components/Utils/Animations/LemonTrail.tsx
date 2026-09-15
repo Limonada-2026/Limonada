@@ -31,7 +31,7 @@ function useLemonTrail(containerRef: React.RefObject<HTMLElement | null>) {
 
 		const resetDist = window.innerWidth / 5
 
-		function createLemon(x: number, y: number, deltaX: number, deltaY: number) {
+		function createLemon(x: number, y: number, deltaX: number) {
 			const H = root.offsetHeight
 			if (y > H - 100) return
 
@@ -103,8 +103,7 @@ function useLemonTrail(containerRef: React.RefObject<HTMLElement | null>) {
 				createLemon(
 					clientX - rect.left,
 					clientY - rect.top,
-					clientX - oldIncrX,
-					clientY - oldIncrY
+					clientX - oldIncrX
 				)
 			}
 

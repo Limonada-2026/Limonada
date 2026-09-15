@@ -13,7 +13,6 @@ import MagneticButton from '@/components/Utils/Animations/MagneticButton'
 import check from '@/assets/img/check.png'
 
 // svg
-import UxCheck from '@/assets/svg/ux/check.svg'
 import UxArrowRight from '@/assets/svg/ux/arrow-right.svg'
 
 // utils

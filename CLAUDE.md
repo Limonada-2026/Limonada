@@ -5,11 +5,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-npm run dev       # Start dev server (uses Turbopack)
+npm run dev       # Start dev server
 npm run build     # Build for production (runs next-sitemap as postbuild)
 npm run start     # Start production server
-npm run lint      # Run ESLint
 ```
+
+There is no linter set up. `npx tsc --noEmit` is the type check.
 
 ## Architecture
 
@@ -21,13 +22,13 @@ Client cases (`cliente` post type, ACF fields) and Ponto de Vista articles (`pon
 
 ### Routing
 
-Pages live under `src/app/` using App Router conventions. The canonical route list and social/contact constants are maintained in [`src/utils/routes.js`](src/utils/routes.js) — update this file when adding pages.
+Pages live under `src/app/` using App Router conventions. The canonical route list and social links are maintained in [`src/utils/routes.js`](src/utils/routes.js). Update it when adding pages.
 
 ### Styling
 
 - CSS is written in PostCSS (`.pcss` files) under `src/assets/css/base/`, imported by [`src/assets/css/global.css`](src/assets/css/global.css).
 - TailwindCSS v4 is used alongside PostCSS.
-- Two fonts: `Public Sans` (Google) and `NetworkFreeVersion` (local woff2), exposed as CSS variables `--font-public-sans` and `--font-network-free`.
+- Two local woff2 fonts in `src/assets/fonts/`, `Public Sans` and `NetworkFreeVersion`, exposed as CSS variables `--font-public-sans` and `--font-network-free`.
 - A third font (Adobe Typekit) is loaded via `<link>` in the layout head.
 
 ### SVG handling
@@ -36,18 +37,16 @@ SVGs are imported as React components by default via `@svgr/webpack`. To import 
 
 ### Animations
 
-GSAP (with `@gsap/react`) is the primary animation library. Reusable animation wrappers live in `src/components/Utils/Animations/` (e.g. `AnimatedText`, `TextReveal`, `StaggerUp`, `ImageReveal`, `MagneticButton`, `Counter`).
-
-`motion` (Framer Motion) is also a dependency, used for page transitions via `next-transition-router`.
+GSAP (with `@gsap/react`) is the primary animation library. Reusable animation wrappers live in `src/components/Utils/Animations/` (e.g. `AnimatedText`, `AnimatedTitle`, `StaggerUp`, `ScrollingImage`, `MagneticButton`, `Counter`).
 
 ### Key layout wrappers (applied globally in `src/app/layout.tsx`)
 
-- `SmoothScroller` — wraps all page content for smooth scroll behavior
-- `PageTransition` — handles animated route transitions
-- `ViewportHeight` — sets `--vh` CSS variable for mobile viewport fix
-- `Preloader` — shown on production only (skipped in dev)
-- `Guidelines` — dev-only grid overlay
-- `#portal` div — used by `Portal` component for modals/dialogs
+- `SmoothScroller`: wraps all page content for smooth scroll behavior
+- `ViewportHeight`: sets the `--vh` CSS variable for the mobile viewport fix
+- `PreloadLemonImages`: warms the browser cache for the lemon animation images
+- `GtmPageView`, `GtmScrollDepth`, `GtmUtmCapture`: Google Tag Manager tracking
+- `Guidelines`: dev-only grid overlay
+- `#portal` div: target for the `Portal` component used by the form modals
 
 ### Case pages
 
@@ -59,4 +58,4 @@ Contact form submissions are handled by `src/app/api/resend/route.ts` using the 
 
 ### Image optimization
 
-`next/image` is configured with `unoptimized: true` and remote patterns allowing `wp.alimonada.com.br` (WordPress media). Preferred formats are AVIF and WebP.
+`next/image` remote patterns allow `wp.alimonada.com.br` (WordPress media). Preferred formats are AVIF and WebP. WordPress uploads are also proxied at `/wp-content/uploads/*` so client logos, used as CSS masks, load from the site's own origin.

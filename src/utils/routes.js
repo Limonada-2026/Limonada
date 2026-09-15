@@ -14,7 +14,6 @@ export const pages = {
 		estrategia: '/o-que-resolvemos/estrategia'
 	},
 	ponto_de_vista: '/ponto-de-vista',
-	conteudo: '/conteudo',
 	contato: '/contato',
 	contato_obrigado: '/contato/obrigado',
 	politica_de_privacidade: '/politica-de-privacidade',
@@ -25,12 +24,4 @@ export const social = {
 	linkedin: 'https://www.linkedin.com/company/limonadahub',
 	instagram: 'https://www.instagram.com/limonadahub/',
 	youtube: 'https://www.youtube.com/@limonadahub'
-}
-
-// contact
-export const contact = {
-	phone: '(41) 0000-0000',
-	email: 'contato@alimonada.com.br',
-	address: 'Rua José Casemiro Stenzowski, 21D - Novo Mundo, Curitiba - PR, 81010-370',
-	gmaps: 'https://maps.app.goo.gl/'
 }

@@ -26,7 +26,7 @@ interface ModalProps {
 	onClose: () => void
 }
 
-export const Modal = ({
+const Modal = ({
 	id,
 	title,
 	text,
@@ -254,38 +254,6 @@ export const Form = ({
 				{children}
 			</form>
 
-			{/*
-			<button
-				type='button'
-				onClick={() => {
-					setRenderSuccessModal(true)
-					setTimeout(() => {
-						const dialog = document.getElementById('success') as HTMLDialogElement
-						if (dialog) {
-							dialog.showModal()
-						}
-					}, 100)
-				}}
-			>
-				test Success Modal
-			</button>
-
-			<button
-				type='button'
-				onClick={() => {
-					setRenderErrorModal(true)
-					setTimeout(() => {
-						const dialog = document.getElementById('error') as HTMLDialogElement
-						if (dialog) {
-							dialog.showModal()
-						}
-					}, 100)
-				}}
-			>
-				test Error Modal
-			</button>
-			*/}
-
 			{renderSuccessModal && onSuccess && (
 				<Modal
 					id='success'
@@ -314,7 +282,7 @@ interface LabelProps {
     required?: boolean
 }
 
-export const Label = ({
+const Label = ({
 	id,
     label,
     required
@@ -388,9 +356,6 @@ export const Input = ({
 		watch,
 		formState: { errors },
 	} = useFormContext()
-
-	// track focus state
-	const [isFocused, setIsFocused] = useState(false)
 
 	let validations: RegisterOptions = {
 		onChange: (e) => onChange(e),
@@ -496,13 +461,7 @@ export const Input = ({
                     )}
 					disabled={disabled || false}
 					onKeyDown={handleKeyPress}
-					onFocus={() => setIsFocused(true)}
-					{...register(name, {
-						...validations,
-						onBlur: () => {
-							setIsFocused(false)
-						}
-					})}
+					{...register(name, validations)}
 				/>
 
 				{type === 'password' && !hidePasswordToggle && (
@@ -558,9 +517,6 @@ export const Textarea = ({
 		formState: { errors }
 	} = useFormContext() ?? {}
 
-	// track focus state
-	const [isFocused, setIsFocused] = useState(false)
-
 	let validations = {}
 	
     validations = {
@@ -602,13 +558,7 @@ export const Textarea = ({
 						'rounded-md resize-y min-h-30 h-30',
 						inputClassName
 					)}
-					onFocus={() => setIsFocused(true)}
-					{...register(name, {
-						...validations,
-						onBlur: () => {
-							setIsFocused(false)
-						}
-					})}
+					{...register(name, validations)}
 				/>
 			</div>
 

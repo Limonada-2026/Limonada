@@ -11,7 +11,7 @@ import MagneticButton from '@/components/Utils/Animations/MagneticButton'
 import UxArrowRight from '@/assets/svg/ux/arrow-right.svg'
 
 // types
-export interface ServiceBlockProps {
+interface ServiceBlockProps {
     className?: string
     image: StaticImageData
     title: string
