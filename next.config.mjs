@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 
+// origin of the WordPress install the content comes from
+const wpOrigin = process.env.WP_GRAPHQL ? new URL(process.env.WP_GRAPHQL).origin : null
+
 const nextConfig = {
 	turbopack: {},
 	reactStrictMode: false,
@@ -48,9 +51,14 @@ const nextConfig = {
 			},
 			{
 				protocol: 'http',
-				hostname: 'limonada.local'
+				hostname: 'localhost',
+				port: '10008'
 			}
 		],
+		// client logos are SVG files served from WordPress
+		dangerouslyAllowSVG: true,
+		contentDispositionType: 'attachment',
+		contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
 		formats: ['image/avif', 'image/webp'],
 		deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
 		imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
@@ -74,7 +82,7 @@ const nextConfig = {
 			// old blog index
 			{ source: '/blog', destination: '/ponto-de-vista', permanent: true },
 
-			// old posts that have a matching article in the new static ponto-de-vista db
+			// old posts that have a matching Ponto de Vista article in the new site
 			// (matched by title/content, since WP slugs don't line up 1:1)
 			{ source: '/lideres-orientados-ao-proposito', destination: '/ponto-de-vista/lideres-orientados-ao-proposito', permanent: true },
 			{ source: '/seguranca-psicologica', destination: '/ponto-de-vista/seguranca-psicologica', permanent: true },
@@ -97,6 +105,16 @@ const nextConfig = {
 			{ source: '/jobs/:slug*', destination: '/', permanent: true },
 			{ source: '/pagina-exemplo', destination: '/', permanent: true },
 			{ source: '/home-velha', destination: '/', permanent: true }
+		]
+	},
+	async rewrites() {
+		if (!wpOrigin) return []
+
+		// serves WordPress uploads from the site's own origin. client logos are
+		// drawn as CSS masks, and browsers refuse cross-origin mask images unless
+		// the server sends CORS headers, which WordPress does not
+		return [
+			{ source: '/wp-content/uploads/:path*', destination: `${wpOrigin}/wp-content/uploads/:path*` }
 		]
 	}
 }

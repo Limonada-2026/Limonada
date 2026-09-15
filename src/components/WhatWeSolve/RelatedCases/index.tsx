@@ -1,18 +1,16 @@
 // components
 import ClientsCases from '@/components/ClientsCases'
 
-// db
-import { cases as allCases } from '@/db/clientes'
+// wordpress
+import { getCasesBySlugs } from '@/lib/wordpress/getCases'
 
 // interface
 interface RelatedCasesProps {
     slugs: string[]
 }
 
-export default function RelatedCases({ slugs }: RelatedCasesProps) {
-    const featuredCases = slugs
-        .map((slug) => allCases.find((item) => item.slug === slug))
-        .filter((item) => item !== undefined)
+export default async function RelatedCases({ slugs }: RelatedCasesProps) {
+    const featuredCases = await getCasesBySlugs(slugs)
 
     return (
         <ClientsCases cases={featuredCases} />

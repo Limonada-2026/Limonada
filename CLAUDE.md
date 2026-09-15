@@ -17,7 +17,7 @@ npm run lint      # Run ESLint
 
 ### Data layer
 
-Portfolio content is fetched from a headless WordPress instance via GraphQL (`graphql-request`). The WP GraphQL endpoint is set via `WP_GRAPHQL` env var. See [`src/lib/wordpress/`](src/lib/wordpress/) for typed query functions.
+Client cases (`cliente` post type, ACF fields) and Ponto de Vista articles (`pontoDeVista` post type) come from a headless WordPress at `https://wp.alimonada.com.br` via GraphQL (`graphql-request`). The endpoint is set with the `WP_GRAPHQL` env var. [`src/lib/wordpress/getCases.ts`](src/lib/wordpress/getCases.ts) and [`getPosts.ts`](src/lib/wordpress/getPosts.ts) map the WordPress nodes onto the shapes the pages render; responses are cached for 60 seconds. There is no static content in the repo anymore.
 
 ### Routing
 
@@ -49,9 +49,9 @@ GSAP (with `@gsap/react`) is the primary animation library. Reusable animation w
 - `Guidelines` — dev-only grid overlay
 - `#portal` div — used by `Portal` component for modals/dialogs
 
-### Portfolio blocks
+### Case pages
 
-Individual portfolio project pages (`/portfolio/[project]`) are composed of block components in `src/components/PortfolioBlocks/` (e.g. `Banner`, `BigMedia`, `FullscreenMedia`, `TwoMedia`, `ExpandingGrid`, `StoriesSlider`). The `PortfolioBlock` dispatcher maps block type strings to components.
+Case pages (`/clientes/[postId]`) are built from section components next to the route in `src/app/clientes/[postId]/` (`BannerTop`, `FourBlocks`, `Numbers`, `Testimonials`, `RelatedClients`). Section headings default to `defaultSectionTitles` in `getCases.ts` and can be overridden per case in WordPress.
 
 ### Email
 

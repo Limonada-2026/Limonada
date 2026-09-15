@@ -9,11 +9,11 @@ import Cases from './Cases'
 // image
 import lemonade from '@/assets/img/lemonade.png'
 
+// wordpress
+import { getCases } from '@/lib/wordpress/getCases'
+
 // utils
 import { pageMetadata } from '@/utils/seo'
-
-// temp db
-import { cases } from '@/db/clientes'
 
 // how many cases per page
 const howMany = 12
@@ -33,6 +33,8 @@ export default async function Clientes({ searchParams }: { searchParams: SearchP
 	const { page } = await searchParams
 
 	const initialPage = Number(page) || 1
+
+	const cases = await getCases()
 
 	return (
 		<main>

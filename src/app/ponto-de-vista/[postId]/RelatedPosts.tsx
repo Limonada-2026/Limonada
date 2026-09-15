@@ -13,7 +13,7 @@ import 'swiper/css/scrollbar'
 import CaseBlock from '@/components/CaseBlock'
 
 // types
-import type { Post } from '@/db/ponto-de-vista'
+import type { Post } from '@/lib/wordpress/getPosts'
 
 interface RelatedPostsProps {
     posts: Post[]

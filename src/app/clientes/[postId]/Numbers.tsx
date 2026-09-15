@@ -100,7 +100,7 @@ export default function Numbers({ title, items }: NumbersProps) {
                             slidesPerView: 2,
                             spaceBetween: 30
                         },
-                        1200: {
+                        1400: {
                             slidesPerView: 3,
                             spaceBetween: 30
                         }
@@ -114,7 +114,7 @@ export default function Numbers({ title, items }: NumbersProps) {
                         >
                             <div className='flex flex-col'>
 
-                                <h2 className='text-[5rem] md:text-[6rem] lg:text-[8rem] xl:text-[10rem] leading-[1.1] text-green-vivid'>
+                                <h2 className='text-[5rem] md:text-[6rem] lg:text-[8rem] xl:text-[9rem] leading-[1.1] text-green-vivid'>
                                     {item.hasPlus && '+'}
                                     {item.display ? item.display : (
                                         <>

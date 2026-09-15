@@ -8,7 +8,7 @@ import PaginatedGrid from '@/components/PaginatedGrid'
 import { pages } from '@/utils/routes'
 
 // types
-import type { Case } from '@/db/clientes'
+import type { Case } from '@/lib/wordpress/getCases'
 
 interface CasesProps {
     cases: Case[]

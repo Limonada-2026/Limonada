@@ -11,7 +11,7 @@ import PaginatedGrid from '@/components/PaginatedGrid'
 import { pages } from '@/utils/routes'
 
 // types
-import type { Post } from '@/db/ponto-de-vista'
+import type { Post } from '@/lib/wordpress/getPosts'
 
 interface PostsProps {
     posts: Post[]

@@ -9,10 +9,19 @@ import ContactFormSmall from '@/components/ContactFormSmall'
 
 import AnimatedText from '@/components/Utils/Animations/AnimatedText'
 
-// db
-import { cases } from '@/db/home'
+// wordpress
+import { getCasesBySlugs } from '@/lib/wordpress/getCases'
 
-export default function Home() {
+// cases featured on the homepage
+const featured = [
+	'limonada-com-john-deere',
+	'limonada-com-neoenergia',
+	'limonada-com-boticario'
+]
+
+export default async function Home() {
+
+	const cases = await getCasesBySlugs(featured)
 	return (
 		<main>
 

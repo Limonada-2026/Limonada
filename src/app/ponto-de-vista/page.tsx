@@ -5,11 +5,11 @@ import Image from 'next/image'
 // image
 import lemonTree from '@/assets/img/lemon-tree.png'
 
+// wordpress
+import { getPosts } from '@/lib/wordpress/getPosts'
+
 // utils
 import { pageMetadata } from '@/utils/seo'
-
-// temp db
-import { posts } from '@/db/ponto-de-vista'
 
 // components
 import Posts from './Posts'
@@ -32,6 +32,8 @@ export default async function PontoDeVista({ searchParams }: { searchParams: Sea
 	const { page } = await searchParams
 
 	const initialPage = Number(page) || 1
+
+	const posts = await getPosts()
 
 	return (
 		<main>

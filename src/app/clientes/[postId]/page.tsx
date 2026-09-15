@@ -19,8 +19,8 @@ import image2 from '@/assets/img/clients-02.png'
 import image3 from '@/assets/img/clients-03.png'
 import image4 from '@/assets/img/clients-04.png'
 
-// temp db
-import { cases, getCase, defaultSectionTitles } from '@/db/clientes'
+// wordpress
+import { getCases, getCase, defaultSectionTitles } from '@/lib/wordpress/getCases'
 
 // utils
 import { pages } from '@/utils/routes'
@@ -47,7 +47,8 @@ function Paragraphs({ items }: { items: string[] }) {
 }
 
 // static routes
-export function generateStaticParams() {
+export async function generateStaticParams() {
+	const cases = await getCases()
 	return cases.map((item) => ({ postId: item.slug }))
 }
 
@@ -55,7 +56,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
 
 	const { postId } = await params
-	const item = getCase(postId)
+	const item = await getCase(postId)
 
 	if (!item) return {}
 
@@ -71,12 +72,13 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 export default async function ClientePost({ params }: { params: Params }) {
 
 	const { postId } = await params
-	const item = getCase(postId)
+	const item = await getCase(postId)
 
 	if (!item) notFound()
 
 	const titles = { ...defaultSectionTitles, ...item.sectionTitles }
 
+	const cases = await getCases()
 	const related = cases
 		.filter((c) => c.slug !== item.slug)
 		.sort(() => Math.random() - 0.5)
@@ -90,7 +92,7 @@ export default async function ClientePost({ params }: { params: Params }) {
 				logo={item.logo}
 				title={item.title}
 				description={item.subtitle}
-				tags={[item.tema, item.formato]}
+				tags={item.tags}
 			/>
 
 			{item.limao.length > 0 && (
@@ -171,7 +173,7 @@ export default async function ClientePost({ params }: { params: Params }) {
 			{item.blocks.length > 0 && (
 				<FourBlocks
 					items={item.blocks.map((block, i) => ({
-						image: blockImages[i % blockImages.length].src,
+						image: block.image || blockImages[i % blockImages.length].src,
 						title: block.title,
 						text: block.text
 					}))}
