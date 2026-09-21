@@ -112,9 +112,10 @@ const nextConfig = {
 
 		// serves WordPress uploads from the site's own origin. client logos are
 		// drawn as CSS masks, and browsers refuse cross-origin mask images unless
-		// the server sends CORS headers, which WordPress does not
+		// the server sends CORS headers, which WordPress does not. the path must
+		// not start with /wp-, which the Vercel firewall blocks to stop scanners
 		return [
-			{ source: '/wp-content/uploads/:path*', destination: `${wpOrigin}/wp-content/uploads/:path*` }
+			{ source: '/uploads/:path*', destination: `${wpOrigin}/wp-content/uploads/:path*` }
 		]
 	}
 }

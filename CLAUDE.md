@@ -58,4 +58,4 @@ Contact form submissions are handled by `src/app/api/resend/route.ts` using the 
 
 ### Image optimization
 
-`next/image` remote patterns allow `wp.alimonada.com.br` (WordPress media). Preferred formats are AVIF and WebP. WordPress uploads are also proxied at `/wp-content/uploads/*` so client logos, used as CSS masks, load from the site's own origin.
+`next/image` remote patterns allow `wp.alimonada.com.br` (WordPress media). Preferred formats are AVIF and WebP. WordPress uploads are also proxied at `/uploads/*` so client logos, used as CSS masks, load from the site's own origin. The path can't start with `/wp-`: a Vercel firewall rule blocks those to stop WordPress scanners.

@@ -1,7 +1,7 @@
-// uploads are proxied through the site by the rewrite in next.config.mjs, so a
-// root-relative path loads from the same origin as the page
+// uploads are proxied through the site at /uploads by the rewrite in
+// next.config.mjs, so the rewritten path loads from the same origin as the page
 export function toSameOrigin(url: string) {
-	return url.replace(/^https?:\/\/[^/]+(?=\/wp-content\/uploads\/)/, '')
+	return url.replace(/^https?:\/\/[^/]+\/wp-content\/uploads\//, '/uploads/')
 }
 
 // named entities WordPress produces through wptexturize and friends
