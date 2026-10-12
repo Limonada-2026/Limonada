@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation'
 // components
 import MagneticButton from '@/components/Utils/Animations/MagneticButton'
 import LemonFall from '@/components/Utils/Animations/LemonFall'
-import { Form, Input, InputHidden, Submit } from '@/components/Form'
+import { Form, Input, InputHidden, Submit, UtmHiddenFields } from '@/components/Form'
 import AnimatedLogo from '@/components/AnimatedLogo'
 
 // utils
@@ -159,6 +159,8 @@ export default function Footer() {
 										value='true'
 										id='newsletter_form'
 									/>
+
+									<UtmHiddenFields />
 
 									<Input
 										label='Email'

@@ -1,5 +1,5 @@
 import { Resend } from 'resend'
-import { sendRdStationConversion } from '@/lib/rdstation'
+import { sendRdStationConversion, utmsToRdTraffic } from '@/lib/rdstation'
 
 const getDestinationEmail = (): string => {
 	return 'contato@alimonada.com.br'
@@ -98,16 +98,13 @@ export async function POST(req: Request) {
 				text: textMessage,
 			}),
 			sendRdStationConversion({
-				identificador: body.form === 'contact_home' ? 'site-formulario-home' : 'site-formulario-contato',
+				conversion_identifier: body.form === 'contact_home' ? 'site-formulario-home' : 'site-formulario-contato',
 				email: body.Email,
-				nome: body.Nome,
-				telefone: body.Telefone,
-				empresa: body.Empresa,
-				cargo: body.Cargo,
-				traffic_source: body.utm_source,
-				traffic_medium: body.utm_medium,
-				traffic_campaign: body.utm_campaign,
-				traffic_value: body.utm_term,
+				name: body.Nome,
+				personal_phone: body.Telefone,
+				company_name: body.Empresa,
+				job_title: body.Cargo,
+				...utmsToRdTraffic(body),
 			}),
 		])
 
