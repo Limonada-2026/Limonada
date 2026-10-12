@@ -1,4 +1,4 @@
-import { sendRdStationConversion, utmsToRdTraffic } from '@/lib/rdstation'
+import { sendRdStationConversion, utmsToRdFields } from '@/lib/rdstation'
 
 export async function POST(req: Request) {
 	try {
@@ -20,7 +20,7 @@ export async function POST(req: Request) {
 		await sendRdStationConversion({
 			conversion_identifier: 'site-newsletter',
 			email: body.email,
-			...utmsToRdTraffic(body),
+			...utmsToRdFields(body),
 		})
 
 		return new Response(

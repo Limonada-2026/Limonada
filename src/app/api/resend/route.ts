@@ -1,5 +1,5 @@
 import { Resend } from 'resend'
-import { sendRdStationConversion, utmsToRdTraffic } from '@/lib/rdstation'
+import { sendRdStationConversion, utmsToRdFields } from '@/lib/rdstation'
 
 const getDestinationEmail = (): string => {
 	return 'contato@alimonada.com.br'
@@ -104,7 +104,7 @@ export async function POST(req: Request) {
 				personal_phone: body.Telefone,
 				company_name: body.Empresa,
 				job_title: body.Cargo,
-				...utmsToRdTraffic(body),
+				...utmsToRdFields(body),
 			}),
 		])
 

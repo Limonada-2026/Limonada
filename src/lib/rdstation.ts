@@ -9,15 +9,33 @@ interface RdStationConversionPayload {
 	traffic_medium?: string
 	traffic_campaign?: string
 	traffic_value?: string
+	cf_utm_source?: string
+	cf_utm_medium?: string
+	cf_utm_campaign?: string
+	cf_utm_term?: string
+	cf_utm_content?: string
 }
 
-/** Maps the UTM fields a form submitted (see UtmHiddenFields) onto RD Station's traffic fields. */
-export const utmsToRdTraffic = (body: Record<string, unknown>) => ({
-	traffic_source: body.utm_source as string | undefined,
-	traffic_medium: body.utm_medium as string | undefined,
-	traffic_campaign: body.utm_campaign as string | undefined,
-	traffic_value: body.utm_term as string | undefined,
-})
+/**
+ * Maps the UTM fields a form submitted (see UtmHiddenFields) onto RD Station. The traffic_*
+ * fields feed the lead's "Origem"; the cf_utm_* ones are custom fields created in the RD
+ * account so the raw values also show on the conversion itself.
+ */
+export const utmsToRdFields = (body: Record<string, unknown>) => {
+	const utm = (key: string) => body[key] as string | undefined
+
+	return {
+		traffic_source: utm('utm_source'),
+		traffic_medium: utm('utm_medium'),
+		traffic_campaign: utm('utm_campaign'),
+		traffic_value: utm('utm_term'),
+		cf_utm_source: utm('utm_source'),
+		cf_utm_medium: utm('utm_medium'),
+		cf_utm_campaign: utm('utm_campaign'),
+		cf_utm_term: utm('utm_term'),
+		cf_utm_content: utm('utm_content'),
+	}
+}
 
 /**
  * Registers a lead conversion in RD Station. Never throws: a failure here (missing
