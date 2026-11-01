@@ -104,6 +104,7 @@ export async function POST(req: Request) {
 				personal_phone: body.Telefone,
 				company_name: body.Empresa,
 				job_title: body.Cargo,
+				cf_mensagem: body.Mensagem || body.Desafio, // the home form calls it Desafio
 				...utmsToRdFields(body),
 			}),
 		])

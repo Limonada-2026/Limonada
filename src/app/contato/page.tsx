@@ -87,6 +87,7 @@ export default function Contact() {
 											label='Telefone'
 											placeholder='(00) 00000-0000'
 											type='tel'
+											required
 										/>
 									</div>
 
@@ -97,6 +98,7 @@ export default function Contact() {
 											label='Empresa'
 											placeholder='Digite o nome da empresa'
 											type='text'
+											required
 										/>
 									</div>
 
@@ -107,6 +109,7 @@ export default function Contact() {
 											label='Cargo'
 											placeholder='Digite seu cargo'
 											type='text'
+											required
 										/>
 									</div>
 

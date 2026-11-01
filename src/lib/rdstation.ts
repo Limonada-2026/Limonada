@@ -5,6 +5,7 @@ interface RdStationConversionPayload {
 	personal_phone?: string
 	company_name?: string
 	job_title?: string
+	cf_mensagem?: string
 	traffic_source?: string
 	traffic_medium?: string
 	traffic_campaign?: string
