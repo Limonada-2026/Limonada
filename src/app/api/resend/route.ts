@@ -2,7 +2,7 @@ import { Resend } from 'resend'
 import { sendRdStationConversion, utmsToRdFields } from '@/lib/rdstation'
 
 const getDestinationEmail = (): string => {
-	return 'contato@alimonada.com.br'
+	return process.env.CONTACT_EMAIL_TO || 'contato@alimonada.com.br'
 }
 
 const IGNORED_FIELDS = ['form', 'company'] // company = honeypot
